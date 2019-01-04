@@ -1,1 +1,1 @@
-# HTML5 Canvas Project
+# Note page
