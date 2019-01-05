@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>❁HTML</title>
+  </head>
+  <body>
+    <hr />
+    <!-- **************** Back to Index Page ************ -->
+    <h1>
+      <strong><a href="index.html">Index </a> </strong>
+    </h1>
+    <hr />
+
+    <!-- **********************HTML***************************** -->
+    <h1><strong>HTML </strong></h1>
+    <hr />
+    <!-- ************Head tag ************* -->
+    <h2><em>Head tag </em></h2>
+    <h3>
+      At the top of the page in the meta tags define the char set, viewport, and
+      other things. Note that the meta tag with a name="description" and
+      content="Annes note page" is used by google to find your web page
+    </h3>
+    <h2>
+      The title tag is what shows up in the web browser tab and it can contain
+      an emogi . Here is a link to info about unicode characters that also has
+      some emogis
+      <a href="https://unicode-table.com/en/#0040"> Link to unicode-table </a>
+    </h2>
+    <p>This text is wrapped in the p or paragarph tag</p>
+
+    <em>emphasis tag- em this is more that just about style </em> <br />
+    <i>italics tag- i </i> <br />
+    <strong> bold to the browse , more that just bold </strong> <br />
+    <b>
+      this just bolds , its a style change won't help screen reader know this
+      text has emphasis
+    </b>
+    <br />
+    <hr />
+    <!-- **********************lists ***************************** -->
+    <h2><em>Lists </em></h2>
+    <h3>an unorderd list ul bullets</h3>
+    <ul>
+      <li>Hummus</li>
+      <li>Pita</li>
+      <li>Green salad</li>
+      <li>Halloumi</li>
+    </ul>
+    <h3>an ordered list ol has numbers</h3>
+    <ol>
+      <li>Toast pita, leave to cool, then slice down the edge.</li>
+      <li>
+        Fry the halloumi in a shallow, non-stick pan, until browned on both
+        sides.
+      </li>
+      <li>Wash and chop the salad.</li>
+      <li>Fill pita with salad, hummus, and fried halloumi.</li>
+    </ol>
+    <h3>This one uses the dl ,dd and dt use for something like a recipe</h3>
+    <dl>
+      <dt>Hummus</dt>
+      <dd>
+        A thick dip/sauce generally made from chick peas blended with tahini,
+        lemon juice, salt, garlic, and other ingredients.
+      </dd>
+      <dt>Pita</dt>
+      <dd>A soft, slightly leavened flatbread.</dd>
+      <dt>Halloumi</dt>
+      <dd>
+        A semi-hard, unripened, brined cheese with a higher-than-usual melting
+        point, usually made from goat/sheep milk.
+      </dd>
+      <dt>Green salad</dt>
+      <dd>
+        That green healthy stuff that many of us just use to garnish kebabs.
+      </dd>
+    </dl>
+    <h3>Here use the type attrbute in a ol to get roman numerals</h3>
+    <ol type="i">
+      <li>foo</li>
+      <li>bar</li>
+      <li>spam</li>
+    </ol>
+    <hr />
+    <!-- ***********************************Image Element************************* -->
+    <h2><em>Image element</em></h2>
+    <p>
+      The image tag is self closing and contains the src attribute that contains
+      link to the image. It also contains the alt tag for alternative text
+      explaining what the picture is ( just in case the browser cannot render
+      It) The alt tag is also used in google searches
+    </p>
+    <h3>
+      This image is stored locally
+      <img src="./assets/images/webdesigner.jpg" alt="web designer" />
+    </h3>
+    <h2><em>The hypertext part of HTML and the href tag</em></h2>
+    <h3>
+      Check out the Wiki Game that is in the anchor or "a" tag tag with the href
+      attribute
+      <a href="https://www.thewikigame.com/">https://www.thewikigame.com/</a>
+    </h3>
+    <h3>
+      This links to the mdn page all about the a tag
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a</a
+      >
+    </h3>
+    <h2>
+      Here is a link to the Standford University HTML cheet sheet. It has the
+      download attribute set so it will download the pdf automatically ( if
+      supported by browser)
+      <a
+        download
+        href="https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf"
+      >
+        Download: https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf</a
+      >
+    </h2>
+    <hr />
+    <!-- ******************************** tables ************************************* -->
+    <h2><em>Tables </em></h2>
+    <h2>
+      Table element style attributes have been depricated ( they have a thumbs
+      down on the Mozilla docs( would be better to use CSS) this is left over
+      from the 90's when no css was avalible
+    </h2>
+    <h2>
+      Some page layout can also be done with tables to arrange content on the
+      page. The cellspacing attribue can be used to add some spacing to the
+      table cells.
+    </h2>
+    <p>Simple table with header</p>
+    <table>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+      </tr>
+      <tr>
+        <td>Jane</td>
+        <td>Doe</td>
+      </tr>
+    </table>
+
+    <p>Table with thead, tfoot, and tbody</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Header content 1</th>
+          <th>Header content 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Body content 1</td>
+          <td>Body content 2</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Footer content 1</td>
+          <td>Footer content 2</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p>Table with colgroup</p>
+    <table>
+      <colgroup span="4"></colgroup>
+      <tr>
+        <th>Countries</th>
+        <th>Capitals</th>
+        <th>Population</th>
+        <th>Language</th>
+      </tr>
+      <tr>
+        <td>USA</td>
+        <td>Washington, D.C.</td>
+        <td>309 million</td>
+        <td>English</td>
+      </tr>
+      <tr>
+        <td>Sweden</td>
+        <td>Stockholm</td>
+        <td>9 million</td>
+        <td>Swedish</td>
+      </tr>
+    </table>
+
+    <p>Table with colgroup and col</p>
+    <table>
+      <colgroup>
+        <col style="background-color: #0f0" />
+        <col span="2" />
+      </colgroup>
+      <tr>
+        <th>Lime</th>
+        <th>Lemon</th>
+        <th>Orange</th>
+      </tr>
+      <tr>
+        <td>Green</td>
+        <td>Yellow</td>
+        <td>Orange</td>
+      </tr>
+    </table>
+
+    <p>Simple table with caption</p>
+    <table>
+      <caption>
+        Awesome caption
+      </caption>
+      <tr>
+        <td>Awesome data</td>
+      </tr>
+    </table>
+
+    <!-- ***********************skills table with emojies ******************************* -->
+    <h2>Skills table with emojies</h2>
+
+    <table cellspacing="10">
+      <tr>
+        <td>
+          <table cellspacing="10">
+            <tr>
+              <td>HTML</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+            <tr>
+              <td>CSS</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+            <tr>
+              <td>Javascript</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table cellspacing="10">
+            <tr>
+              <td>React</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+            <tr>
+              <td>MongoDB</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+            <tr>
+              <td>API</td>
+              <td>👍👍👍👍👍</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <hr />
+    <h2>Input Form</h2>
+    <h3>Contact Page Example</h3>
+    <h3><a href="contact.html" target="_blank">Contact Me </a></h3>
+  </body>
+</html>
