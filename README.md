@@ -1,1 +1,1 @@
-# Note page
+# Note page and various projects

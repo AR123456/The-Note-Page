@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="Annes note page" />
-    <title>💜Personal Note Page</title>
+    <title>Jquery Memory Game</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>jQuery Simon Memory Game</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <!-- link to local style sheet -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
   <body>
-    <h1><strong>Web development and design notes </strong></h1>
-    <h2>
-      This page contains helpful info and links related to full stack web
-      development. Sometimes just look at the HTML, JS or CSS files to see the
-      notes
-    </h2>
-    <hr />
-    <!-- ********HTML****** -->
-    <h1>
-      <strong><a href="htmlnotes.html" target="_blank">HTML</a> </strong>
-    </h1>
-    <hr />
-    <!-- ********************** CSS  ******************** -->
-    <h1>
-      <strong> <a href="cssnotes.html" target="_blank">CSS</a> </strong>
-    </h1>
-    <!-- **********************Javascript  ******************** -->
-    <hr />
-    <h1>
-      <strong> <a href="jsnotes.html" target="_blank">Javascript </a> </strong>
-    </h1>
+    <h1 id="level-title">Press A Key to Start</h1>
+    <div class="container">
+      <div lass="row">
+        <div type="button" id="green" class="btn green"></div>
 
-    <!-- ********************** Misc Content ******************** -->
-    <hr />
-    <h1>
-      <strong>
-        <a href="miscnotes.html" target="_blank">Misc Content </a>
-      </strong>
-    </h1>
+        <div type="button" id="red" class="btn red"></div>
+      </div>
+
+      <div class="row">
+        <div type="button" id="yellow" class="btn yellow"></div>
+        <div type="button" id="blue" class="btn blue"></div>
+      </div>
+    </div>
+    <!-- if you do not put the jquery at the end of the html you need to include the document ready code  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="./assets/javascript/game.js"></script>
   </body>
 </html>
