@@ -19,42 +19,11 @@
 //  can use the .hasClass to check and return a true or false
 // $(h1).hasClass("margin-50")
 
-// $("h1").text("Bye");
-// // $("button").text("Don't Click Me");
-// // .html replaces .innerHTML
-// $("button").html("<em>Hey</em>");
+$("h1").text("Bye");
+// $("button").text("Don't Click Me");
+// .html replaces .innerHTML
+$("button").html("<em>Hey</em>");
 
-// //  $ and . methods , Jquery is just written in vanilla JS and the $ are methods
-// // using jquery to add or overide the href in the html
-// $("a").attr("href", "https://www.yahoo.com");
-
-// adding event listeners
-$("h1").click(function() {
-  $("h1").css("color", "purple");
-});
-
-// instead of using a for loop to select all the elements can do this.
-
-// for (let i = 0; i < 5; i++) {
-//   document.querySelectorAll("button")[i].addEventListener("click", function() {
-//     document.querySelector("h1").style.color = "red";
-//   });
-// }
-
-// using Jquery
-$("button").click(function() {
-  $("h1").css("color", "purple");
-});
-
-// key press listioner
-$(document).keypress(function(event) {
-  console.log(event.key);
-});
-
-$(document).keypress(function(event) {
-  $("h1").text(event.key);
-});
-// even more robust way use on and then the event as first param
-$("h1").on("mouseover", function() {
-  $("h1").css("color", "green");
-});
+//  $ and . methods , Jquery is just written in vanilla JS and the $ are methods
+// using jquery to add or overide the href in the html
+$("a").attr("href", "https://www.yahoo.com");
