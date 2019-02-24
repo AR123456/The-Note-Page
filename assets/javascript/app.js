@@ -24,6 +24,4 @@ $("h1").text("Bye");
 // .html replaces .innerHTML
 $("button").html("<em>Hey</em>");
 
-//  $ and . methods , Jquery is just written in vanilla JS and the $ are methods
-// using jquery to add or overide the href in the html
-$("a").attr("href", "https://www.yahoo.com");
+//  $ and . methods , Jquery is just written in vanilla JS and the $ are methods 
