@@ -1,25 +1,17 @@
-body {
-  background-image: url("../images/happyBalloons.jpg");
+#div1 {
+  background-color: #dbee5c;
 }
-.red {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-  position: relative;
-  left: 200px;
+#div2 {
+  background-color: #6dbf8c;
 }
-.blue {
-  background-color: blue;
-  width: 100px;
-  height: 100px;
-  position: relative;
-  bottom: 100px;
+#div3 {
+  background-color: #4a80ed;
 }
-.yellow {
-  background-color: yellow;
-  width: 100px;
-  height: 100px;
-  position: relative;
-  left: 100px;
-  bottom: 200px;
+#div4 {
+  background-color: #d9a962;
+}
+.equalBox {
+  float: left;
+
+  margin-left: 5px;
 }
