@@ -1,24 +1,30 @@
-var shoppingList = ["bread", "eggs", "milk"];
-showResult(shoppingList);
-showResult(shoppingList[0]);
-showResult(shoppingList[2]);
-
-function showResult(x) {
-  document.getElementById("myParagraph").innerHTML += "<br />" + x;
+function checkSpeed() {
+  var speed = document.getElementById("speed").value;
+  if (speed > 70) {
+    alert("you are going to fasst ");
+  } else if (speed < 40) {
+    alert("You are going too slow");
+  } else {
+    alert("your speed is fine ");
+  }
 }
-shoppingList[1] = "yogurt";
-showResult(shoppingList);
-shoppingList[2] = "orange";
-showResult(shoppingList);
-delete shoppingList[1];
-showResult(shoppingList);
-shoppingList.splice(1, 1);
-shoppingList.splice(1, 0, "banana", "apple");
-showResult(shoppingList);
-shoppingList.sort();
-showResult(shoppingList);
-shoppingList.reverse();
-showResult(shoppingList);
-var myString = "what is weather like?";
-var myArray = myString.split(" ", 2);
-showResult(myArray);
+
+function checkSeason() {
+  var x = document.getElementById("myInput").value.toLowerCase();
+  switch (x) {
+    case "summer":
+      alert("Its summer!");
+      break;
+    case "winter":
+      alert("Its winter!");
+      break;
+    case "spring":
+      alert("Its spring!");
+      break;
+    case "fall":
+      alert("fall!");
+      break;
+    default:
+      alert("what??? try again ");
+  }
+}
