@@ -14,26 +14,16 @@
   </head>
 
   <body>
-    <p>
-      String:
-      <span id="string"> </span>
+    <p id="counter">
+      0
     </p>
-    <p>
-      Pattern:
-      <span id="pattern"> </span>
-    </p>
-    <p>
-      Result(search):
-      <span id="search"> </span>
-    </p>
-    <p>
-      Result(match):
-      <span id="match"> </span>
-    </p>
-    <p>
-      Result(test):
-      <span id="test"> </span>
-    </p>
+    <button onclick="clearInterval(myCounter)">
+      Stop counting.
+    </button>
+    <br />
+    <button onclick="clearTimeout(delayedWelcomeMessage)">
+      Avoid Welcome Message
+    </button>
     <!-- if you do not put the jquery at the end of the html you need to include the document ready code  -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
