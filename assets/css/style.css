@@ -1,189 +1,25 @@
-/* this gives the page a grey color with  a gradiant that starts light at the center and gets darker at the edtes 
- */
-html {
-  height: 100;
-  background: radial-gradient(circle, #fff, #ccc);
+body {
+  background-image: url("../images/happyBalloons.jpg");
 }
-
-/* need to add pge style, colors of divs , shadow boxes ect  */
-#container {
-  height: 400px;
-  width: 550px;
-  background-color: #9dd2ea;
-  /* the auto here centers the containger on the page  */
-  margin: 100px auto;
-  padding: 20px;
-  /* round the corners  */
-  border-radius: 10px;
-  /* for the shadow box  */
-  box-shadow: 3px 4px 0px 0px #009de4;
-  -moz-box-shadow: 3px 4px 0px 0px #009de4;
-  -webkit-box-shadow: 3px 4px 0px 0px #009de4;
-}
-#score {
-  background-color: #f1ff92;
-  /* text color  */
-  color: #888e5f;
-  padding: 11px;
-  /* position of the box on the page  */
-  position: absolute;
-  /* move to the left  */
-  left: 600px;
-  box-shadow: 3px 4px 0px #9da853;
-  -moz-box-shadow: 3px 4px 0px #9da853;
-  -webkit-box-shadow: 3px 4px 0px #9da853;
-}
-#correct {
-  position: absolute;
-  left: 260px;
-  background-color: #42e252;
-  color: white;
-  padding: 11px;
-  /* this is the togggle to display if correct from the JS  */
-  display: none;
-}
-#wrong {
-  position: absolute;
-  left: 250px;
-  background-color: #de401a;
-  color: white;
-  padding: 11px;
-  /* this is the togggle to display if correct from the JS  */
-  display: none;
-}
-
-#question {
-  width: 450px;
-  height: 150px;
-  /* position in the middle of the container dive  */
-  margin: 50px auto 10px auto;
-  background-color: #9da0ea;
-  box-shadow: 3px 4px #535aa8;
-  -moz-box-shadow: 3px 4px #535aa8;
-  -webkit-box-shadow: 3px 4px #535aa8;
-  /*  adding styling to the text in the question box  */
-  font-size: 100px;
-  text-align: center;
-  font-family: cursive, sans-serif;
-  color: black;
-}
-#instruction {
-  width: 450px;
-  height: 50px;
-  background-color: #b481d9;
-  /* for centering box  */
-  margin: 10px auto;
-  /* for centering the text  */
-  text-align: center;
-  line-height: 45px;
-  box-shadow: 2px 4px #8153a8;
-  -moz-box-shadow: 2px 4px #8153a8;
-  -webkit-box-shadow: 2px 4px #8153a8;
-}
-/* The div that houses the choice boxes  */
-#choices {
-  width: 450px;
+.red {
+  background-color: red;
+  width: 100px;
   height: 100px;
-  /* center in the container div  */
-  margin: 5px auto;
-}
-/* style the boxes  */
-.box {
-  width: 85px;
-  height: 85px;
-  background-color: white;
-  /* to get the boxes in line  */
-  float: left;
-  /* adding spaces between the boxes  */
-  margin-right: 36px;
-  /* rounding the corners of the boxes  */
-  border-radius: 3px;
-  /* color change on hover  */
-  cursor: pointer;
-  box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  /* align and style the text  */
-  text-align: center;
-  line-height: 80px;
   position: relative;
-  /* changing the box shadew on click so it looks like it moves   */
-  transition: all 0.2s;
-  /* cross browser usability  */
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  -ms-transition: all 0.2s;
+  left: 200px;
 }
-/* adding on hover behavior to the answer boxes */
-.box:hover,
-#startreset:hover {
-  background-color: #9c89f6;
-  color: white;
-  box-shadow: 2px 4px #6b54d3;
-  -moz-box-shadow: 2px 4px #6b54d3;
-  -webkit-box-shadow: 2px 4px #6b54d3;
-}
-
-.box:active,
-#startreset:active {
-  background-color: #9c89f6;
-  color: white;
-  box-shadow: 0px 0px #6b54d3;
-  -moz-box-shadow: 0px 0px #6b54d3;
-  -webkit-box-shadow: 0px 0px #6b54d3;
-  top: 4px;
-}
-#box4 {
-  /*  to get the last box in the row to not have a margin right of 36 px like the rest  */
-  margin-right: 0;
-}
-#startreset {
-  width: 78px;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin: 0 auto;
-  border-radius: 3px;
-  cursor: pointer;
-  box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
+.blue {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
   position: relative;
-  transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  -ms-transition: all 0.2s;
+  bottom: 100px;
 }
-#timeremaining {
-  width: 152px;
-  padding: 10px;
-  position: absolute;
-  top: 495px;
-  left: 540px;
-  background-color: rgba(181, 235, 36, 0.8);
-  border-radius: 3px;
-  box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
-  /*    visibility: hidden;*/
-  display: none;
-}
-#gameOver {
-  height: 200px;
-  width: 500px;
-  background: linear-gradient(#f3ca6b, #f3706c);
-  background: -webkit-linear-gradient(#f3ca6b, #f3706c);
-  background: -o-linear-gradient(#f3ca6b, #f3706c);
-  background: -moz-linear-gradient(#f3ca6b, #f3706c);
-  color: white;
-  font-size: 2.5em;
-  text-align: center;
-  text-transform: uppercase;
-  position: absolute;
-  top: 200px;
-  left: 165px;
-  z-index: 2;
-  display: none;
+.yellow {
+  background-color: yellow;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 100px;
+  bottom: 200px;
 }
