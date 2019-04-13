@@ -1,21 +1,35 @@
-/* div:hover {
-  background: purple;
-} */
-button:hover {
-  background-color: pink;
+body {
+  background-color: bisque;
+  font-family: Lato;
+  color: chocolate;
 }
-button:focus {
-  border-radius: 10px;
-  background-color: #2ecc71;
+h1 {
+  text-align: center;
+  font-weight: 300;
 }
-button:active {
-  background-color: orange;
-  font-size: 30px;
+
+.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  background-color: #fcad26;
+  font-size: 16px;
+  font-weight: 300px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 25px 80px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 6px #efa424;
 }
-input:focus {
-  background-color: aquamarine;
+.btn:hover {
+  box-shadow: 0 4px #efa424;
+  top: 2px;
 }
-h1:active,
-p:active {
-  color: yellow;
+.btn:active {
+  box-shadow: none;
+  top: 6px;
 }
