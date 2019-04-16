@@ -1,3 +1,5 @@
+/* transition delay  */
+/* 
 .box {
   background: #9b59b6;
   height: 100px;
@@ -12,6 +14,7 @@
 .animated {
   transition-property: background, border-radius;
   transition-duration: 5s, 1s;
+  transition-delay: 2s, 0.5s;
 }
 
 .box:hover {
@@ -19,4 +22,26 @@
   transform-origin: top left;
   transform: scale(2);
   border-radius: 50px;
+} */
+
+/* ****************************** Transition Timing Function  */
+.box {
+  background: #9b59b6;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: white;
+  font-size: 17px;
+  border-radius: 20px;
+}
+
+.animated {
+  transition-property: transform;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+}
+
+.box:hover {
+  transform: translateX(300px);
 }
