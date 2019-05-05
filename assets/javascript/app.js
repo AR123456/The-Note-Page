@@ -1,23 +1,19 @@
-// Joan of Arc "properties".
-var joanOfArcInfoParts = [
-  "Real Name",
-  "Grew Up Where",
-  "Known For",
-  "Scars",
-  "Symbolism"
-];
+//git hub zen API
+var XHR = new XMLHttpRequest();
 
-// Values for Joan's "properties".
-var joanOfArcInfoValues = [
-  "Jehanne la Pucelle.",
-  "Domremy, a village in northeastern France.",
-  "Peasant girl, daughter of a farmer, who rose to become Commander of the French army.",
-  "Took an arrow to the shoulder and a crossbow bolt to the thigh while trying to liberate Paris.",
-  "Stands for French unity and nationalism."
-];
-for (let i = 0; i < joanOfArcInfoParts.length; i++) {
-  //   console.log(joanOfArcInfoParts[i] + ":" + joanOfArcInfoValues[i]);
-  console.table(joanOfArcInfoParts[i] + ":" + joanOfArcInfoValues[i]);
-}
+XHR.onreadystatechange = function() {
+  // checking out the ready state
+  //   console.log("Ready state is ...." + XHR.readyState);
+  if (XHR.readyState == 4) {
+    if (XHR.status == 200) {
+      console.log(XHR.responseText);
+    } else {
+      console.log("There was a problem");
+    }
+  }
+};
 
- 
+// what type of request - retriving so get , then the url
+XHR.open("GET", "https://api.github.com/zen");
+//send it
+XHR.send();
