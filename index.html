@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>
-      Ajax - Fetch
-    </title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400"
-      rel="stylesheet"
-    />
-    <!-- link to local style sheet -->
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <h1 class="title">Random User Generator</h1>
-    <div class="user-profile">
-      <img
-        id="avatar"
-        src="https://pbs.twimg.com/profile_images/743138182607175680/ZJzktgBk_400x400.jpg"
-      />
-      <div id="fullname">Jon Snow</div>
-      <div id="username">
-        kingofnorth
-      </div>
-      <div class="description">
-        <div>Email: <span id="email">jon@hotmail.com</span></div>
-        <div>City: <span id="city">Winterfell</span></div>
-      </div>
-      <div class="footer">
-        <button id="btn">Next User!</button>
-      </div>
-    </div>
-    <!-- if you do not put the jquery at the end of the html you need to include the document ready code  -->
 
-    <!-- local external js file  -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <title>D3 Letter Analizer</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Letter Analyzer</h1>
+      <form>
+        <input type="text" />
+        <button type="submit">Count the Letters!</button>
+        <button id="reset" type="button">Reset</button>
+      </form>
+    </header>
+    <div>
+      <h2 id="phrase"></h2>
+      <h4 id="count"></h4>
+      <div id="letters"></div>
+    </div>
+    <!--  d3 script tag -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <!-- local js file  -->
     <script src="./assets/javascript/app.js"></script>
   </body>
 </html>
