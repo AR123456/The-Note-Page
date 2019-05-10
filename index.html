@@ -1,31 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Frequency Count</title>
-    <link rel="stylesheet" href="style.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <title>D3 SVG The text element</title>
   </head>
+
   <body>
-    <header>
-      <h1>Letter Analyzer</h1>
-      <form>
-        <input type="text" />
-        <button type="submit">Count the Letters!</button>
-        <button id="reset" type="button">Reset</button>
-      </form>
-    </header>
-    <div>
-      <h2 id="phrase"></h2>
-      <h4 id="count"></h4>
-      <!--  This div becomes an svg  -->
-      <svg
-        version="1.1"
-        baseProfile="full"
-        xmlns="http://www.w3.org/2000/svg"
-        id="letters"
-      ></svg>
-    </div>
+    <h1>SVG in D3 The text element</h1>
+    <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+      <!-- star -->
+      <polygon
+        fill="yellow"
+        stroke="black"
+        stroke-width="8px"
+        points="400,21.5 450.5,177 614,177 481.5,273 532.5,428.5 400,332.5 267.5,428.5 318.5,273 186,177 349.5,177"
+      />
+      <!-- mount  -->
+      <circle cx="400" cy="250" r="60" fill="black" />
+      <circle cx="400" cy="235" r="65" fill="yellow" />
+      <!-- eyes  -->
+      <circle cx="370" cy="210" r="10" fill="black" />
+      <circle cx="430" cy="210" r="10" fill="black" />
+      <text
+        x="400"
+        y="430"
+        text-anchor="middle"
+        font-size="1.5em"
+        font-family="sans-serif"
+        fill="white"
+        stroke-width="1px"
+        stroke="black"
+        transform="rotate(-10 400 430)"
+      >
+        Starry starry SVG
+      </text>
+    </svg>
+    <!--  d3 script tag -->
     <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="app.js"></script>
+    <!-- local js file  -->
+    <script src="./assets/javascript/app.js"></script>
   </body>
 </html>
