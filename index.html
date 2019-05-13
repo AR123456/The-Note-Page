@@ -16,12 +16,16 @@
       crossorigin="anonymous"
     />
     <!-- Optional JavaScript -->
+    <!-- axios  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
       integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -33,41 +37,22 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-    <title>D3 SVG The text element</title>
+    <title>AJAX in 4 different ways</title>
   </head>
 
   <body>
-    <h1>SVG in D3 The text element</h1>
-    <svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
-      <!-- star -->
-      <polygon
-        fill="yellow"
-        stroke="black"
-        stroke-width="8px"
-        points="400,21.5 450.5,177 614,177 481.5,273 532.5,428.5 400,332.5 267.5,428.5 318.5,273 186,177 349.5,177"
-      />
-      <!-- mount  -->
-      <circle cx="400" cy="250" r="60" fill="black" />
-      <circle cx="400" cy="235" r="65" fill="yellow" />
-      <!-- eyes  -->
-      <circle cx="370" cy="210" r="10" fill="black" />
-      <circle cx="430" cy="210" r="10" fill="black" />
-      <text
-        x="400"
-        y="430"
-        text-anchor="middle"
-        font-size="1.5em"
-        font-family="sans-serif"
-        fill="white"
-        stroke-width="1px"
-        stroke="black"
-        transform="rotate(-10 400 430)"
-      >
-        Starry starry SVG
-      </text>
-    </svg>
-    <!--  d3 script tag -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <h1>Ron Swanson Quote Generator</h1>
+    <p>(4 ways of writing AJAX requests)</p>
+    <section class="container">
+      <button id="xhr">XHR</button>
+      <button id="fetch">Fetch</button>
+      <button id="jquery">jQuery</button>
+      <button id="axios">Axios</button>
+    </section>
+
+    <p id="quote">Quote Goes Here...</p>
+
+    <section id="comments"></section>
     <!-- local js file  -->
     <script src="./assets/javascript/app.js"></script>
   </body>
