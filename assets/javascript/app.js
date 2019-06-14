@@ -1,109 +1,114 @@
-// global context of this
-console.log(this); // window
-
-function whatIsThis() {
-  return this;
+function outer(a) {
+  return function inner(b) {
+    return a + b;
+  };
 }
+outer(5)(5);
+var storeOuter = outer(5);
+storeOuter(10); //15
 
-whatIsThis(); // window
-
-function variablesInThis() {
-  this.person = "Elie";
-}
-
-variablesInThis(); // the keyword this inside the function is the window
-
-console.log(person); // Elie
-
-////////////////strict mode
-("use strict");
-
-console.log(this); // window
-
-function whatIsThis() {
-  return this;
-}
-
-whatIsThis(); // undefined
-
-("use strict");
-
-function variablesInThis() {
-  // since we are in strict mode this is undefined
-  // so what happens if we add a property on undefined?
-  // let's see what happens when we call the function...
-  this.person = "Elie";
-}
-
-variablesInThis(); // TypeError, can't set person on undefined!
-
-//////////////////// Implicit / object
-// strict mode does NOT make a difference here
-
-var person = {
-  firstName: "Elie",
-  sayHi: function() {
-    return "Hi " + this.firstName;
-  },
-  determineContext: function() {
-    return this === person;
-  }
-};
-person.sayHi(); // "Hi Elie"
-person.determineContext(); // true
-
-////nested objects
-var person = {
-  firstName: "Colt",
-  sayHi: function() {
-    return "Hi " + this.firstName;
-  },
-  determineContext: function() {
-    return this === person;
-  },
-  dog: {
-    sayHello: function() {
-      return "Hello " + this.firstName;
+// privacy example
+function classRoom() {
+  var instructors = ["Elie", "Colt"];
+  return {
+    getInstructors: function() {
+      return instructors;
     },
-    determineContext: function() {
-      return this === person;
+    addInstructor: function(instructor) {
+      instructors.push(instructor);
+      return instructors;
     }
-  }
-};
-person.sayHi(); // "Hi Colt"
-person.determineContext(); // true
-// but what is the value of the keyword this right now?
-person.dog.sayHello(); // "Hello undefined"
-person.dog.determineContext(); // false
+  };
+}
+var course1 = classRoom();
+course1.getInstructors(); // ["Elie", "Colt"]
+course1.addInstructor("Matt"); // ["Elie", "Colt","Matt"]
+course1.addInstructor("Tim"); // ["Elie", "Colt","Matt", "Tim"]
+course1.getInstructors(); // ["Elie", "Colt","Matt", "Tim"]
 
-/// explicit binding
-var person = {
-  firstName: "Colt",
-  sayHi: function() {
-    return "Hi " + this.firstName;
-  },
-  determineContext: function() {
-    return this === person;
-  },
-  dog: {
-    sayHello: function() {
-      return "Hello " + this.firstName;
+var course2 = classRoom();
+course2.getInstructors(); // ["Elie", "Colt"] - not affected by course1
+
+// the instructors variable is private, you're stuck with Colt and Elie...sort of
+// the correct implementation
+function classRoom() {
+  var instructors = ["Elie", "Colt"];
+  return {
+    getInstructors: function() {
+      return instructors.slice();
     },
-    determineContext: function() {
-      return this === person;
+    addInstructor: function(instructor) {
+      instructors.push(instructor);
+      return instructors.slice();
     }
+  };
+}
+var course1 = classRoom();
+course1.getInstructors().pop(); // ["Colt"]
+course1.getInstructors().pop(); // "Colt"
+course1.getInstructors(); // ["Colt", "Elie"]
+
+// now the instructors variable is truly private
+// you're stuck with Colt and Elie...for good!
+///////////////////////exercises ///////////////////////////
+/* 
+Write a function called specialMultiply which accepts two parameters. If the function is passed both parameters, it should return the product of the two. If the function is only passed one parameter - it should return a function which can later be passed another parameter to return the product. You will have to use closure and arguments to solve this.
+
+Examples: 
+
+    specialMultiply(3,4); // 12
+    specialMultiply(3)(4); // 12
+    specialMultiply(3); // function(){}....
+*/
+
+function specialMultiply(a, b) {
+  if (arguments.length === 1) {
+    return function(b) {
+      return a * b;
+    };
   }
-};
-person.dog.sayHello.call(person); // "Hello Colt"
-person.dog.determineContext.call(person); // true
+  return a * b;
+}
 
-// Using call worked!
-// Notice that we do NOT invoke sayHello or determineContext
+/* 
+Write a function called guessingGame which takes in one parameter amount. The function should return another function that takes in a parameter called guess. In the outer function, you should create a variable called answer which is the result of a random number between 0 and 10 as well as a variable called guesses which should be set to 0.
 
-/////////////////// use case for call
-var divsArray = [].slice.call(divs);
-// you might also see this as Array.prototype.slice.call(divs)
-// they do the same thing
-divsArray.filter(function(val) {
-  return val.innerText === "Hello";
-});
+In the inner function, if the guess passed in is the same as the random number (defined in the outer function) - you should return the string "You got it!". If the guess is too high return "Your guess is too high!" and if it is too low, return "Your guess is too low!". You should stop the user from guessing if the amount of guesses they have made is greater than the initial amount passed to the outer function.
+
+You will have to make use of closure to solve this problem.
+
+Examples (yours might not be like this, since the answer is random every time):
+
+    var game = guessingGame(5)
+    game(1) // "You're too low!"
+    game(8) // "You're too high!"
+    game(5) // "You're too low!"
+    game(7) // "You got it!"
+    game(1) // "You are all done playing!"
+
+    var game2 = guessingGame(3)
+    game2(5) // "You're too low!"
+    game2(3) // "You're too low!"
+    game2(1) // "No more guesses the answer was 0"
+    game2(1) // "You are all done playing!"
+*/
+
+function guessingGame(amount) {
+  var answer = Math.floor(Math.random() * 11);
+  var guesses = 0;
+  var completed = false;
+  return function(guess) {
+    if (!completed) {
+      guesses++;
+      if (guess === answer) {
+        completed = true;
+        return "You got it!";
+      } else if (guesses === amount) {
+        completed = true;
+        return "No more guesses the answer was " + answer;
+      } else if (guess > answer) return "Your guess is too high!";
+      else if (guess < answer) return "Your guess is too low!";
+    }
+    return "You are all done playing!";
+  };
+}
