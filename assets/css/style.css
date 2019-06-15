@@ -1,7 +1,4 @@
-
-
-
-#pacman-canvas{
+#polygon-canvas {
   border: 1px solid black;
   /* center align */
   display: block;
