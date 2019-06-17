@@ -1,7 +1,8 @@
-body {
+#animations-canvas {
   border: 1px solid black;
+  /* center align */
   display: block;
-  width: 600px;
-  height: 300px;
-  margin: center;
+  width: 900px;
+  height: 600px;
+  margin: 0 auto;
 }
