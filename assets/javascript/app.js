@@ -1,70 +1,35 @@
 window.onload = function() {
-  // variables
-  let canvas = document.getElementById("bouncing-ball-canvas");
-  let context = canvas.getContext("2d");
+  // Definitions
+  var canvas = document.getElementById("lab-complex-shapes-canvas");
+  var context = canvas.getContext("2d");
 
-  // the ball
-  let ballX = 400;
-  let ballY = 300;
-  let ballRadius = 30;
-  let ballColor = "orange";
-  // for update
-  let changeX = 4;
-  let changeY = 4;
+  // Key Events
+  // - keydown
+  // - keypress
+  // - keyup
 
-  window.requestAnimationFrame(animationLoop);
+  // Keyboard Definitions
+  var KEY_CODE = {
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40
+  };
 
-  // the animation
-  function animationLoop() {
-    // clear the canvas- clear
-    context.clearRect(0, 0, canvas.clientWidth, canvas.height);
-    //update - what the animation is
-    // if the ball hits the edge of the canvas bounce back into the visiable canvas
-    //bottom edge
-    if (ballY + ballRadius > canvas.height) {
-      changeY *= -1;
+  window.addEventListener("keydown", function(event) {
+    switch (event.keyCode) {
+      case KEY_CODE.LEFT:
+        console.log("LEFT ARROW PRESSED");
+        break;
+      case KEY_CODE.UP:
+        console.log("UP ARROW PRESSED");
+        break;
+      case KEY_CODE.RIGHT:
+        console.log("RIGHT ARROW PRESSED");
+        break;
+      case KEY_CODE.DOWN:
+        console.log("DOWN ARROW PRESSED");
+        break;
     }
-    //right edge
-    if (ballX + ballRadius > canvas.width) {
-      changeX *= -1;
-    }
-    ///top edge
-    if (ballY - ballRadius < 0) {
-      changeY *= -1;
-    }
-    //left edte
-    if (ballX - ballRadius < 0) {
-      changeX *= -1;
-    }
-    ballX += changeX;
-    ballY += changeY;
-    //call the  drawBall function- draw
-    drawBall(ballX, ballY, ballRadius, ballColor);
-    // calls itself- Animate
-    window.requestAnimationFrame(animationLoop);
-  }
-
-  //draw the ball
-  function drawBall(x, y, radius, color) {
-    let radian = Math.PI / 100;
-    context.beginPath();
-    context.strokeStyle = color;
-    context.fillStyle = color;
-    context.arc(x, y, radius, 0, 360 * radian, false);
-    context.stroke();
-    context.fill();
-  }
-
-  // setting up frame animations for all browsers
-  window.requestAnimationFrame = (function() {
-    return (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      function(callback) {
-        window.setTimeout(callback, 1000 / 60);
-      }
-    );
-  })();
+  });
 };
