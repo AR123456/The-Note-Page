@@ -1,106 +1,51 @@
+// making sure window loads before the canvas starts
 window.onload = function() {
-  // Definitions
-  var canvas = document.getElementById("lab-complex-shapes-canvas");
+  // a simple line
+  var canvas = document.getElementById("hello-world-canvas");
   var ctx = canvas.getContext("2d");
 
-  // heart
+  // //first line
+  // context.beginPath(); //reset the context state
+  // context.lineCap = "butt"; //f;lat edge
+  // context.strokeStyle = "red";
+  // context.lineWidth = 10;
+  // context.moveTo(100, 100); // the start point of linex,y
+  // context.lineTo(300, 100); //end point of line c,y
+  // context.stroke(); //connect the points to draw the line
+
+  // //second line
+  // context.beginPath(); //reset the context state
+  // context.lineCap = "round"; // round the ends bu 1/2 width of line
+  // context.strokeStyle = "blue";
+  // context.lineWidth = 10;
+  // context.moveTo(100, 125); // the start point of linex,y
+  // context.lineTo(300, 125); //end point of line c,y
+  // context.stroke(); //connect the points to draw the line
+  // // third line
+  // context.beginPath(); //reset the context state
+  // context.lineCap = "square";
+  // context.strokeStyle = "green";
+  // context.lineWidth = 10;
+  // context.moveTo(100, 150); // the start point of linex,y
+  // context.lineTo(300, 150); //end point of line c,y
+  // context.stroke(); //connect the points to draw the line
+
   ctx.beginPath();
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 5;
-  ctx.moveTo(430, 130);
-  ctx.bezierCurveTo(470, 10, 670, 10, 670, 180);
-  ctx.quadraticCurveTo(670, 380, 430, 520);
-  ctx.quadraticCurveTo(190, 380, 190, 180);
-  ctx.bezierCurveTo(190, 10, 400, 10, 430, 130);
+  ctx.lineWidth = 10;
+  ctx.lineCap = "butt";
+  ctx.moveTo(20, 20);
+  ctx.lineTo(200, 20);
   ctx.stroke();
 
-  // right
-  //drawBezierCurve(430, 130, 470, 10, 670, 10, 670, 180);
-  //drawQuadraticCurve(670, 180, 670, 380, 430, 520);
+  ctx.beginPath();
+  ctx.lineCap = "round";
+  ctx.moveTo(20, 40);
+  ctx.lineTo(200, 40);
+  ctx.stroke();
 
-  // left
-  //drawBezierCurve(430, 130, 400, 10, 190, 10, 190, 180);
-  //drawQuadraticCurve(190, 180, 190, 380, 430, 520);
-
-  function drawQuadraticCurve(
-    startX,
-    startY,
-    controlX,
-    controlY,
-    endX,
-    endY,
-    curveColor,
-    curveWidth
-  ) {
-    var radian = Math.PI / 180;
-
-    // Draw the quadratic curve
-    ctx.beginPath();
-    ctx.strokeStyle = curveColor || "red";
-    ctx.lineWidth = curveWidth || 2;
-    ctx.moveTo(startX, startY);
-    ctx.quadraticCurveTo(controlX, controlY, endX, endY);
-    ctx.stroke();
-
-    // Draw the control point as a circle
-    ctx.beginPath();
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 10;
-    ctx.arc(controlX, controlY, 5, 0 * radian, 360 * radian, false);
-    ctx.stroke();
-
-    // Draw the lines between control point and path
-    ctx.beginPath();
-    ctx.lineWidth = 1;
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(controlX, controlY);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
-  }
-
-  function drawBezierCurve(
-    startX,
-    startY,
-    controlX1,
-    controlY1,
-    controlX2,
-    controlY2,
-    endX,
-    endY,
-    curveColor,
-    curveWidth
-  ) {
-    var radian = Math.PI / 180;
-
-    // Draw the bezier curve
-    ctx.beginPath();
-    ctx.strokeStyle = curveColor || "red";
-    ctx.lineWidth = curveWidth || 2;
-    ctx.moveTo(startX, startY);
-    ctx.bezierCurveTo(controlX1, controlY1, controlX2, controlY2, endX, endY);
-    ctx.stroke();
-
-    // Draw the control one point as a circle
-    ctx.beginPath();
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 10;
-    ctx.arc(controlX1, controlY1, 5, 0 * radian, 360 * radian, false);
-    ctx.stroke();
-
-    // Draw the control two point as a circle
-    ctx.beginPath();
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 10;
-    ctx.arc(controlX2, controlY2, 5, 0 * radian, 360 * radian, false);
-    ctx.stroke();
-
-    // Draw the lines between control points and path
-    ctx.beginPath();
-    ctx.lineWidth = 1;
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(controlX1, controlY1);
-    ctx.lineTo(controlX2, controlY2);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
-  }
+  ctx.beginPath();
+  ctx.lineCap = "square";
+  ctx.moveTo(20, 60);
+  ctx.lineTo(200, 60);
+  ctx.stroke();
 };
