@@ -1,38 +1,46 @@
-// making sure window loads before the canvas starts
-window.onload = function() {
-  // a simple line
-  var canvas = document.getElementById("hello-world-canvas");
-  var ctx = canvas.getContext("2d");
+function breathe(amount) {
+  return new Promise((resolve, reject) => {
+    if (amount < 500) {
+      reject("That is too small of a value");
+    }
+    setTimeout(() => resolve(`Done for ${amount} ms`), amount);
+  });
+}
 
-  ctx.beginPath();
-  ctx.lineWidth = 20;
-  ctx.lineJoin = "miter"; // this is the defalt
-  ctx.moveTo(30, 30);
-  ctx.lineTo(130, 30);
-  ctx.lineTo(130, 130);
-  ctx.lineTo(30, 130);
-  ctx.lineTo(30, 230);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.lineWidth = 20;
-  ctx.strokeStyle = "blue";
-  ctx.lineJoin = "bevel";
-  ctx.moveTo(60, 60);
-  ctx.lineTo(160, 60);
-  ctx.lineTo(160, 160);
-  ctx.lineTo(60, 160);
-  ctx.lineTo(60, 260);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.lineWidth = 20;
-  ctx.strokeStyle = "green";
-  ctx.lineJoin = "round";
-  ctx.moveTo(90, 90);
-  ctx.lineTo(190, 90);
-  ctx.lineTo(190, 190);
-  ctx.lineTo(90, 190);
-  ctx.lineTo(90, 290);
-  ctx.stroke();
-};
+breathe(1000)
+  .then(res => {
+    console.log(res);
+    return breathe(500);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(600);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(200);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(500);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(2000);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(250);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(300);
+  })
+  .then(res => {
+    console.log(res);
+    return breathe(600);
+  })
+  .catch(err => {
+    console.error(err);
+    console.error("YOU SCHREWED UP");
+  });
