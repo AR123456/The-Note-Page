@@ -1,46 +1,24 @@
-function breathe(amount) {
-  return new Promise((resolve, reject) => {
-    if (amount < 500) {
-      reject("That is too small of a value");
-    }
-    setTimeout(() => resolve(`Done for ${amount} ms`), amount);
-  });
-}
+// fetch("api.github.com/users/wesbos")
+//   .then(res => {
+//     return res.json();
+//   })
+//   .then(res => {
+//     console.log(res);
+//   })
+//   .catch(err => {
+//     console.error("OH NOO!!!!!!!");
+//     console.error(err);
+//   });
 
-breathe(1000)
-  .then(res => {
-    console.log(res);
-    return breathe(500);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(600);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(200);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(500);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(2000);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(250);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(300);
-  })
-  .then(res => {
-    console.log(res);
-    return breathe(600);
+// getUserMedia is promise based, there is also a getUserAudio
+const video = document.querySelector(".handsome");
+navigator.mediaDevices
+  .getUserMedia({ video: true })
+  .then(mediaStream => {
+    video.srcObject = mediaStream;
+    video.load();
+    video.play();
   })
   .catch(err => {
-    console.error(err);
-    console.error("YOU SCHREWED UP");
+    console.log(err);
   });
