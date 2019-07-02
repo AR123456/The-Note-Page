@@ -45,12 +45,10 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
-//Rroute  ///////Idea Index Page//////
+// Idea Index Page
 app.get("/ideas", (req, res) => {
   Idea.find({})
-    // pass in the date in desending order
     .sort({ date: "desc" })
-    // return the promis
     .then(ideas => {
       res.render("ideas/index", {
         ideas: ideas
@@ -58,9 +56,25 @@ app.get("/ideas", (req, res) => {
     });
 });
 
-// Add Idea Form
+//////// Add Idea Form
 app.get("/ideas/add", (req, res) => {
   res.render("ideas/add");
+});
+
+//////////////////////// Edit Idea Form
+// pass along the id of the idea inot the get
+app.get("/ideas/edit/:id", (req, res) => {
+  // .findone jsut finds one not an array
+  Idea.findOne({
+    // use the request object for htis
+    _id: req.params.id
+    //in the promise grab the single idea
+  }).then(idea => {
+    // pass in the idea as object
+    res.render("ideas/edit", {
+      idea: idea
+    });
+  });
 });
 
 // Process Form
