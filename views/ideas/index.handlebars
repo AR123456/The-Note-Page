@@ -1,0 +1,10 @@
+{{!-- putting hte looping logic here in the view if idea display in bootstrap card else display no video ideas listed --}}
+
+{{#each ideas}}
+<div class="card card-body mb-2">
+  <h4>{{title}}</h4>
+  <p>{{details}}</p>
+</div>
+{{else}}
+<p>No video ideas listed</p>
+{{/each}}

@@ -1,85 +1,98 @@
-const express = require('express');
-const exphbs  = require('express-handlebars');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const express = require("express");
+const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
 
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev', {
-  useMongoClient: true
-})
-  .then(() => console.log('MongoDB Connected...'))
+mongoose
+  .connect("mongodb://localhost/vidjot-dev", {
+    useMongoClient: true
+  })
+  .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 
 // Load Idea Model
-require('./models/Idea');
-const Idea = mongoose.model('ideas');
+require("./models/Idea");
+const Idea = mongoose.model("ideas");
 
 // Handlebars Middleware
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
-}));
-app.set('view engine', 'handlebars');
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
 
 // Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Index Route
-app.get('/', (req, res) => {
-  const title = 'Welcome';
-  res.render('index', {
+app.get("/", (req, res) => {
+  const title = "Welcome";
+  res.render("index", {
     title: title
   });
 });
 
 // About Route
-app.get('/about', (req, res) => {
-  res.render('about');
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+//Rroute  ///////Idea Index Page//////
+app.get("/ideas", (req, res) => {
+  Idea.find({})
+    // pass in the date in desending order
+    .sort({ date: "desc" })
+    // return the promis
+    .then(ideas => {
+      res.render("ideas/index", {
+        ideas: ideas
+      });
+    });
 });
 
 // Add Idea Form
-app.get('/ideas/add', (req, res) => {
-  res.render('ideas/add');
+app.get("/ideas/add", (req, res) => {
+  res.render("ideas/add");
 });
 
 // Process Form
-app.post('/ideas', (req, res) => {
+app.post("/ideas", (req, res) => {
   let errors = [];
 
-  if(!req.body.title){
-    errors.push({text:'Please add a title'});
+  if (!req.body.title) {
+    errors.push({ text: "Please add a title" });
   }
-  if(!req.body.details){
-    errors.push({text:'Please add some details'});
+  if (!req.body.details) {
+    errors.push({ text: "Please add some details" });
   }
 
-  if(errors.length > 0){
-    res.render('ideas/add', {
+  if (errors.length > 0) {
+    res.render("ideas/add", {
       errors: errors,
       title: req.body.title,
       details: req.body.details
     });
   } else {
-    // make a var  that is an onbject - 
     const newUser = {
       title: req.body.title,
       details: req.body.details
-    }
-    new Idea(newUser)
-      .save()
-      // return promise with ideat and redirct to the ideas listing (a route) should see this in the DB at this point
-      .then(idea => {
-        res.redirect('/ideas');
-      })
+    };
+    new Idea(newUser).save().then(idea => {
+      res.redirect("/ideas");
+    });
   }
 });
 
 const port = 5000;
 
-app.listen(port, () =>{
+app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
