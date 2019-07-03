@@ -1,12 +1,11 @@
 {{#each errors}}
-<div class="alert alert-danger">{{text}}</div>
+  <div class="alert alert-danger">{{text}}</div>
 {{else}}
 
 {{/each}}
 
 <div class="card card-body">
   <h3>Edit Video Idea</h3>
-  {{!-- method overide makes this possible here  --}}
   <form action="/ideas/{{idea.id}}?_method=PUT" method="post">
     <input type="hidden" name="_method" value="PUT">
     <div class="form-group">
