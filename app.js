@@ -1,5 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
@@ -32,6 +33,10 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// ///////////////////////////////Method override middleware
+/////// using this in update idea data
+app.use(methodOverride("_method"));
+
 // Index Route
 app.get("/", (req, res) => {
   const title = "Welcome";
@@ -56,21 +61,16 @@ app.get("/ideas", (req, res) => {
     });
 });
 
-//////// Add Idea Form
+// Add Idea Form
 app.get("/ideas/add", (req, res) => {
   res.render("ideas/add");
 });
 
-//////////////////////// Edit Idea Form
-// pass along the id of the idea inot the get
+// /////////////////Edit Idea Form//////////////////////
 app.get("/ideas/edit/:id", (req, res) => {
-  // .findone jsut finds one not an array
   Idea.findOne({
-    // use the request object for htis
     _id: req.params.id
-    //in the promise grab the single idea
   }).then(idea => {
-    // pass in the idea as object
     res.render("ideas/edit", {
       idea: idea
     });
@@ -103,6 +103,21 @@ app.post("/ideas", (req, res) => {
       res.redirect("/ideas");
     });
   }
+});
+
+// Edit Form process
+app.put("/ideas/:id", (req, res) => {
+  Idea.findOne({
+    _id: req.params.id
+  }).then(idea => {
+    // new values
+    idea.title = req.body.title;
+    idea.details = req.body.details;
+
+    idea.save().then(idea => {
+      res.redirect("/ideas");
+    });
+  });
 });
 
 const port = 5000;
