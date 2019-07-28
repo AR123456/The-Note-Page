@@ -1,17 +1,7 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  background-color: white;
 }
-
-canvas {
-  border: 1px dotted #ccc;
-}
-
-#text-explain {
-  display: inline-block;
-  font-size: 0.75em;
-  margin-bottom: 1em;
-}
-
-.alert {
-  color: tomato;
+#canvas {
+  border: 1px solid red;
+  margin: 0 auto;
 }
