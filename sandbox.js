@@ -1,21 +1,15 @@
-// store data in local storage
-localStorage.setItem('name', 'mario');
-localStorage.setItem('age', '50');
+const todos = [
+  { text: "play mariokart", author: "shaun" },
+  { text: "buy some milk", author: "mario" },
+  { text: "buy some bread", author: "luigi" }
+];
+// everything we store in local storage is ultimalty a string
+// need to use the stringify method to send to local storage and parse to turn it back into a JSON object
+// turn the array of objects "todos" into a JSON string to put it in local storage
+// console.log(JSON.stringify(todos));
+localStorage.setItem("todos", JSON.stringify(todos));
 
-// get data from local storage
-let name = localStorage.getItem('name');
-let age = localStorage.getItem('age');
+const stored = localStorage.getItem("todos");
+// console.log(stored);
 
-console.log(name, age);
-
-// deleting data from local storage - use the removeItem metod, pass in the key 
-localStorage.removeItem('name');
-// or take the nuclear approch and use the clear method to delete eveything in local storage 
-localStorage.clear();
-
-name = localStorage.getItem('name');
-age = localStorage.getItem('age');
-
-console.log(name, age);
-
-
+console.log(JSON.parse(stored));
