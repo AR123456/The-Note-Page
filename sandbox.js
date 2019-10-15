@@ -1,19 +1,39 @@
-// rest parameter- unknown number of parameters, bundles the arguments in one parameter into an array
-const double = (...nums) => {
-  console.log(nums);
-  return nums.map(num => num * 2);
-};
+// sets - new data stuctue in the object category
+//reference type
+// allows storage of unique values
+// in a given set a certain value can olny be present once
+// have a different set of methods and propeties than arrays
+const namesArray = ["ryu", "chun-li", "ryu", "shaun"];
+console.log(namesArray);
 
-const result = double(1, 3, 5, 7, 2, 4, 6, 8);
-console.log(result);
+// const namesSet = new Set(['ryu', 'chun-li', 'ryu', 'shaun']);
+const namesSet = new Set(namesArray);
+// duplicates removed now
+console.log(namesSet);
+//// snow spreading de duplicated into a new array
+const uniqueNames = [...namesSet];
+////// this is the syntax for doing this on one line, make the set and and spread it into a new arrray
+// const uniqueNames = [...new Set(namesArray)];
+// console.log(uniqueNames);
 
-// spread syntax (arrays) - works in the oposite way takes an array and spreads into individual components
-// use case spread one array into another
-const people = ["shaun", "ryu", "chun-li"];
-const members = ["mario", "luigi", ...people];
-console.log(members);
+const ages = new Set();
+ages.add(20);
+ages.add(25).add(30);
+ages.add(25);
+ages.delete(30);
 
-// spread syntax (objects)-  ... makes Clone by spreading the properties of one object inot antoher - make a new copy of another object
-const person = { name: "shaun", age: 30, job: "net ninja" };
-const personClone = { ...person, location: "manchester" };
-console.log(person, personClone);
+console.log(ages, ages.size);
+console.log(ages.has(30), ages.has(20));
+
+ages.clear();
+console.log(ages);
+
+const ninjas = new Set([
+  { name: "shaun", age: 30 },
+  { name: "crystal", age: 29 },
+  { name: "chun-li", age: 32 }
+]);
+// can use for each on a set
+ninjas.forEach(ninja => {
+  console.log(ninja.name, ninja.age);
+});
