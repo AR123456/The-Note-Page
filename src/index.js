@@ -1,1 +1,2 @@
-console.log('index.js file');
+import "./test.css";
+console.log("index.js file");
