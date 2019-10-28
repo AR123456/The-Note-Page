@@ -1,35 +1,27 @@
-// PRIMITIVE data types
+const num1 = 100;
+const num2 = 50;
+let val;
 
-// String
-const name = "John Doe";
-console.log(typeof name);
-// Number
-const age = 45;
-console.log(typeof age);
-// Boolean
-const hasKids = true;
-console.log(typeof hasKids);
-// Null
-const car = null;
-console.log(typeof car);
-// Undefined
-let test;
-console.log(typeof test);
-// Symbol
-const sym = Symbol();
-console.log(typeof sym);
+// Simple math with numbers
+val = num1 + num2;
+val = num1 * num2;
+val = num1 - num2;
+val = num1 / num2;
+val = num1 % num2;
 
-// REFERENCE TYPES - Objects
-// Array
-const hobbies = ["movies", "music"];
-console.log(typeof hobbies);
-// Object literal
-const address = {
-  city: "Boston",
-  state: "MA"
-};
-console.log(typeof address);
-const today = new Date();
-console.log(typeof today);
-console.log(today);
-console.log(typeof today);
+// Math Object
+val = Math.PI;
+val = Math.E; // eulesr number
+val = Math.round(2.4); //rounding
+val = Math.ceil(2.4); // roundup
+val = Math.floor(2.8); // round down
+val = Math.sqrt(64); // square root
+val = Math.abs(-3); // absolute number
+val = Math.pow(8, 2); // power of something
+val = Math.min(2, 33, 4, 1, 55, 6, 3, -2); // min
+val = Math.max(2, 33, 4, 1, 55, 6, 3, -2); //max
+val = Math.random(); // get a random number (decimle )
+
+val = Math.floor(Math.random() * 20 + 1); // way to get random whole number between 1 and 20
+
+console.log(val);
