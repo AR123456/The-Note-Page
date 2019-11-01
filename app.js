@@ -1,40 +1,25 @@
-// {} defines an object literal
-const person = {
-  firstName: "Steve",
-  lastName: "Smith",
-  age: 36,
-  email: "steve@aol.com",
-  hobbies: ["music", "sports"],
-  address: {
-    city: "Miami",
-    state: "FL"
-  },
-  getBirthYear: function() {
-    // inside function use this
-    return 2017 - this.age;
-  }
-};
-
 let val;
+// javascript date object 
+const today = new Date();
+let birthday = new Date('9-10-1981 11:25:00');
+birthday = new Date('September 10 1981');
+birthday = new Date('9/10/1981');
 
-val = person;
-// Get specific value - normaly use . notation but can also use []
-val = person.firstName;
-val = person["lastName"];
-val = person.age;
-val = person.hobbies[1];
-val = person.address.state;
-val = person.address["city"];
-val = person.getBirthYear();
+val = today.getMonth();
+val = today.getDate();
+val = today.getDay();
+val = today.getFullYear();
+val = today.getHours();
+val = today.getMinutes();
+val = today.getSeconds();
+val = today.getMilliseconds();
+val = today.getTime();
 
-console.log(val);
+birthday.setMonth(2);
+birthday.setDate(12);
+birthday.setFullYear(1985);
+birthday.setHours(3);
+birthday.setMinutes(30);
+birthday.setSeconds(25);
 
-const people = [
-  { name: "John", age: 30 },
-  { name: "Mike", age: 23 },
-  { name: "Nancy", age: 40 }
-];
-
-for (let i = 0; i < people.length; i++) {
-  console.log(people[i].name);
-}
+console.log(birthday);
