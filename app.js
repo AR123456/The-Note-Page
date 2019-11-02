@@ -1,71 +1,57 @@
-// FOR LOOP
+// WINDOW METHODS / OBJECTS / PROPERTIES
 
-for (let i = 0; i < 10; i++) {
-  if (i === 2) {
-    console.log("2 is my favorite number");
-    continue;
-  }
+// Alert
+alert("Hello World");
 
-  if (i === 5) {
-    console.log("Stop the loop");
-    break;
-  }
+// Prompt
+const input = prompt();
+alert(input);
 
-  console.log("Number " + i);
+// Confirm
+if (confirm("Are you sure")) {
+  console.log("YES");
+} else {
+  console.log("NO");
 }
 
-// WHILE LOOP
+let val;
 
-let i = 0;
+// Outter height and width
+val = window.outerHeight;
+val = window.outerWidth;
 
-while (i < 10) {
-  console.log("Number " + i);
-  i++;
-}
+// Inner height and width
+val = window.innerHeight;
+val = window.innerWidth;
 
-///DO WHILE
+// Scroll points
+val = window.scrollY;
+val = window.scrollX;
 
-let i = 100;
+// Location Object
+val = window.location;
+val = window.location.hostname;
+val = window.location.port;
+val = window.location.href;
+val = window.location.search;
 
-do {
-  console.log("Number " + i);
-  i++;
-} while (i < 10);
+// Redirect
+window.location.href = "http://google.com";
+Reload;
+window.location.reload();
 
-// LOOP THROUGH ARRAY
-const cars = ["Ford", "Chevy", "Honda", "Toyota"];
+// History Object
 
-for (let i = 0; i < cars.length; i++) {
-  console.log(cars[i]);
-}
+window.history.go(-2);
+val = window.history.length;
 
-// FOREACH
-cars.forEach(function(car, index, array) {
-  console.log(`${index} : ${car}`);
-  console.log(array);
-});
+// Navigator Object
+val = window.navigator;
+val = window.navigator.appName;
+val = window.navigator.appVersion;
+val = window.navigator.userAgent;
+val = window.navigator.platform;
+val = window.navigator.vendor;
+val = window.navigator.language;
 
-// MAP
-const users = [
-  { id: 1, name: "John" },
-  { id: 2, name: "Sara" },
-  { id: 3, name: "Karen" },
-  { id: 4, name: "Steve" }
-];
-
-const ids = users.map(function(user) {
-  return user.id;
-});
-
-console.log(ids);
-
-// FOR IN LOOP
-const user = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 40
-};
-
-for (let x in user) {
-  console.log(`${x} : ${user[x]}`);
-}
+console.log(val);
