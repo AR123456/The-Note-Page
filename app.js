@@ -1,52 +1,57 @@
-// document.getElementsByClassName
+let val;
 
-const items = document.getElementsByClassName("collection-item");
-console.log(items);
-console.log(items[0]);
-items[0].style.color = "red";
-items[3].textContent = "Hello";
+const list = document.querySelector("ul.collection");
+const listItem = document.querySelector("li.collection-item:first-child");
 
-const listItems = document
-  .querySelector("ul")
-  .getElementsByClassName("collection-item");
+val = listItem;
+val = list;
 
-console.log(listItems);
+// Get child nodes
+val = list.childNodes;
+val = list.childNodes[0];
+val = list.childNodes[0].nodeName;
+val = list.childNodes[3].nodeType;
+// list of node types given wiht childNodes
+// 1 - Element
+// 2 - Attribute (deprecated)
+// 3 - Text node
+// 8 - Comment
+// 9 - Document itself
+// 10 - Doctype
 
-// document.getElementsByTagName
-let lis = document.getElementsByTagName("li");
-console.log(lis);
-console.log(lis[0]);
-lis[0].style.color = "red";
-lis[3].textContent = "Hello";
+// Get children element nodes - children just give the node type of elements - mostly use this vs childNodes
 
-// // Conver HTML Collection into array
-lis = Array.from(lis);
+val = list.children;
+val = list.children[1];
+list.children[1].textContent = "Hello";
+// Children of children
+list.children[3].children[0].id = "test-link";
+val = list.children[3].children[0];
 
-lis.reverse();
+// First child - this is all nodes
+val = list.firstChild;
+// this is the element nodes
+val = list.firstElementChild;
 
-lis.forEach(function(li, index) {
-  console.log(li.className);
-  li.textContent = `${index}: Hello`;
-});
+// Last child
+val = list.lastChild;
+val = list.lastElementChild;
 
-console.log(lis);
+// Count child elements
+val = list.childElementCount;
 
-// document.querySelectorAll
-const items = document.querySelectorAll("ul.collection li.collection-item");
+// Get parent node- again all nodes
+val = listItem.parentNode;
+// to get just the element nodes
+val = listItem.parentElement;
+// traversing up
+val = listItem.parentElement.parentElement;
 
-items.forEach(function(item, index) {
-  item.textContent = `${index}: Hello`;
-});
+// Get next sibling
+val = listItem.nextSibling;
+val = listItem.nextElementSibling.nextElementSibling.previousElementSibling;
 
-const liOdd = document.querySelectorAll("li:nth-child(odd)");
-const liEven = document.querySelectorAll("li:nth-child(even)");
-
-liOdd.forEach(function(li, index) {
-  li.style.background = "#ccc";
-});
-
-for (let i = 0; i < liEven.length; i++) {
-  liEven[i].style.background = "#f4f4f4";
-}
-
-console.log(items);
+// Get prev sibling
+val = listItem.previousSibling;
+val = listItem.previousElementSibling;
+console.log(val);
