@@ -1,57 +1,29 @@
-let val;
+// Create element
+const li  = document.createElement('li');
 
-const list = document.querySelector("ul.collection");
-const listItem = document.querySelector("li.collection-item:first-child");
+// Add class
+li.className = 'collection-item';
 
-val = listItem;
-val = list;
+// Add id
+li.id = 'new-item';
 
-// Get child nodes
-val = list.childNodes;
-val = list.childNodes[0];
-val = list.childNodes[0].nodeName;
-val = list.childNodes[3].nodeType;
-// list of node types given wiht childNodes
-// 1 - Element
-// 2 - Attribute (deprecated)
-// 3 - Text node
-// 8 - Comment
-// 9 - Document itself
-// 10 - Doctype
+// Add attribute
+li.setAttribute('title', 'New Item');
 
-// Get children element nodes - children just give the node type of elements - mostly use this vs childNodes
+// Create text node and append
+li.appendChild(document.createTextNode('Hello World'));
 
-val = list.children;
-val = list.children[1];
-list.children[1].textContent = "Hello";
-// Children of children
-list.children[3].children[0].id = "test-link";
-val = list.children[3].children[0];
+// Create new link element
+const link = document.createElement('a');
+// Add classes
+link.className = 'delete-item secondary-content';
+// Add icon html
+link.innerHTML = '<i class="fa fa-remove"></i>';
 
-// First child - this is all nodes
-val = list.firstChild;
-// this is the element nodes
-val = list.firstElementChild;
+// Append link into li
+li.appendChild(link);
 
-// Last child
-val = list.lastChild;
-val = list.lastElementChild;
+// Append li as child to ul
+document.querySelector('ul.collection').appendChild(li);
 
-// Count child elements
-val = list.childElementCount;
-
-// Get parent node- again all nodes
-val = listItem.parentNode;
-// to get just the element nodes
-val = listItem.parentElement;
-// traversing up
-val = listItem.parentElement.parentElement;
-
-// Get next sibling
-val = listItem.nextSibling;
-val = listItem.nextElementSibling.nextElementSibling.previousElementSibling;
-
-// Get prev sibling
-val = listItem.previousSibling;
-val = listItem.previousElementSibling;
-console.log(val);
+console.log(li);
