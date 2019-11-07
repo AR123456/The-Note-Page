@@ -1,35 +1,41 @@
-const clearBtn = document.querySelector(".clear-tasks");
-const card = document.querySelector(".card");
+const form = document.querySelector("form");
+const taskInput = document.getElementById("task");
 const heading = document.querySelector("h5");
+const select = document.querySelector("select");
 
-// Click
-clearBtn.addEventListener("click", runEvent);
-// Doubleclick
-clearBtn.addEventListener("dblclick", runEvent);
-// Mousedown
-clearBtn.addEventListener("mousedown", runEvent);
-// Mouseup
-clearBtn.addEventListener("mouseup", runEvent);
-// Mouseenter -
-card.addEventListener("mouseenter", runEvent);
-// Mouseleave
-card.addEventListener("mouseleave", runEvent);
-// Mouseover
-card.addEventListener("mouseover", runEvent);
-// Mouseout
-card.addEventListener("mouseout", runEvent);
-// Mousemove
-card.addEventListener("mousemove", runEvent);
+// Clear input
+taskInput.value = "";
 
-// Event Handler
+form.addEventListener("submit", runEvent);
+
+// Keydown
+taskInput.addEventListener("keydown", runEvent);
+// Keydown
+taskInput.addEventListener("keyup", runEvent);
+// Keypress
+taskInput.addEventListener("keypress", runEvent);
+// Focus
+taskInput.addEventListener("focus", runEvent);
+// Blur
+taskInput.addEventListener("blur", runEvent);
+// Cut
+taskInput.addEventListener("cut", runEvent);
+// Paste
+taskInput.addEventListener("paste", runEvent);
+// Input
+taskInput.addEventListener("input", runEvent);
+// Change
+select.addEventListener("change", runEvent);
+
 function runEvent(e) {
   console.log(`EVENT TYPE: ${e.type}`);
 
-  heading.textContent = `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`;
+  console.log(e.target.value);
 
-  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`;
+  heading.innerText = e.target.value;
+
+  // Get input value
+  console.log(taskInput.value);
+
+  e.preventDefault();
 }
-// The mouseover event triggers when the mouse pointer enters the div element, and its child elements. The mouseenter event is only triggered when the mouse pointer enters the div element. The onmousemove event triggers every time the mouse pointer is moved over the div element.
-//https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_event_mouseenter_mouseover
-//This means that mouseleave is fired when the pointer has exited the element and all of its descendants, whereas mouseout is fired when the pointer leaves the element or leaves one of the element's descendants (even if the pointer is still within the element
-//https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_event_mouseleave_mouseout
