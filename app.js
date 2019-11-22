@@ -1,31 +1,46 @@
-document.querySelector('.get-jokes').addEventListener('click', getJokes);
+const posts = [
+  {title: 'Post One', body: 'This is post one'},
+  {title: 'Post Two', body: 'This is post two'}
+];
 
-function getJokes(e) {
-  const number = document.querySelector('input[type="number"]').value;
+// function createPost(post) {
+//   setTimeout(function() {
+//     posts.push(post);
+//   }, 2000);
+// }
 
-  const xhr = new XMLHttpRequest();
 
-  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
+// function getPosts() {
+//   setTimeout(function() {
+//     let output = '';
+//     posts.forEach(function(post){
+//       output += `<li>${post.title}</li>`;
+//     });
+//     document.body.innerHTML = output;
+//   }, 1000);
+// }
 
-  xhr.onload = function() {
-    if(this.status === 200) {
-      const response = JSON.parse(this.responseText);
-      
-      let output = '';
+// createPost({title: 'Post Three', body: 'This is post three'});
 
-      if(response.type === 'success') {
-        response.value.forEach(function(joke){
-          output += `<li>${joke.joke}</li>`;
-        });
-      } else {
-        output += '<li>Something went wrong</li>';
-      }
+// getPosts();
 
-      document.querySelector('.jokes').innerHTML = output;
-    }
-  }
 
-  xhr.send();
-
-  e.preventDefault();
+function createPost(post, callback) {
+  setTimeout(function() {
+    posts.push(post);
+    callback();
+  }, 2000);
 }
+
+
+function getPosts() {
+  setTimeout(function() {
+    let output = '';
+    posts.forEach(function(post){
+      output += `<li>${post.title}</li>`;
+    });
+    document.body.innerHTML = output;
+  }, 1000);
+}
+
+createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
