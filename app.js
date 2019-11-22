@@ -1,64 +1,31 @@
-document.getElementById('button1').addEventListener('click', loadCustomer);
+document.querySelector('.get-jokes').addEventListener('click', getJokes);
 
-document.getElementById('button2').addEventListener('click', loadCustomers);
+function getJokes(e) {
+  const number = document.querySelector('input[type="number"]').value;
 
-// Load Single Customer
-function loadCustomer(e) {
   const xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'customer.json', true);
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
 
-  xhr.onload = function(){
+  xhr.onload = function() {
     if(this.status === 200) {
-      // console.log(this.responseText);
-
-      const customer = JSON.parse(this.responseText);
-
-      const output = `
-        <ul>
-          <li>ID: ${customer.id}</li>
-          <li>Name: ${customer.name}</li>
-          <li>Company: ${customer.company}</li>
-          <li>Phone: ${customer.phone}</li>
-        </ul>
-      `;
-
-      document.getElementById('customer').innerHTML = output;
-    }
-  }
-
-  xhr.send();
-}
-
-
-// Load Customers
-function loadCustomers(e) {
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('GET', 'customers.json', true);
-
-  xhr.onload = function(){
-    if(this.status === 200) {
-      // console.log(this.responseText);
-
-      const customers = JSON.parse(this.responseText);
-
+      const response = JSON.parse(this.responseText);
+      
       let output = '';
 
-      customers.forEach(function(customer){
-        output += `
-        <ul>
-          <li>ID: ${customer.id}</li>
-          <li>Name: ${customer.name}</li>
-          <li>Company: ${customer.company}</li>
-          <li>Phone: ${customer.phone}</li>
-        </ul>
-      `;
-      });
+      if(response.type === 'success') {
+        response.value.forEach(function(joke){
+          output += `<li>${joke.joke}</li>`;
+        });
+      } else {
+        output += '<li>Something went wrong</li>';
+      }
 
-      document.getElementById('customers').innerHTML = output;
+      document.querySelector('.jokes').innerHTML = output;
     }
   }
 
   xhr.send();
+
+  e.preventDefault();
 }
