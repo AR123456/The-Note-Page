@@ -1,52 +1,36 @@
-const http = new easyHTTP;
+const posts = [
+  {title: 'Post One', body:'This is post one'},
+  {title: 'Post Two', body: 'This is post two'}
+];
 
-// Get Posts
-// http.get('https://jsonplaceholder.typicode.com/posts', function(err, posts) {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log(posts);
-//   }
-// });
+function createPost(post) {
+  return new Promise(function(resolve, reject){
+    setTimeout(function() {
+      posts.push(post);
 
-// Get Single Post
-// http.get('https://jsonplaceholder.typicode.com/posts/1', function(err, post) {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log(post);
-//   }
-// });
+      const error = false;
 
-// Create Data
-const data = {
-  title: 'Custom Post',
-  body: 'This is a custom post'
-};
+      if(!error) {
+        resolve();
+      } else {
+        reject('Error: Something went wrong');
+      }
+    }, 2000);
+  });
+}
 
-// Create Post
-// http.post('https://jsonplaceholder.typicode.com/posts', data, function(err, post) {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log(post);
-//   }
-// });
+function getPosts() {
+  setTimeout(function() {
+    let output = '';
+    posts.forEach(function(post){
+      output += `<li>${post.title}</li>`;
+    });
+    document.body.innerHTML = output;
+  }, 1000);
+}
 
-// Update Post
-// http.put('https://jsonplaceholder.typicode.com/posts/5', data, function(err, post) {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log(post);
-//   }
-// });
-
-// Delete Post
-http.delete('https://jsonplaceholder.typicode.com/posts/1', function(err, response) {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log(response);
-  }
+createPost({title: 'Post Three', body: 'This is post three'})
+.then(getPosts)
+.catch(function(err) {
+  console.log(err);
 });
