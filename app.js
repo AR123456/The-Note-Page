@@ -1,31 +1,31 @@
-// Init Github
-const github = new Github;
-// Init UI
-const ui = new UI;
+const user = {email: 'jdoe@gmail.com'};
 
-// Search input
-const searchUser = document.getElementById('searchUser');
+try {
+  // Produce a ReferenceError
+  // myFunction();
 
-// Search input event listener
-searchUser.addEventListener('keyup', (e) => {
-  // Get input text
-  const userText = e.target.value;
+  // Produce a TypeError
+  // null.myFunction();
 
-  if(userText !== ''){
-   // Make http call
-   github.getUser(userText)
-    .then(data => {
-      if(data.profile.message === 'Not Found') {
-        // Show alert
-        ui.showAlert('User not found', 'alert alert-danger');
-      } else {
-        // Show profile
-        ui.showProfile(data.profile);
-        ui.showRepos(data.repos);
-      }
-    })
-  } else {
-    // Clear profile
-    ui.clearProfile();
+  // Will produce SyntaxError
+  // eval('Hello World');
+
+  // Will produce a URIError
+  // decodeURIComponent('%');
+
+  if(!user.name) {
+    //throw 'User has no name';
+    throw new SyntaxError('User has no name');
   }
-}); 
+
+} catch(e) {
+  console.log(`User Error: ${e.message}`);
+  // console.log(e);
+  // console.log(e.message);
+  // console.log(e.name);
+  // console.log(e instanceof TypeError);
+} finally {
+  console.log('Finally runs reguardless of result...');
+}
+
+console.log('Program continues...');
