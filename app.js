@@ -1,49 +1,54 @@
-// Form Blur Event Listeners
-document.getElementById('name').addEventListener('blur', validateName);
-document.getElementById('zip').addEventListener('blur', validateZip);
-document.getElementById('email').addEventListener('blur', validateEmail);
-document.getElementById('phone').addEventListener('blur', validatePhone);
+// Iterator Example
+// function nameIterator(names) {
+//   let nextIndex = 0;
 
-function validateName() {
-  const name = document.getElementById('name');
-  const re = /^[a-zA-Z]{2,10}$/;
+//   return {
+//     next: function() {
+//       return nextIndex < names.length ?
+//       { value: names[nextIndex++], done: false } :
+//       { done: true }
+//     }
+//   }
+// }
 
-  if(!re.test(name.value)){
-    name.classList.add('is-invalid');
-  } else {
-    name.classList.remove('is-invalid');
+// // Create an array of names
+// const namesArr = ['Jack', 'Jill', 'John'];
+// // Init iterator and pass in the names array
+// const names = nameIterator(namesArr);
+
+// console.log(names.next().value);
+// console.log(names.next().value);
+// console.log(names.next().value);
+// console.log(names.next().value);
+
+// Generator Example
+// function* sayNames() {
+//   yield 'Jack';
+//   yield 'Jill';
+//   yield 'John';
+// }
+
+// const name = sayNames();
+
+// console.log(name.next().value);
+// console.log(name.next().value);
+// console.log(name.next().value);
+// console.log(name.next().value);
+
+// ID Creator
+function* createIds() {
+  let index = 1;
+
+  while(true) {
+    yield index++;
   }
 }
 
-function validateZip() {
-  const zip = document.getElementById('zip');
-  const re = /^[0-9]{5}(-[0-9]{4})?$/;
+const gen = createIds();
 
-  if(!re.test(zip.value)){
-    zip.classList.add('is-invalid');
-  } else {
-    zip.classList.remove('is-invalid');
-  }
-}
-
-function validateEmail() {
-  const email = document.getElementById('email');
-  const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-  if(!re.test(email.value)){
-    email.classList.add('is-invalid');
-  } else {
-    email.classList.remove('is-invalid');
-  }
-}
-
-function validatePhone() {
-  const phone = document.getElementById('phone');
-  const re = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
-
-  if(!re.test(phone.value)){
-    phone.classList.add('is-invalid');
-  } else {
-    phone.classList.remove('is-invalid');
-  }
-}
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
