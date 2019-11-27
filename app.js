@@ -1,68 +1,31 @@
-const data = [
-  {
-    name: 'John Doe',
-    age: 32,
-    gender: 'male',
-    lookingfor: 'female',
-    location: 'Boston MA',
-    image: 'https://randomuser.me/api/portraits/men/82.jpg'
-  },
-  {
-    name: 'Jen Smith',
-    age: 26,
-    gender: 'female',
-    lookingfor: 'male',
-    location: 'Miami FL',
-    image: 'https://randomuser.me/api/portraits/women/82.jpg'
-  },
-  {
-    name: 'William Johnson',
-    age: 38,
-    gender: 'male',
-    lookingfor: 'female',
-    location: 'Lynn MA',
-    image: 'https://randomuser.me/api/portraits/men/83.jpg'
-  }
-];
+// Create a symbol
+// const sym1 = Symbol();
+// const sym2 = Symbol('sym2');
 
-const profiles = profileIterator(data);
+// console.log(typeof sym2);
 
-// Call first profile
-nextProfile();
+// console.log(Symbol('123') === Symbol('123'));
+// console.log(`Hello ${sym1.toString()}`);
 
-// Next Event
-document.getElementById('next').addEventListener('click', nextProfile);
+// Unique Object Keys
+const KEY1 = Symbol();
+const KEY2 = Symbol('sym2');
 
-// Next Profile Display
-function nextProfile() {
-  const currentProfile = profiles.next().value;
+const myObj = {};
 
-  if(currentProfile !== undefined) {
-    document.getElementById('profileDisplay').innerHTML = `
-      <ul class="list-group">
-        <li class="list-group-item">Name: ${currentProfile.name}</li>
-        <li class="list-group-item">Age: ${currentProfile.age}</li>
-        <li class="list-group-item">Location: ${currentProfile.location}</li>
-        <li class="list-group-item">Preference: ${currentProfile.gender} looking for ${currentProfile.lookingfor}</li>
-      </ul>
-    `;
+myObj[KEY1] = 'Prop1';
+myObj[KEY2] = 'Prop2';
+myObj.key3 = 'Prop3';
+myObj.key4 = 'Prop4';
 
-    document.getElementById('imageDisplay').innerHTML = `<img src="${currentProfile.image}">`;
-  } else {
-    // No more profiles
-    window.location.reload();
-  }
-}
+// console.log(myObj[KEY1]);
+// console.log(myObj[KEY2]);
 
-// Profile Iterator
-function profileIterator(profiles) {
-  let nextIndex = 0;
+// Symbols are not enumerable in for...in
+// for(let i in myObj) {
+//   console.log(`${i}: ${myObj[i]}`);
+// }
 
-  return {
-    next: function() {
-      return nextIndex < profiles.length ? 
-      { value: profiles[nextIndex++], done: false } : 
-      { done: true }
-    }
-  };
-}
+// Symbols are ignored by JSON.stringify
+console.log(JSON.stringify({key: 'prop'}));
+console.log(JSON.stringify({[Symbol('sym1')]: 'prop'}));
