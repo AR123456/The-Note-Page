@@ -1,44 +1,56 @@
-// SETS - Store unique values of any type
+// Basic structure
 
-const set1 = new Set();
+// (function() {
+//   // Declare private vars and functions
 
-// Add values to set
-set1.add(100);
-set1.add('A string');
-set1.add({name: 'John'});
-set1.add(true);
-set1.add(100);
+//   return {
+//     // Declare public var and functions
+//   }
+// })();
 
-// const set2 = new Set([1, true, 'string']);
-// console.log(set2);
+// STANDARD MODULE PATTERN
+// const UICtrl = (function() {
+//   let text = 'Hello World';
 
-// console.log(set1);
+//   const changeText = function() {
+//     const element = document.querySelector('h1');
+//     element.textContent = text;
+//   }
 
-// Get count
-// console.log(set1.size);
+//   return {
+//     callChangeText: function() {
+//       changeText();
+//       // console.log(text);
+//     }
+//   }
+// })();
 
-// Check for values
-// console.log(set1.has(100));
-// console.log(set1.has(50 + 50));
-// console.log(set1.has({name: 'John'}));
+// UICtrl.callChangeText();
+// // UICtrl.changeText();
 
-// Delete from set
-// set1.delete(100);
+// console.log(UICtrl.text);
 
-// console.log(set1);
+// REVEALING MODULE PATTERN
+const ItemCtrl = (function() {
+  let data = [];
 
-// ITERATING THROUGH SETS
+  function add(item) {
+    data.push(item);
+    console.log('Item Added....');
+  }
 
-// For..of 
-// for(let item of set1) {
-//   console.log(item);
-// }
+  function get(id) {
+    return data.find(item => {
+      return item.id === id;
+    });
+  }
 
-// ForEach Loop
-// set1.forEach((value) => {
-//   console.log(value);
-// });
+  return {
+    add: add,
+    // get: get
+  }
+})();
 
-// CONVERT SET TO ARRAY
-const setArr = Array.from(set1);
-console.log(setArr);
+ItemCtrl.add({id: 1, name: 'John'});
+ItemCtrl.add({id: 2, name: 'Mark'});
+console.log(ItemCtrl.get(2));
