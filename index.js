@@ -1,46 +1,64 @@
-const fs = require("fs");
-const axios = require("axios");
-const inquirer = require("inquirer");
+/// take this call back function and make it a promised based function
+/// call back based
+// function waitFor(seconds, cb) {
+//   if (isNaN(seconds) || seconds < 1) {
+//     return cb(Error("Paramater 'seconds' must be a positive number"));
+//   }
+//   setTimeout(function() {
+//     cb(null, "Success");
+//   }, seconds * 1000);
+// }
 
-inquirer
-  .prompt({
-    message: "Enter your GitHub username",
-    name: "username"
-    // no type specified so uses defalut of open ended test
-  })
-  // asyncronis so wait for a response
-  .then(function({ username }) {
-    //deconstructed username here from the object we get from inquiere, all we are about is user name
-    const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
-    // make axios request
-    axios
-      .get(queryUrl)
-      // wait for response
-      // destructure data from the response and re name it repos
-      .then(({ data: repos }) => {
-        // console.log(data[0].name);
-        // takes an original array and give you a new array of the same length as original but altered in some way
-        // specify name of individual array member
-        // speify what we want to do with each individual repo object in order to generate the new array
-        // inside the parans repo could and often is just called item
-        //map through the repo and just output the repo names
-        // this needs to be a string to write to the file use .join
-        const repoNames = repos.map(repo => repo.name).join("\n");
-        // console.log(repoNames); //console.log in the then
-        // fs.write takes in 3 params , name of file, what is going into it and callback to handle error or output what happend to user
-        fs.writeFile(`${username}.txt`, repoNames, err => {
-          if (err) throw err; //
-          console.log(
-            `Wrote list of ${repos.length} repos to ${username}.txt `
-          );
-        });
-      });
+// waitFor(2, function(err, msg) {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   console.log(msg);
+// });
+
+//// promise based /////////
+// function waitFor(seconds) {
+//   // resolve gets passed into .then, reject gets passed into a catch
+//   return new Promise((resolve, reject) => {
+//     if (isNaN(seconds) || seconds < 1) {
+//       // the reject callback function has access to the error pass into .catch will have acccess
+//       return reject(Error("Paramater 'seconds' must be a positive number"));
+//     }
+//     setTimeout(function() {
+//       // this takes resolve now not cb resomve takes in just success
+//       // the callback function passedinto .then will have access to the mesg passed into parens of resovle
+//       resolve("Success");
+//     }, seconds * 1000);
+//   });
+// }
+
+// //
+// waitFor(3)
+//   //this is what is in the resolve, could be text or an object of data
+//   // takes in data from resolve , this console.log is the success message above (what gets sent to callback)
+//   .then(data => console.log(data))
+//   // thisis if things go poorly
+//   // captures the error from the return
+//   // break out with return and call reject function
+//   // reject function  trigers the call back in the .catch and passes data in the reject paren s , in this case error object
+//   .catch(err => console.log(err));
+
+///////////// could also provide more than one error message ////////////
+
+function waitFor(seconds) {
+  return new Promise((resolve, reject) => {
+    if (isNaN(seconds)) {
+      return reject(Error("Paramater 'seconds' must number"));
+    }
+    if (seconds < 1) {
+      return reject(Error("Paramater 'seconds' must be a positive number"));
+    }
+    setTimeout(function() {
+      resolve("Success");
+    }, seconds * 1000);
   });
-// get data using axios seperate the data in to a string of line seprated repository names and write to file based on user name
-//mahume- a TA
-
-//scwebd -saras
-
-// use map to generate an array of the same length as the previous one with some modificaiton of the first
-// filter gives an array that is a sub set of the previous array
-// for each is supper generic just loops through an array
+}
+waitFor(3)
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
