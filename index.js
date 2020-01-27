@@ -1,7 +1,12 @@
 // destructure hash from window location
 const { hash } = window.location;
-// user atob to un encode and replace to remove# from text string and replace it with nothing 
-console.log(atob(hash.replace("#", "")));
+// user atob to un encode and replace to remove# from text string and replace it with nothing
+const message = atob(hash.replace("#", ""));
+if (message) {
+  document.querySelector("#message-form").classList.add("hide");
+  document.querySelector("#message-show").classList.remove("hide");
+  document.querySelector("h1").innerHTML = message;
+}
 
 document.querySelector("form").addEventListener("submit", event => {
   event.preventDefault();
