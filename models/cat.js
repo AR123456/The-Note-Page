@@ -3,23 +3,26 @@ var orm = require("../config/orm.js");
 
 var cat = {
   all: function(cb) {
-    // orm.all(tabelName,cb)
     orm.all("cats", function(res) {
-      cb(res); // look at the controller for this
+      cb(res);
     });
   },
   // The variables cols and vals are arrays.
-  //cat.create(["name", "sleepy"],["Hendrix", "1"], callback)
   create: function(cols, vals, cb) {
-    // orm.create("cats",["name","sleepy"],["Hendrix","1"],anotherCb)
     orm.create("cats", cols, vals, function(res) {
-      // this triggers call back from the controller and gives it the data(the post)
       cb(res);
     });
   },
+  // cat.update({sleepy:"false"}, "id =5",cb )
+  // calling by giving it an object to change ({sleepy:"false"}),
+  // the were  "id" =5
+  // the callback  to be triggerd later cb
   update: function(objColVals, condition, cb) {
+    // here cbjColVals is an object of the column and value pairs
+    // orm.update("cats",{sleepy:"false"},"id = 5", anotherCb)
+    // this gets passed to the orm in the config folder
     orm.update("cats", objColVals, condition, function(res) {
-      cb(res);
+      cb(res); // this callback calls another callback - the one coming from cat.update in the controller
     });
   },
   delete: function(condition, cb) {

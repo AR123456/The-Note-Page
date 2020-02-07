@@ -7,7 +7,6 @@ var cat = require("../models/cat.js");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-  //cat.all(cb)
   cat.all(function(data) {
     var hbsObject = {
       cats: data
@@ -18,32 +17,30 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/cats", function(req, res) {
-  //{name: "Hendrex", sleepy: "1"}
-  //cat.create is coming from the model -2 arrays   the columns to be created and then the values,the third argument is a callback
   cat.create(["name", "sleepy"], [req.body.name, req.body.sleepy], function(
     result
   ) {
     // Send back the ID of the new quote
-    // this came from the cb in the model
-    // this is the data that was pulled from the MSQL table and provided from the ORM to the model to the controller
-    // the res.json here terminates the request cycle, thus triggering the .then or call back in the ajax
     res.json({ id: result.insertId });
   });
 });
-
+// /api/cats/5 PUT {sleepy:"false"}
 router.put("/api/cats/:id", function(req, res) {
+  // building out a string here to use in the msql query
   var condition = "id = " + req.params.id;
-
   console.log("condition", condition);
-
+  //make call to cat.update req.body so
+  //cat.update({sleepy:"false"}, "id =5",cb )   -sending this to the model
   cat.update(
     {
       sleepy: req.body.sleepy
     },
-    condition,
+    condition, // second param
     function(result) {
+      // third param the callback
       if (result.changedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
+        // send this to the front end go to the public folder
         return res.status(404).end();
       } else {
         res.status(200).end();
