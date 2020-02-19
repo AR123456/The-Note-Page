@@ -1,20 +1,26 @@
 {
-  "name": "mvc_design",
+  "name": "javascript-expressions-in-jsx-completed",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "keywords": [],
+  "main": "src/index.js",
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
-    "mysql": "^2.10.2"
+    "react": "16.11.0",
+    "react-dom": "16.11.0"
   },
   "devDependencies": {
-    "handlebars-helper-css": "^0.1.0"
-  }
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
