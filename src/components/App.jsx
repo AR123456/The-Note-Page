@@ -1,15 +1,30 @@
 import React from "react";
-import Card from "./Card";
-import contacts from "../contacts";
+import Entry from "./Entry";
+import emojipedia from "../emojipedia";
 
-function createCard(contact) {
+//1. Extract the repeated parts of the App into a Entry component.
+//2. Use props to make the Entry component render different data.
+//3a. Import the emojipedia constant.
+//3b. Map through the emojipedia array and render Entry components.
+
+//Emojipedia has 3 entries, so createEntry gets called 3 times.
+//Each time, it passes 1 item from the emojipedia array as a var called emojiTerm.
+
+//var emojiTerm = {
+//   id: 1,
+//   emoji: "💪",
+//   name: "Tense Biceps",
+//   meaning:
+//     "“You can do that!” or “I feel strong!” Arm with tense biceps. Also used in connection with doing sports, e.g. at the gym."
+// }
+
+function createEntry(emojiTerm) {
   return (
-    <Card
-      key={contact.id}
-      name={contact.name}
-      img={contact.imgURL}
-      tel={contact.phone}
-      email={contact.email}
+    <Entry
+      key={emojiTerm.id}
+      emoji={emojiTerm.emoji}
+      name={emojiTerm.name}
+      description={emojiTerm.meaning}
     />
   );
 }
@@ -17,27 +32,10 @@ function createCard(contact) {
 function App() {
   return (
     <div>
-      <h1 className="heading">My Contacts</h1>
-      {contacts.map(createCard)}
-
-      {/* <Card
-        name={contacts[0].name}
-        img={contacts[0].imgURL}
-        tel={contacts[0].phone}
-        email={contacts[0].email}
-      />
-      <Card
-        name={contacts[1].name}
-        img={contacts[1].imgURL}
-        tel={contacts[1].phone}
-        email={contacts[1].email}
-      />
-      <Card
-        name={contacts[2].name}
-        img={contacts[2].imgURL}
-        tel={contacts[2].phone}
-        email={contacts[2].email}
-      /> */}
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">{emojipedia.map(createEntry)}</dl>
     </div>
   );
 }
