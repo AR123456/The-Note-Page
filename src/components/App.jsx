@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import Login from "./Login";
+
+var isLoggedIn = false;
+
+const currentTime = new Date(2019, 11, 1, 9).getHours();
+console.log(currentTime);
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  function increase() {
-    setCount(count + 1);
-  }
-
-  function decrease() {
-    setCount(count - 1);
-  }
-
   return (
     <div className="container">
-      <h1>{count}</h1>
-      <button onClick={decrease}>-</button>
-      <button onClick={increase}>+</button>
+      {/*Ternary Operator*/}
+      {isLoggedIn ? <h1>Hello</h1> : <Login />}
+      {/*AND Operator*/}
+      {currentTime > 12 && <h1>Why are you still working?</h1>}
     </div>
   );
 }
