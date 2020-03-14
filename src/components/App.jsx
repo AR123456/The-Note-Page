@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import Login from "./Login";
+
+var isLoggedIn = false;
+
+const currentTime = new Date(2019, 11, 1, 9).getHours();
+console.log(currentTime);
 
 function App() {
-  const now = new Date().toLocaleTimeString();
-  const [time, setTime] = useState(now);
-  console.log(now);
-  function updateTime() {
-    const newTime = new Date().toLocaleTimeString();
-    setTime(newTime);
-  }
-
-  setInterval(updateTime, 1000);
-
   return (
     <div className="container">
-      <h1>{time}</h1>
-      <button onClick={updateTime}>Get Time</button>
+      {/*Ternary Operator*/}
+      {isLoggedIn ? <h1>Hello</h1> : <Login />}
+      {/*AND Operator*/}
+      {currentTime > 12 && <h1>Why are you still working?</h1>}
     </div>
   );
 }
