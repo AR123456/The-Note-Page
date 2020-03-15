@@ -1,18 +1,33 @@
-import React from "react";
-import Login from "./Login";
-
-var isLoggedIn = false;
-
-const currentTime = new Date(2019, 11, 1, 9).getHours();
-console.log(currentTime);
+import React, { useState } from "react";
 
 function App() {
+  const [headingText, setHeadingText] = useState("Hello");
+  const [isMousedOver, setMouseOver] = useState(false);
+
+  function handleClick() {
+    setHeadingText("Submitted");
+  }
+
+  function handleMouseOver() {
+    setMouseOver(true);
+  }
+
+  function handleMouseOut() {
+    setMouseOver(false);
+  }
+
   return (
     <div className="container">
-      {/*Ternary Operator*/}
-      {isLoggedIn ? <h1>Hello</h1> : <Login />}
-      {/*AND Operator*/}
-      {currentTime > 12 && <h1>Why are you still working?</h1>}
+      <h1>{headingText}</h1>
+      <input type="text" placeholder="What's your name?" />
+      <button
+        style={{ backgroundColor: isMousedOver ? "black" : "white" }}
+        onClick={handleClick}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+        Submit
+      </button>
     </div>
   );
 }
