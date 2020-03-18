@@ -4,6 +4,18 @@ import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-//CHALLENGE: Make the code in App.jsx work.
-//The final app should have a single contact
-//with fName, lName and email.
+// const citrus = ["Lime", "Lemon", "Orange"];
+// const fruits = ["Apple", ...citrus, "Banana", "Coconut"];
+
+// const fullName = {
+//   fName: "James",
+//   lName: "Bond"
+// };
+
+// const user = {
+//   ...fullName,
+//   id: 1,
+//   username: "jamesbond007"
+// };
+
+// console.log(user);
