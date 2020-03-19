@@ -4,15 +4,17 @@ import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-//CHALLENGE: I have extracted the Input Area, including the <input> and
-//<button> elements into a seperate Component called InputArea.
-//Your job is to make the app work as it did before but this time with the
-//InputArea as a seperate Component.
+//CHALLENGE:
+//1. Implement the add note functionality.
+//- Create a constant that keeps track of the title and content.
+//- Pass the new note back to the App.
+//- Add new note to an array.
+//- Take array and render seperate Note components for each item.
 
-// DO NOT: Modify the ToDoItem.jsx
-// DO NOT: Move the input/button elements back into the App.jsx
+//2. Implement the delete note functionality.
+//- Callback from the Note component to trigger a delete function.
+//- Use the filter function to filter out the item that needs deletion.
+//- Pass a id over to the Note component, pass it back to the App when deleting.
 
-//Hint 1: You will need to think about how to manage the state of the input element
-//in InputArea.jsx.
-//Hint 2: You will need to think about how to pass the input value back into
-//the addItem() function in App.jsx.
+//This is the end result you're aiming for:
+//https://pogqj.csb.app/
