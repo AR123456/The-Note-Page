@@ -4,43 +4,20 @@ var svg = d3
   .attr("width", "400")
   .attr("height", "400");
 
-d3.json("data/buildings.json").then(function (data) {
-  console.log(data);
+var x = d3
+  // time scales are a type of linear scale
+  // domain works with the JS date object instead of integers
+  // syntax is like that of a linear scale
+  .scaleTime()
+  // create a new date object here by passing in the day time and month we want
+  // to do this with with actual data would need to convert a string of the date to a javascript date object
+  .domain([new Date(2000, 0, 1), new Date(2001, 0, 1)])
+  .range([0, 400]);
 
-  data.forEach((d) => {
-    d.height = +d.height;
-  });
+console.log(x(new Date(2000, 7, 1)));
+console.log(x(new Date(2000, 2, 1)));
+console.log(x(new Date(2000, 10, 25)));
 
-  var y = d3
-    // use log scale to display data with large changes in value
-    // does better job displaying the diff in values
-    //scaleLog takes in min and max values for domain and range
-    // the domain of a log scale needs to be either strictly negative or positive
-    // the log of 0 is always undefined
-    // 0 cannot be in the domain
-    .scaleLog()
-    .domain([28, 828])
-    .range([0, 200])
-    // base value defaults to 10
-    // this would place values a factor of 10 apart
-    // a log scale with a base of 1 is the same as a linear scale
-    .base(10);
-  console.log(y(5440));
-
-  var rects = svg
-    .selectAll("rect")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("y", 0)
-    .attr("x", function (d, i) {
-      return i * 60;
-    })
-    .attr("width", 40)
-    .attr("height", function (d) {
-      return y(d.height);
-    })
-    .attr("fill", function (d) {
-      return "grey";
-    });
-});
+console.log(x.invert(232.8));
+console.log(x.invert(66.5));
+console.log(x.invert(360));
