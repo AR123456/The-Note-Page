@@ -1,61 +1,73 @@
 /*
- Band scales - used to space out rectangles in bar charts- 
+ D3 min, max, and extent
+ used to automaicaly set the domain for scales - may not always know the min and max in a
+ set of data
+ map functions to set domains for catigorical data 
+ min max and extend all take in 2 arguments - 
+ an array of data and a callback function 
+ the callback function will loop over every item in the array 
+ for each item need to retun the piece of data we are intrested in 
+ min max and extent will compare values and return relevant data 
+ the min , max  and for extent an array of the min and max values 
 */
 
-var svg = d3
+const svg = d3
   .select("#chart-area")
   .append("svg")
   .attr("width", "400")
   .attr("height", "400");
 
-d3.json("data/buildings.json").then(function (data) {
+d3.json("data/buildings.json").then((data) => {
   console.log(data);
 
-  data.forEach(function (d) {
+  data.forEach((d) => {
     d.height = +d.height;
   });
-  // changing x scale width - need to make the bands more narrow or the SVG bigger for all to fit
-  // descrete domain, continuous range
-  var x = d3
-    // space out bands of equal length based on how many elements it has in its domain
-    // cannot add new values in the same way as ordinal scale
-    .scaleBand()
-    // categories to display for domain - needed to add to building.json and here in the domain
-    .domain([
-      "Burj Khalifa",
-      "Shanghai Tower",
-      "Abraj Al-Bait Clock Tower",
-      "Ping An Finance Centre",
-      "Lotte World Tower",
-      "One World Trade Center",
-      "Guangzhou CTF Finance Center",
-    ])
-    // the pixle postions that we want chart spaced over
-    // span of SVG
-    .range([0, 400])
-    // padding ratio inbetween the bars in the domain -
-    .paddingInner(0.3)
-    // padding ratio the outside edge of the whole domain
-    .paddingOuter(0.3);
-  console.log(x("Burj Khalifa"));
-  var y = d3.scaleLinear().domain([0, 828]).range([0, 400]);
 
-  var rects = svg
+  const x = d3
+    .scaleBand()
+
+    .domain(
+      // map function to generate the array of building names
+      // to add to the domain
+      // useful for band scales and ordinal scales category values
+      data.map((d) => {
+        return d.name;
+      })
+    )
+    //range method takes in the min and max of the range
+    .range([0, 400])
+    .paddingInner(0.3)
+    .paddingOuter(0.3);
+
+  const y = d3
+    .scaleLinear()
+    //domain method, takes in the vaule of the min and max of the domain
+    // 0 to the height of the tallest building
+    .domain([
+      0,
+      // d3 max takes in an array of data as its first argument
+      // the second argument is pointing to the buildings height value
+      // finds the max value in the array to use in the domain function
+      d3.max(data, (d) => {
+        return d.height;
+      }),
+    ])
+    //range method takes in the min and max of the range
+    .range([0, 400]);
+  // .extent returns an array of the min and max vaule
+  const rects = svg
     .selectAll("rect")
     .data(data)
     .enter()
     .append("rect")
     .attr("y", 0)
-    // return the value from passing the building name into the x scale
-    .attr("x", function (d) {
+    .attr("x", (d) => {
       return x(d.name);
     })
-    // bandwidth  method gives access to width of bands
     .attr("width", x.bandwidth)
-    .attr("height", function (d) {
+    .attr("height", (d) => {
       return y(d.height);
     })
-    .attr("fill", function (d) {
-      return "grey";
-    });
+    .attr("fill", "grey");
 });
