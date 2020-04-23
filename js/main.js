@@ -1,20 +1,13 @@
 /*
-Axes and labels 
- to get axes on bottom and right of graph need to use translation on group
- this is due to the SVG point of origin being left top so 
-to get the axes on the bottom and right attach axis to a group and give it a translation 
-to get axes on right shift by the width of the vis in the x direction 
-1) make call to axis generator 
-2) pass in hte relative scale as its only argument
-3) attach an svg group, give tranlation if neccessary
-4) use call method to run the axis generated 
-5) methods to customize how text should look
+*rReverse y-scale, make rectangles sit on y vs hanging down and fiddling with the SVG coordinate system
+
 */
-// add 50 px to bottom so that text appears
+
 const margin = { left: 100, right: 10, top: 10, bottom: 150 };
+
 const width = 600 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
-// attach the axis to a group and give it a translation
+
 const g = d3
   .select("#chart-area")
   .append("svg")
@@ -32,7 +25,7 @@ g.append("text")
   .attr("text-anchor", "middle")
   .text("The word's tallest buildings");
 
-// using this code to add title at bottom of the graph Y label
+// Y Label
 g.append("text")
   .attr("class", "y axis-label")
   .attr("x", -(height / 2))
@@ -43,6 +36,8 @@ g.append("text")
   .text("Height (m)");
 
 d3.json("data/buildings.json").then((data) => {
+  console.log(data);
+
   data.forEach((d) => {
     d.height = +d.height;
   });
@@ -66,52 +61,48 @@ d3.json("data/buildings.json").then((data) => {
         return d.height;
       }),
     ])
-    .range([0, height]);
-  // using d3 axisBottom generator for x scale- pass in x
+    //reversing the range of linear scale so 0 maps to bottom of svg
+    // instead of the top
+    // .range([0, height]);
+    .range([height, 0]);
+
   const xAxisCall = d3.axisBottom(x);
-  // adding a group visualzation area for each axis
   g.append("g")
     .attr("class", "x axis")
-    // for x translate by the hight of the visualization
     .attr("transform", "translate(0, " + height + ")")
-    // need to call the generattor
     .call(xAxisCall)
-    // here rotating the text on the x axis so it is readable
     .selectAll("text")
     .attr("y", "10")
     .attr("x", "-5")
-    //lines the text up
     .attr("text-anchor", "end")
-    // rotate takes one argument which is the num of deg to rotate
     .attr("transform", "rotate(-40)");
 
-  // using d3 axisLeft generator for y scale pass in y
   const yAxisCall = d3
     .axisLeft(y)
-    // hard code number of tick marks
     .ticks(3)
-    // this is to show values with m after them
     .tickFormat((d) => {
       return d + "m";
     });
-  // the y will be in the correct position so no need to translate it
-  g.append("g")
-    .attr("class", "y-axis")
-    // need to call the generattor
-    .call(yAxisCall);
+  g.append("g").attr("class", "y-axis").call(yAxisCall);
 
   const rects = g.selectAll("rect").data(data);
 
   rects
     .enter()
     .append("rect")
-    .attr("y", 0)
-    .attr("x", function (d) {
+    // .attr("y", 0)
+    .attr("y", (d) => {
+      // shift bars to bottom of screen
+      // set y attribute val to val from y scale
+      return y(d.height);
+    })
+    .attr("x", (d) => {
       return x(d.name);
     })
     .attr("width", x.bandwidth)
     .attr("height", (d) => {
-      return y(d.height);
+      // changing the height of the bars to hight of vis from y scale
+      return height - y(d.height);
     })
     .attr("fill", "grey");
 });
