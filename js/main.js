@@ -1,12 +1,15 @@
 /*
-*rReverse y-scale, make rectangles sit on y vs hanging down and fiddling with the SVG coordinate system
+ *    main.js
+ *
+ *  43- Making  chart dynamic
+ */
 
-*/
-
-const margin = { left: 100, right: 10, top: 10, bottom: 150 };
+const margin = { left: 80, right: 20, top: 50, bottom: 100 };
 
 const width = 600 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
+// this is in the global scope
+let flag = true;
 
 const g = d3
   .select("#chart-area")
@@ -16,93 +19,130 @@ const g = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
+const xAxisGroup = g
+  .append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")");
+
+const yAxisGroup = g.append("g").attr("class", "y axis");
+
+// X Scale
+const x = d3.scaleBand().range([0, width]).padding(0.2);
+
+// Y Scale
+const y = d3.scaleLinear().range([height, 0]);
+
 // X Label
 g.append("text")
-  .attr("class", "x axis-label")
+  .attr("y", height + 50)
   .attr("x", width / 2)
-  .attr("y", height + 140)
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
-  .text("The word's tallest buildings");
+  .text("Month");
 
 // Y Label
-g.append("text")
-  .attr("class", "y axis-label")
-  .attr("x", -(height / 2))
+// create a constiable for the y lable so that we can updated it with the name
+const yLabel = g
+  .append("text")
   .attr("y", -60)
+  .attr("x", -(height / 2))
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
   .attr("transform", "rotate(-90)")
-  .text("Height (m)");
+  .text("Revenue");
 
-d3.json("data/buildings.json").then((data) => {
+d3.json("data/revenues.json").then((data) => {
   console.log(data);
 
+  // Clean data
   data.forEach((d) => {
-    d.height = +d.height;
+    // turn both the revenue and profit strings into numbers
+    d.revenue = +d.revenue;
+    d.profit = +d.profit;
   });
 
-  const x = d3
-    .scaleBand()
-    .domain(
-      data.map((d) => {
-        return d.name;
-      })
-    )
-    .range([0, width])
-    .paddingInner(0.3)
-    .paddingOuter(0.3);
+  d3.interval(() => {
+    update(data);
+    // set flag to true if it is currently false, if false set it to true
+    flag = !flag;
+  }, 1000);
 
-  const y = d3
-    .scaleLinear()
-    .domain([
-      0,
-      d3.max(data, (d) => {
-        return d.height;
-      }),
-    ])
-    //reversing the range of linear scale so 0 maps to bottom of svg
-    // instead of the top
-    // .range([0, height]);
-    .range([height, 0]);
+  // Run the vis for the first time
+  update(data);
+});
 
+function update(data) {
+  // flag value will keep track of which data source is being looked at
+  // when flag is set to true use rev data when false use profit data
+  // ternary operator for if else
+  // whatever is on the left hand side of the ? should evaluate to true or false
+  // if it is true it returns the value to the left of the colon,
+  //if it is false it returns the value to the right of the colon
+  const value = flag ? "revenue" : "profit";
+
+  x.domain(
+    data.map((d) => {
+      return d.month;
+    })
+  );
+  y.domain([
+    0,
+    d3.max(data, (d) => {
+      // replace hard coded revenue with the value constiable.
+
+      return d[value];
+    }),
+  ]);
+
+  // X Axis
   const xAxisCall = d3.axisBottom(x);
-  g.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0, " + height + ")")
-    .call(xAxisCall)
-    .selectAll("text")
-    .attr("y", "10")
-    .attr("x", "-5")
-    .attr("text-anchor", "end")
-    .attr("transform", "rotate(-40)");
+  xAxisGroup.call(xAxisCall);
 
-  const yAxisCall = d3
-    .axisLeft(y)
-    .ticks(3)
-    .tickFormat((d) => {
-      return d + "m";
-    });
-  g.append("g").attr("class", "y-axis").call(yAxisCall);
+  // Y Axis
+  const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
+    return "$" + d;
+  });
+  yAxisGroup.call(yAxisCall);
 
+  // JOIN new data with old elements.
   const rects = g.selectAll("rect").data(data);
 
+  // EXIT old elements not present in new data.
+  rects.exit().remove();
+
+  // UPDATE old elements present in new data.
+  rects
+    .attr("y", (d) => {
+      // replace hard coded revenue with the value constiable.
+      return y(d[value]);
+    })
+    .attr("x", (d) => {
+      return x(d.month);
+    })
+    .attr("height", (d) => {
+      // replace hard coded revenue with the value constiable.
+      return height - y(d[value]);
+    })
+    .attr("width", x.bandwidth);
+
+  // ENTER new elements present in new data.
   rects
     .enter()
     .append("rect")
-    // .attr("y", 0)
     .attr("y", (d) => {
-      // shift bars to bottom of screen
-      // set y attribute val to val from y scale
-      return y(d.height);
+      // replace hard coded revenue with the value constiable.
+      return y(d[value]);
     })
     .attr("x", (d) => {
-      return x(d.name);
+      return x(d.month);
+    })
+    .attr("height", (d) => {
+      // replace hard coded revenue with the value constiable.
+      return height - y(d[value]);
     })
     .attr("width", x.bandwidth)
-    .attr("height", (d) => {
-      // changing the height of the bars to hight of vis from y scale
-      return height - y(d.height);
-    })
     .attr("fill", "grey");
-});
+  // change the value of the y label dependig upon what thre flag says
+  const label = flag ? "Revenue" : "Profit";
+  yLabel.text(label);
+}
