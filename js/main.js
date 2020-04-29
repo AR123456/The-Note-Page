@@ -1,7 +1,7 @@
 /*
-*   setInterval
-
-*/
+ *    main.js
+ *   Adding an update function
+ */
 
 const margin = { left: 80, right: 20, top: 50, bottom: 100 };
 
@@ -15,6 +15,21 @@ const g = d3
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+// the append  of the axis should only happen once here not in the loop
+const xAxisGroup = g
+  .append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")");
+// the append  of the axis should only happen once here not in the loop
+const yAxisGroup = g.append("g").attr("class", "y axis");
+
+// X Scale
+// this part of the scale is not dependant on the data changing so stays out of the update function
+const x = d3.scaleBand().range([0, width]).padding(0.2);
+
+// Y Scale
+// this part of the scale is not dependant on the data changing so stays out of the update function
+const y = d3.scaleLinear().range([height, 0]);
 
 // X Label
 g.append("text")
@@ -41,61 +56,50 @@ d3.json("data/revenues.json").then((data) => {
     d.revenue = +d.revenue;
   });
 
-  // X Scale
-  const x = d3
-    .scaleBand()
-    .domain(
-      data.map((d) => {
-        return d.month;
-      })
-    )
-    .range([0, width])
-    .padding(0.2);
+  d3.interval(() => {
+    update(data);
+  }, 1000);
 
-  // Y Scale
-  const y = d3
-    .scaleLinear()
-    .domain([
-      0,
-      d3.max(data, (d) => {
-        return d.revenue;
-      }),
-    ])
-    .range([height, 0]);
+  // Run the vis for the first time so there is not a one second delay after the page initaly loads
+  update(data);
+});
+// the update function will be run repeatadly
+// it takes in the data array loaded previously - put call of this function in the interval loop
+function update(data) {
+  // the only part of the scales that is dependent on update data is the domains so leaving it here
+  //x scale
+  x.domain(
+    data.map((d) => {
+      return d.month;
+    })
+  );
+  // y scale
+  y.domain([
+    0,
+    d3.max(data, (d) => {
+      return d.revenue;
+    }),
+  ]);
 
-  // X Axis
+  // X Axis - the call part of the axis generator needs to happen here in the update function
   const xAxisCall = d3.axisBottom(x);
-  g.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxisCall);
+  xAxisGroup.call(xAxisCall);
 
-  // Y Axis
+  // Y Axis -the call part of the axis generator needs to happen here in the update function
   const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
     return "$" + d;
   });
-  g.append("g").attr("class", "y axis").call(yAxisCall);
+  yAxisGroup.call(yAxisCall);
 
-  // Bars
-  const rects = g.selectAll("rect").data(data);
-
-  rects
-    .enter()
-    .append("rect")
-    .attr("y", (d) => {
-      return y(d.revenue);
-    })
-    .attr("x", (d) => {
-      return x(d.month);
-    })
-    .attr("height", (d) => {
-      return height - y(d.revenue);
-    })
-    .attr("width", x.bandwidth)
-    .attr("fill", "grey");
-  // d3 and Jquery setInterval
-  d3.interval(() => {
-    console.log("Hello World");
-    // re run every second
-  }, 1000);
-});
+  /*    // Bars
+    const rects = g.selectAll("rect")
+        .data(data)
+        
+    rects.enter()
+        .append("rect")
+            .attr("y", function(d){ return y(d.revenue); })
+            .attr("x", function(d){ return x(d.month) })
+            .attr("height", function(d){ return height - y(d.revenue); })
+            .attr("width", x.bandwidth)
+            .attr("fill", "grey");*/
+}
