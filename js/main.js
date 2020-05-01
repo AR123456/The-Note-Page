@@ -1,6 +1,14 @@
 /*
+*    main.js
+*     
+* 45 Scatter plots in D3 - 
+to make the bar chart into scatter plot 
+1) switch out rect to circle
+2) change x and y to cy and cy 
+3) remove hight and widith replace with radius of 5 
+4) add 1/2 of the x.bandwith to fix the positioning of the x axis
 
-*43 - D3 Transitions
+To make it a bubble chart change the size of the circle based on the value given to it 
 */
 
 const margin = { left: 80, right: 20, top: 50, bottom: 100 };
@@ -9,8 +17,7 @@ const width = 600 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
 let flag = true;
-// define the transiton function , keep it shorter than the loops delay
-// pass this in where needed later
+
 const t = d3.transition().duration(750);
 
 const g = d3
@@ -62,7 +69,6 @@ d3.json("data/revenues.json").then((data) => {
   });
 
   d3.interval(() => {
-    // changing the data in the array depending on how the flag is set
     const newData = flag ? data : data.slice(1);
 
     update(newData);
@@ -90,72 +96,46 @@ function update(data) {
 
   // X Axis
   const xAxisCall = d3.axisBottom(x);
-
-  xAxisGroup
-    // place the transiton before the xAxisCall call method
-    .transition(t)
-    .call(xAxisCall);
+  xAxisGroup.transition(t).call(xAxisCall);
 
   // Y Axis
   const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
     return "$" + d;
   });
-  yAxisGroup
-    // place the transiton before the xAxisCall call method
-    .transition(t)
-    .call(yAxisCall);
+  yAxisGroup.transition(t).call(yAxisCall);
+
+  //   to make the bar chart into scatter plot
+  // 1) switch out rect to circle
+  // 2) change x and y to cy and cy
+  // 3) remove hight and widith replace with radius of 5
+  //4) add 1/2 of the x.bandwith to fix the positioning of the x axis
 
   // JOIN new data with old elements.
-  // the data metod can take an optional second argument which should be a function
-  // that returns a key to match items between different rates
-  //so D3 knows how to associate each SVG with the right data point in the array based
-  //on what the funciton returns
-  // this function returns the month so data join tracks the items based on mo of value
-  const rects = g.selectAll("rect").data(data, (d) => {
+  const rects = g.selectAll("circle").data(data, (d) => {
     return d.month;
   });
 
   // EXIT old elements not present in new data.
-  rects
-    .exit()
-    // changing the color of the exiting bars to red
-    .attr("fill", "red")
-    // and add a transition
-    .transition(t)
-    // transition y value to the bottom of grid, y0 is pixle postion at bottom of the chart
-    .attr("y", y(0))
-    // slide hight away to 0
-    .attr("height", 0)
-    .remove();
+  rects.exit().attr("fill", "red").transition(t).attr("cy", y(0)).remove();
 
   // ENTER new elements present in new data...
   rects
     .enter()
-    .append("rect")
+    .append("circle")
     .attr("fill", "grey")
-    .attr("y", y(0))
-    .attr("height", 0)
-    .attr("x", (d) => {
-      return x(d.month);
+    .attr("cy", y(0))
+    .attr("cx", (d) => {
+      return x(d.month) + x.bandwidth() / 2;
     })
-    .attr("width", x.bandwidth)
+    .attr("r", 5)
     // AND UPDATE old elements present in new data.
-    // merge sets the attributes of the entering and update selection at same time
-    //call on enter selection and pass in what to merg with
-    // all attr above are called on just enter selection
-    // the attr below the merge are applied to enter and update selections
     .merge(rects)
-    // add the transistion before any attrbutes get set
     .transition(t)
-    .attr("x", (d) => {
-      return x(d.month);
+    .attr("cx", (d) => {
+      return x(d.month) + x.bandwidth() / 2;
     })
-    .attr("width", x.bandwidth)
-    .attr("y", (d) => {
+    .attr("cy", (d) => {
       return y(d[value]);
-    })
-    .attr("height", (d) => {
-      return height - y(d[value]);
     });
 
   const label = flag ? "Revenue" : "Profit";
