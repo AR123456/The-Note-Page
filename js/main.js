@@ -1,24 +1,19 @@
 /*
-*    main.js
-*     
-* 45 Scatter plots in D3 - 
-to make the bar chart into scatter plot 
-1) switch out rect to circle
-2) change x and y to cy and cy 
-3) remove hight and widith replace with radius of 5 
-4) add 1/2 of the x.bandwith to fix the positioning of the x axis
-
-To make it a bubble chart change the size of the circle based on the value given to it 
-*/
+ *    main.js
+ *  47- Gapminder Clone - clone of bubble chart that shows how
+ * population, per capita and life expectancy have changed in different countries over the past 2 centurys
+ * // data is an array of years and an array of countries in that year. Each countrie contains its continent,
+ * income, life expecnacy and population.
+ * 1) update data in cycle based on year
+ * 2)Size of cicles changes to reflect population, position on x is GDP Per Capita and postion
+ * on Y is life expectancy
+ * 3) y axis is a log scale 400 to 40,000
+ * 4) ordinal scale to seperate the circles by their continent
+ */
 
 const margin = { left: 80, right: 20, top: 50, bottom: 100 };
-
-const width = 600 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
-
-let flag = true;
-
-const t = d3.transition().duration(750);
+const height = 500 - margin.top - margin.bottom,
+  width = 800 - margin.left - margin.right;
 
 const g = d3
   .select("#chart-area")
@@ -28,116 +23,118 @@ const g = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-const xAxisGroup = g
-  .append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")");
+let time = 0;
 
-const yAxisGroup = g.append("g").attr("class", "y axis");
+// Scales
+const x = d3.scaleLog().base(10).range([0, width]).domain([142, 150000]);
+const y = d3.scaleLinear().range([height, 0]).domain([0, 90]);
+const area = d3
+  .scaleLinear()
+  .range([25 * Math.PI, 1500 * Math.PI])
+  .domain([2000, 1400000000]);
+const continentColor = d3.scaleOrdinal(d3.schemePastel1);
 
-// X Scale
-const x = d3.scaleBand().range([0, width]).padding(0.2);
-
-// Y Scale
-const y = d3.scaleLinear().range([height, 0]);
-
-// X Label
-g.append("text")
+// Labels
+const xLabel = g
+  .append("text")
   .attr("y", height + 50)
   .attr("x", width / 2)
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
-  .text("Month");
-
-// Y Label
+  .text("GDP Per Capita ($)");
 const yLabel = g
   .append("text")
-  .attr("y", -60)
-  .attr("x", -(height / 2))
+  .attr("transform", "rotate(-90)")
+  .attr("y", -40)
+  .attr("x", -170)
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-90)")
-  .text("Revenue");
+  .text("Life Expectancy (Years)");
+const timeLabel = g
+  .append("text")
+  .attr("y", height - 10)
+  .attr("x", width - 40)
+  .attr("font-size", "40px")
+  .attr("opacity", "0.4")
+  .attr("text-anchor", "middle")
+  .text("1800");
 
-d3.json("data/revenues.json").then((data) => {
-  // console.log(data);
+// X Axis
+const xAxisCall = d3
+  .axisBottom(x)
+  .tickValues([400, 4000, 40000])
+  .tickFormat(d3.format("$"));
+g.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxisCall);
+
+// Y Axis
+const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
+  return +d;
+});
+g.append("g").attr("class", "y axis").call(yAxisCall);
+
+d3.json("data/data.json").then((data) => {
+  console.log(data);
 
   // Clean data
-  data.forEach((d) => {
-    d.revenue = +d.revenue;
-    d.profit = +d.profit;
+  const formattedData = data.map((year) => {
+    return year["countries"]
+      .filter((country) => {
+        const dataExists = country.income && country.life_exp;
+        return dataExists;
+      })
+      .map((country) => {
+        country.income = +country.income;
+        country.life_exp = +country.life_exp;
+        return country;
+      });
   });
 
+  // Run the code every 0.1 second
   d3.interval(() => {
-    const newData = flag ? data : data.slice(1);
-
-    update(newData);
-    flag = !flag;
+    // At the end of our data, loop back
+    time = time < 214 ? time + 1 : 0;
+    update(formattedData[time]);
   }, 1000);
 
-  // Run the vis for the first time
-  update(data);
+  // First run of the visualization
+  update(formattedData[0]);
 });
 
 function update(data) {
-  const value = flag ? "revenue" : "profit";
-
-  x.domain(
-    data.map((d) => {
-      return d.month;
-    })
-  );
-  y.domain([
-    0,
-    d3.max(data, (d) => {
-      return d[value];
-    }),
-  ]);
-
-  // X Axis
-  const xAxisCall = d3.axisBottom(x);
-  xAxisGroup.transition(t).call(xAxisCall);
-
-  // Y Axis
-  const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
-    return "$" + d;
-  });
-  yAxisGroup.transition(t).call(yAxisCall);
-
-  //   to make the bar chart into scatter plot
-  // 1) switch out rect to circle
-  // 2) change x and y to cy and cy
-  // 3) remove hight and widith replace with radius of 5
-  //4) add 1/2 of the x.bandwith to fix the positioning of the x axis
+  // Standard transition time for the visualization
+  const t = d3.transition().duration(100);
 
   // JOIN new data with old elements.
-  const rects = g.selectAll("circle").data(data, (d) => {
-    return d.month;
+  const circles = g.selectAll("circle").data(data, (d) => {
+    return d.country;
   });
 
   // EXIT old elements not present in new data.
-  rects.exit().attr("fill", "red").transition(t).attr("cy", y(0)).remove();
+  circles.exit().attr("class", "exit").remove();
 
-  // ENTER new elements present in new data...
-  rects
+  // ENTER new elements present in new data.
+  circles
     .enter()
     .append("circle")
-    .attr("fill", "grey")
-    .attr("cy", y(0))
-    .attr("cx", (d) => {
-      return x(d.month) + x.bandwidth() / 2;
+    .attr("class", "enter")
+    .attr("fill", (d) => {
+      return continentColor(d.continent);
     })
-    .attr("r", 5)
-    // AND UPDATE old elements present in new data.
-    .merge(rects)
+    .merge(circles)
     .transition(t)
-    .attr("cx", (d) => {
-      return x(d.month) + x.bandwidth() / 2;
-    })
     .attr("cy", (d) => {
-      return y(d[value]);
+      return y(d.life_exp);
+    })
+    .attr("cx", (d) => {
+      return x(d.income);
+    })
+    .attr("r", function (d) {
+      return Math.sqrt(area(d.population) / Math.PI);
     });
 
-  const label = flag ? "Revenue" : "Profit";
-  yLabel.text(label);
+  // Update the time label
+  timeLabel.text(+(time + 1800));
 }
