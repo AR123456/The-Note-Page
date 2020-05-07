@@ -79,38 +79,57 @@ function update(data) {
     .selectAll("rect")
     .data(data)
     // console.log(g.selectAll("rect").data(data)); // frist time run
-
+    // ///////////// more DRY  /////////////
     .join(
-      (enter) =>
-        enter
-          .append("rect")
-          .attr("y", (d) => {
-            return y(d.revenue);
-          })
-          .attr("x", (d) => {
-            return x(d.month);
-          })
-          .attr("height", (d) => {
-            return height - y(d.revenue);
-          })
-          .attr("width", x.bandwidth)
-          .attr("fill", "grey"),
+      (enter) => enter.append("rect").attr("fill", "grey"),
       //
-      (update) =>
-        update
-          .attr("y", (d) => {
-            return y(d.revenue);
-          })
-          .attr("x", (d) => {
-            return x(d.month);
-          })
-          .attr("height", (d) => {
-            return height - y(d.revenue);
-          })
-          .attr("width", x.bandwidth),
+      (update) => update.attr("class", "updated"),
+
       //
       (exit) => exit.remove()
-    );
+    )
+    .attr("y", (d) => {
+      return y(d.revenue);
+    })
+    .attr("x", (d) => {
+      return x(d.month);
+    })
+    .attr("height", (d) => {
+      return height - y(d.revenue);
+    })
+    .attr("width", x.bandwidth);
+
+  // .join(
+  //   (enter) =>
+  //     enter
+  //       .append("rect")
+  //       .attr("y", (d) => {
+  //         return y(d.revenue);
+  //       })
+  //       .attr("x", (d) => {
+  //         return x(d.month);
+  //       })
+  //       .attr("height", (d) => {
+  //         return height - y(d.revenue);
+  //       })
+  //       .attr("width", x.bandwidth)
+  //       .attr("fill", "grey"),
+  //   //
+  //   (update) =>
+  //     update
+  //       .attr("y", (d) => {
+  //         return y(d.revenue);
+  //       })
+  //       .attr("x", (d) => {
+  //         return x(d.month);
+  //       })
+  //       .attr("height", (d) => {
+  //         return height - y(d.revenue);
+  //       })
+  //       .attr("width", x.bandwidth),
+  //   //
+  //   (exit) => exit.remove()
+  // );
 
   // EXIT old elements not present in new data.
   // rects.exit().remove();
