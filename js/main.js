@@ -47,7 +47,6 @@ d3.json("data/revenues.json").then((data) => {
     d.revenue = +d.revenue;
   });
   d3.interval(function () {
-    console.log(data);
     update(data);
   }, 1000);
   // Run the vis for the first time
@@ -80,37 +79,70 @@ function update(data) {
     .selectAll("rect")
     .data(data)
     // console.log(g.selectAll("rect").data(data)); // frist time run
-    /////////////////////////////// Most DRY
-    .join("rect")
-    .attr("fill", "grey")
-    .attr("y", (d) => {
-      return y(d.revenue);
-    })
-    .attr("x", (d) => {
-      return x(d.month);
-    })
-    .attr("height", (d) => {
-      return height - y(d.revenue);
-    })
-    .attr("width", x.bandwidth);
 
-  // ///////////// more DRY  /////////////
-  // .join(
-  //   (enter) => enter.append("rect").attr("fill", "grey"),
-  //   //
-  //   (update) => update.attr("class", "updated"),
+    .join(
+      (enter) =>
+        enter
+          .append("rect")
+          .attr("y", (d) => {
+            return y(d.revenue);
+          })
+          .attr("x", (d) => {
+            return x(d.month);
+          })
+          .attr("height", (d) => {
+            return height - y(d.revenue);
+          })
+          .attr("width", x.bandwidth)
+          .attr("fill", "grey"),
+      //
+      (update) =>
+        update
+          .attr("y", (d) => {
+            return y(d.revenue);
+          })
+          .attr("x", (d) => {
+            return x(d.month);
+          })
+          .attr("height", (d) => {
+            return height - y(d.revenue);
+          })
+          .attr("width", x.bandwidth),
+      //
+      (exit) => exit.remove()
+    );
 
-  //   //
-  //   (exit) => exit.remove()
-  // )
-  // .attr("y", (d) => {
-  //   return y(d.revenue);
-  // })
-  // .attr("x", (d) => {
-  //   return x(d.month);
-  // })
-  // .attr("height", (d) => {
-  //   return height - y(d.revenue);
-  // })
-  // .attr("width", x.bandwidth);
+  // EXIT old elements not present in new data.
+  // rects.exit().remove();
+  // rects.join("rect");
+
+  // UPDATE old elements present in new data.
+  // rects
+  //   .attr("y", (d) => {
+  //     return y(d.revenue);
+  //   })
+  //   .attr("x", (d) => {
+  //     return x(d.month);
+  //   })
+  //   .attr("height", (d) => {
+  //     return height - y(d.revenue);
+  //   })
+  //   .attr("width", x.bandwidth);
+
+  // ENTER new elements present in new data.
+  // rects
+  //   .enter()
+  //   .append("rect")
+  //   .attr("y", (d) => {
+  //     return y(d.revenue);
+  //   })
+  //   .attr("x", (d) => {
+  //     return x(d.month);
+  //   })
+  //   .attr("height", (d) => {
+  //     return height - y(d.revenue);
+  //   })
+  //   .attr("width", x.bandwidth)
+  //   .attr("fill", "grey");
+  // console.log(g.selectAll("rect").data(data)); // here there is data
 }
