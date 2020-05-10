@@ -1,186 +1,142 @@
 /*
  *    main.js
- *
- *  43- Making  chart dynamic
+ *  47- Gapminder Clone - clone of bubble chart that shows how
+ * population, per capita and life expectancy have changed in different countries over the past 2 centurys
+ * // data is an array of years and an array of countries in that year. Each countrie contains its continent,
+ * income, life expecnacy and population.
+ * 1) update data in cycle based on year
+ * 2)Size of cicles changes to reflect population, position on x is GDP Per Capita and postion
+ * on Y is life expectancy
+ * 3) y axis is a log scale 400 to 40,000
+ * 4) ordinal scale to seperate the circles by their continent
  */
 
-const margin = { left: 80, right: 20, top: 50, bottom: 100 };
-
-const width = 600 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
-// this is in the global scope
-let flag = true;
-
+// const margin = { left: 80, right: 20, top: 50, bottom: 100 };
+const height = 350,
+  width = 700;
+// console.log(height);
+// console.log(width);
+// console.log(margin);
 const g = d3
   .select("#chart-area")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("width", width + 100)
+  .attr("height", height + 150)
   .append("g")
-  .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+  .attr("transform", "translate(" + 80 + ", " + 50 + ")");
 
-const xAxisGroup = g
-  .append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")");
+let time = 0;
 
-const yAxisGroup = g.append("g").attr("class", "y axis");
+// Scales
+const x = d3.scaleLog().base(10).range([0, width]).domain([142, 150000]);
+const y = d3.scaleLinear().range([height, 0]).domain([0, 90]);
+const area = d3
+  .scaleLinear()
+  .range([25 * Math.PI, 1500 * Math.PI])
+  .domain([2000, 1400000000]);
+const continentColor = d3.scaleOrdinal(d3.schemePastel1);
 
-// X Scale
-const x = d3.scaleBand().range([0, width]).padding(0.2);
-
-// Y Scale
-const y = d3.scaleLinear().range([height, 0]);
-
-// X Label
-g.append("text")
+// Labels
+const xLabel = g
+  .append("text")
   .attr("y", height + 50)
   .attr("x", width / 2)
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
-  .text("Month");
-
-// Y Label
-// create a constiable for the y lable so that we can updated it with the name
+  .text("GDP Per Capita ($)");
 const yLabel = g
   .append("text")
-  .attr("y", -60)
-  .attr("x", -(height / 2))
+  .attr("transform", "rotate(-90)")
+  .attr("y", -40)
+  .attr("x", -170)
   .attr("font-size", "20px")
   .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-90)")
-  .text("Revenue");
+  .text("Life Expectancy (Years)");
+const timeLabel = g
+  .append("text")
+  .attr("y", height - 10)
+  .attr("x", width - 40)
+  .attr("font-size", "40px")
+  .attr("opacity", "0.4")
+  .attr("text-anchor", "middle")
+  .text("1800");
 
-d3.json("data/revenues.json").then((data) => {
-  console.log(data);
+// X Axis
+const xAxisCall = d3
+  .axisBottom(x)
+  .tickValues([400, 4000, 40000])
+  .tickFormat(d3.format("$"));
+g.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxisCall);
+
+// Y Axis
+const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
+  return +d;
+});
+g.append("g").attr("class", "y axis").call(yAxisCall);
+
+d3.json("data/data.json").then((data) => {
+  // console.log(data);
 
   // Clean data
-  data.forEach((d) => {
-    // turn both the revenue and profit strings into numbers
-    d.revenue = +d.revenue;
-    d.profit = +d.profit;
+  const formattedData = data.map((year) => {
+    return year["countries"]
+      .filter((country) => {
+        const dataExists = country.income && country.life_exp;
+        return dataExists;
+      })
+      .map((country) => {
+        country.income = +country.income;
+        country.life_exp = +country.life_exp;
+        return country;
+      });
   });
 
+  // Run the code every 0.1 second
   d3.interval(() => {
-    update(data);
-    // set flag to true if it is currently false, if false set it to true
-    flag = !flag;
+    // At the end of our data, loop back
+    time = time < 214 ? time + 1 : 0;
+    update(formattedData[time]);
   }, 1000);
 
-  // Run the vis for the first time
-  update(data);
+  // First run of the visualization
+  update(formattedData[0]);
 });
 
 function update(data) {
-  // flag value will keep track of which data source is being looked at
-  // when flag is set to true use rev data when false use profit data
-  // ternary operator for if else
-  // whatever is on the left hand side of the ? should evaluate to true or false
-  // if it is true it returns the value to the left of the colon,
-  //if it is false it returns the value to the right of the colon
-  const value = flag ? "revenue" : "profit";
+  // Standard transition time for the visualization
+  const t = d3.transition().duration(100);
 
-  x.domain(
-    data.map((d) => {
-      return d.month;
-    })
-  );
-  y.domain([
-    0,
-    d3.max(data, (d) => {
-      // replace hard coded revenue with the value constiable.
-
-      return d[value];
-    }),
-  ]);
-
-  // X Axis
-  const xAxisCall = d3.axisBottom(x);
-  xAxisGroup.call(xAxisCall);
-
-  // Y Axis
-  const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
-    return "$" + d;
+  // JOIN new data with old elements.
+  const circles = g.selectAll("circle").data(data, (d) => {
+    return d.country;
   });
-  yAxisGroup.call(yAxisCall);
-  const rects = g
-    .selectAll("rect")
-    .data(data)
 
-    /////////////////////////////// Most DRY
-    //   // https://stackoverflow.com/questions/55397871/how-to-fix-join-is-not-a-function-when-trying-join-after-selectall
-    // .join("rect") - had to remove join and use enter().append instead
+  // EXIT old elements not present in new data.
+  circles.exit().attr("class", "exit").remove();
+
+  // ENTER new elements present in new data.
+  circles
     .enter()
-    .append("rect")
-    .attr("fill", "grey")
-    .attr("y", (d) => {
-      return y(d[value]);
+    .append("circle")
+    .attr("class", "enter")
+    .attr("fill", (d) => {
+      return continentColor(d.continent);
     })
-    .attr("x", (d) => {
-      return x(d.month);
+    .merge(circles)
+    .transition(t)
+    .attr("cy", (d) => {
+      return y(d.life_exp);
     })
-    .attr("height", (d) => {
-      function update(data) {
-        // flag value will keep track of which data source is being looked at
-        // when flag is set to true use rev data when false use profit data
-        // ternary operator for if else
-        // whatever is on the left hand side of the ? should evaluate to true or false
-        // if it is true it returns the value to the left of the colon,
-        //if it is false it returns the value to the right of the colon
-        const value = flag ? "revenue" : "profit";
-
-        x.domain(
-          data.map((d) => {
-            return d.month;
-          })
-        );
-        y.domain([
-          0,
-          d3.max(data, (d) => {
-            // replace hard coded revenue with the value constiable.
-
-            return d[value];
-          }),
-        ]);
-
-        // X Axis
-        const xAxisCall = d3.axisBottom(x);
-        xAxisGroup.call(xAxisCall);
-
-        // Y Axis
-        const yAxisCall = d3.axisLeft(y).tickFormat((d) => {
-          return "$" + d;
-        });
-        yAxisGroup.call(yAxisCall);
-        const rects = g
-          .selectAll("rect")
-          .data(data)
-
-          /////////////////////////////// Most DRY
-          //   // https://stackoverflow.com/questions/55397871/how-to-fix-join-is-not-a-function-when-trying-join-after-selectall
-          // .join("rect") - had to remove join and use enter().append instead
-          .enter()
-          .append("rect")
-          .attr("fill", "grey")
-          .attr("y", (d) => {
-            return y(d[value]);
-          })
-          .attr("x", (d) => {
-            return x(d.month);
-          })
-          .attr("height", (d) => {
-            return height - y(d[value]);
-          })
-          .attr("width", x.bandwidth);
-
-        // change the value of the y label dependig upon what thre flag says
-        const label = flag ? "Revenue" : "Profit";
-        yLabel.text(label);
-      }
+    .attr("cx", (d) => {
+      return x(d.income);
     })
-    .attr("width", x.bandwidth);
+    .attr("r", function (d) {
+      return Math.sqrt(area(d.population) / Math.PI);
+    });
 
-  // change the value of the y label dependig upon what thre flag says
-  const label = flag ? "Revenue" : "Profit";
-  yLabel.text(label);
+  // Update the time label
+  timeLabel.text(+(time + 1800));
 }
