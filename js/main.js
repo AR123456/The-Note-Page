@@ -1,7 +1,7 @@
 /*
 *    main.js
 *    Mastering Data Visualization with D3.js
-*    6.4 - Introducing tooltips
+*    6.5 - Event listeners and handlers in D3
 */
 
 var margin = { left:80, right:20, top:50, bottom:100 };
@@ -17,6 +17,8 @@ var g = d3.select("#chart-area")
             ", " + margin.top + ")");
 
 var time = 0;
+var interval;
+var formattedData;
 
 // Tooltip
 var tip = d3.tip().attr('class', 'd3-tip')
@@ -108,7 +110,7 @@ d3.json("data/data.json").then(function(data){
     console.log(data);
 
     // Clean data
-    const formattedData = data.map(function(year){
+    formattedData = data.map(function(year){
         return year["countries"].filter(function(country){
             var dataExists = (country.income && country.life_exp);
             return dataExists
@@ -119,22 +121,54 @@ d3.json("data/data.json").then(function(data){
         })
     });
 
-    // Run the code every 0.1 second
-    d3.interval(function(){
-        // At the end of our data, loop back
-        time = (time < 214) ? time+1 : 0
-        update(formattedData[time]);            
-    }, 100);
-
     // First run of the visualization
     update(formattedData[0]);
 
 })
 
+$("#play-button")
+    .on("click", function(){
+        var button = $(this);
+        if (button.text() == "Play"){
+            button.text("Pause");
+            interval = setInterval(step, 100);            
+        }
+        else {
+            button.text("Play");
+            clearInterval(interval);
+        }
+    })
+
+$("#reset-button")
+    .on("click", function(){
+        time = 0;
+        update(formattedData[0]);
+    })
+
+$("#continent-select")
+    .on("change", function(){
+        update(formattedData[time]);
+    })
+
+function step(){
+    // At the end of our data, loop back
+    time = (time < 214) ? time+1 : 0
+    update(formattedData[time]);
+}
+
 function update(data) {
     // Standard transition time for the visualization
     var t = d3.transition()
         .duration(100);
+
+    var continent = $("#continent-select").val();
+
+    var data = data.filter(function(d){
+        if (continent == "all") { return true; }
+        else {
+            return d.continent == continent;
+        }
+    })
 
     // JOIN new data with old elements.
     var circles = g.selectAll("circle").data(data, function(d){
