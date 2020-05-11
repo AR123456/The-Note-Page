@@ -1,7 +1,7 @@
 /*
 *    main.js
 *    Mastering Data Visualization with D3.js
-*   50- Adding a legend
+*    6.4 - Introducing tooltips
 */
 
 var margin = { left:80, right:20, top:50, bottom:100 };
@@ -17,6 +17,18 @@ var g = d3.select("#chart-area")
             ", " + margin.top + ")");
 
 var time = 0;
+
+// Tooltip
+var tip = d3.tip().attr('class', 'd3-tip')
+    .html(function(d) {
+        var text = "<strong>Country:</strong> <span style='color:red'>" + d.country + "</span><br>";
+        text += "<strong>Continent:</strong> <span style='color:red;text-transform:capitalize'>" + d.continent + "</span><br>";
+        text += "<strong>Life Expectancy:</strong> <span style='color:red'>" + d3.format(".2f")(d.life_exp) + "</span><br>";
+        text += "<strong>GDP Per Capita:</strong> <span style='color:red'>" + d3.format("$,.0f")(d.income) + "</span><br>";
+        text += "<strong>Population:</strong> <span style='color:red'>" + d3.format(",.0f")(d.population) + "</span><br>";
+        return text;
+    });
+g.call(tip);
 
 // Scales
 var x = d3.scaleLog()
@@ -139,6 +151,8 @@ function update(data) {
         .append("circle")
         .attr("class", "enter")
         .attr("fill", function(d) { return continentColor(d.continent); })
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
         .merge(circles)
         .transition(t)
             .attr("cy", function(d){ return y(d.life_exp); })
