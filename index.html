@@ -18,8 +18,8 @@
 <body>
   <nav class="navbar navbar-default"></nav>
   <svg width="600" height="400"></svg>
-  <!-- this is v4  -->
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- this is v5  -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 
   <script>
     var svg = d3.select("svg"),
@@ -45,47 +45,83 @@
       .y1(function (d) {
         return y(d.close);
       });
-
-    // v4 syntax
-    d3.tsv(
-      "data/area.tsv",
-      // like a for each for a tsv file
-      function (d) {
+    // // V5 sytax
+    d3.tsv("data/area.tsv").then((data) => {
+      // console.log(data);
+      data.forEach((d) => {
         d.date = parseTime(d.date);
         d.close = +d.close;
         return d;
-      },
-      function (error, data) {
-        if (error) throw error;
+        2;
+      });
 
-        x.domain(
-          d3.extent(data, function (d) {
-            return d.date;
-          })
-        );
-        y.domain([
-          0,
-          d3.max(data, function (d) {
-            return d.close;
-          }),
-        ]);
+      x.domain(
+        d3.extent(data, function (d) {
+          return d.date;
+        })
+      );
+      y.domain([
+        0,
+        d3.max(data, function (d) {
+          return d.close;
+        }),
+      ]);
 
-        g.append("path").attr("fill", "steelblue").attr("d", area(data));
+      g.append("path").attr("fill", "steelblue").attr("d", area(data));
 
-        g.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
+      g.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
 
-        g.append("g")
-          .call(d3.axisLeft(y))
-          .append("text")
-          .attr("fill", "#000")
-          .attr("transform", "rotate(-90)")
-          .attr("y", 6)
-          .attr("dy", "0.71em")
-          .attr("text-anchor", "end")
-          .text("Price ($)");
-      }
-    );
+      g.append("g")
+        .call(d3.axisLeft(y))
+        .append("text")
+        .attr("fill", "#000")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .attr("text-anchor", "end");
+    });
+    // v4 syntax
+    // d3.tsv(
+    //   "data/area.tsv",
+    //   // like a for each for a tsv file
+    //   function (d) {
+    //     d.date = parseTime(d.date);
+    //     d.close = +d.close;
+    //     return d;
+    //   },
+    //   function (error, data) {
+    //     if (error) throw error;
+
+    //     x.domain(
+    //       d3.extent(data, function (d) {
+    //         return d.date;
+    //       })
+    //     );
+    //     y.domain([
+    //       0,
+    //       d3.max(data, function (d) {
+    //         return d.close;
+    //       }),
+    //     ]);
+
+    //     g.append("path").attr("fill", "steelblue").attr("d", area(data));
+
+    //     g.append("g")
+    //       .attr("transform", "translate(0," + height + ")")
+    //       .call(d3.axisBottom(x));
+
+    //     g.append("g")
+    //       .call(d3.axisLeft(y))
+    //       .append("text")
+    //       .attr("fill", "#000")
+    //       .attr("transform", "rotate(-90)")
+    //       .attr("y", 6)
+    //       .attr("dy", "0.71em")
+    //       .attr("text-anchor", "end")
+    //       .text("Price ($)");
+    //   }
+    // );
   </script>
 </body>
