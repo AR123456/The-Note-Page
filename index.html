@@ -1,84 +1,97 @@
 <!-- 
 
-    Adapted from Yi Du at blockbuilder.org
-    http://blockbuilder.org/abrahamdu/e1481e86dd4e9d553cc2d7d359b91e68
+    Adapted from Mike Bostock at bl.ocks.org
+    https://bl.ocks.org/mbostock/3734333
 
  -->
 
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <title>7.8 - Wordclouds</title>
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="description" content="" />
+  <title>8.2 - Visualization around the globe</title>
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <nav class="navbar navbar-default"></nav>
 
-    <nav class="navbar navbar-default"></nav>
-    <svg width="600" height="400"></svg>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- TopoJson includes more info about topology, and places , need to make into geoJson for D3
+but is best starting place -->
+  <script src="//d3js.org/topojson.v2.min.js"></script>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="js/d3cloud.js"></script>
+  <script>
+    var width = 600,
+      height = 400;
 
-<script>
+    var projection = d3
+      // to use d3 need to define a projection
+      .geoConicEqualArea()
+      //   .geoMercator()
+      // .geoStereographic()
 
-    var margin = {top: 30, right: 50, bottom: 30, left: 50},
-        width = 600 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+      // scale sets how zoomed in the vis is
+      .scale(153)
+      // translate sets the center of the map
+      .translate([width / 2, height / 2])
+      .precision(0.1);
+    // the path generator takes the projection in an argument
+    var path = d3.geoPath().projection(projection);
 
-    var g = d3.select("svg")
-        .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var graticule = d3.geoGraticule();
 
-    d3.csv("data/wordcloud.csv",function(data){
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-        var categories = d3.keys(d3.nest()
-            .key(function(d) { 
-                    return d.State; 
-            })
-            .map(data));
-
-        var fontSize = d3.scalePow().exponent(5).domain([0,1]).range([40,80]);
-
-        // Adds a set of variables to each element in the data (we will use x and y later)
-        var layout = d3.layout.cloud()
-            .size([width, height])
-            .timeInterval(20)
-            .words(data)
-            //.rotate(function(d) { return 0; })
-            .rotate(function() { return ~~(Math.random() * 2) * 90; })
-            .fontSize(function(d,i) { return fontSize(Math.random()); })
-            .fontWeight(["bold"])
-            .text(function(d) { return d.Team_EN; })
-            .on("end", draw)
-            .start();
-
-        console.log(data)
-
-        function draw(words) {
-            var wordcloud = g.append("g")
-                .attr('class','wordcloud')
-                .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
-
-            wordcloud.selectAll("text")
-                .data(words)
-                .enter().append("text")
-                    .attr('class','word')
-                    .style("fill", function(d, i) { return color(i); })
-                    .style("font-size", function(d) { return d.size + "px"; })
-                    .style("font-family", function(d) { return d.font; })
-                    .attr("text-anchor", "middle")
-                    .attr("transform", function(d) { 
-                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; 
-                    })
-                    .text(function(d) { return d.text; });
-        };
+    var svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+    // load in data
+    d3.json("data/world-110m.json", function (error, world) {
+      if (error) throw error;
+      // map on first load
+      // this object is of a type of Topology
+      console.log(world);
+      // value that is getting passed to the datum method
+      // to append the land borders
+      // and make into geoJson
+      console.log(topojson.feature(world, world.objects.land));
+      console.log(graticule);
+      // apply a path to the SVG canvas
+      svg
+        .append("path")
+        // the datum comes from path generator
+        // geo path generator needs a geojson object
+        // call being made to topojson to make this conversion
+        // append lines for land boarders
+        // applying topojson.feature() method to convert to a geoJson type
+        .datum(topojson.feature(world, world.objects.land))
+        .attr("class", "land")
+        .attr("d", path);
+      // append lines for country borders
+      svg
+        .append("path")
+        .datum(
+          // topojson.mesh() takes in a list of countries and spits out
+          // a path of the boarders between them
+          topojson.mesh(world, world.objects.countries, function (a, b) {
+            // this filter function is to retun only one bouarder per country
+            return a !== b;
+          })
+        )
+        .attr("class", "boundary")
+        .attr("d", path);
+      // append lines for graticules
+      // d3.geoGraticule can be passed right into datum to generate path
+      svg
+        .append("path")
+        .datum(graticule)
+        .attr("class", "graticule")
+        .attr("d", path);
     });
 
-</script>
-
+    d3.select(self.frameElement).style("height", height + "px");
+  </script>
 </body>
