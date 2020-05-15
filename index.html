@@ -18,23 +18,26 @@
 <body>
   <nav class="navbar navbar-default"></nav>
 
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- TopoJson includes more info about topology, and places , need to make into geoJson for D3
 but is best starting place -->
   <script src="//d3js.org/topojson.v2.min.js"></script>
 
   <script>
-    var width = 600,
-      height = 400;
+    var width = 800,
+      height = 800;
 
     var projection = d3
       // to use d3 need to define a projection
-      .geoConicEqualArea()
-      //   .geoMercator()
+      // .geoConicEqualArea()
+      // .geoMercator()
       // .geoStereographic()
+      // .geoMiller()
+      .geoOrthographic()
 
       // scale sets how zoomed in the vis is
-      .scale(153)
+      // .scale(153)
+      .scale(300)
       // translate sets the center of the map
       .translate([width / 2, height / 2])
       .precision(0.1);
@@ -48,49 +51,53 @@ but is best starting place -->
       .append("svg")
       .attr("width", width)
       .attr("height", height);
-    // load in data
-    d3.json("data/world-110m.json", function (error, world) {
-      if (error) throw error;
-      // map on first load
-      // this object is of a type of Topology
-      console.log(world);
-      // value that is getting passed to the datum method
-      // to append the land borders
-      // and make into geoJson
-      console.log(topojson.feature(world, world.objects.land));
-      console.log(graticule);
-      // apply a path to the SVG canvas
-      svg
-        .append("path")
-        // the datum comes from path generator
-        // geo path generator needs a geojson object
-        // call being made to topojson to make this conversion
-        // append lines for land boarders
-        // applying topojson.feature() method to convert to a geoJson type
-        .datum(topojson.feature(world, world.objects.land))
-        .attr("class", "land")
-        .attr("d", path);
-      // append lines for country borders
-      svg
-        .append("path")
-        .datum(
-          // topojson.mesh() takes in a list of countries and spits out
-          // a path of the boarders between them
-          topojson.mesh(world, world.objects.countries, function (a, b) {
-            // this filter function is to retun only one bouarder per country
-            return a !== b;
-          })
-        )
-        .attr("class", "boundary")
-        .attr("d", path);
-      // append lines for graticules
-      // d3.geoGraticule can be passed right into datum to generate path
-      svg
-        .append("path")
-        .datum(graticule)
-        .attr("class", "graticule")
-        .attr("d", path);
-    });
+    // V5 syntax
+    d3.json("data/world-110m.json")
+      .then((world) => {
+        console.log(world); // map on first load
+        // this object is of a type of Topology
+
+        // value that is getting passed to the datum method
+        // to append the land borders
+        // and make into geoJson
+        console.log(topojson.feature(world, world.objects.land));
+
+        console.log(graticule);
+        // apply a path to the SVG canvas
+        svg
+          .append("path")
+          // the datum comes from path generator
+          // geo path generator needs a geojson object
+          // call being made to topojson to make this conversion
+          // append lines for land boarders
+          // applying topojson.feature() method to convert to a geoJson type
+          .datum(topojson.feature(world, world.objects.land))
+          .attr("class", "land")
+          .attr("d", path);
+        // append lines for country borders
+        svg
+          .append("path")
+          .datum(
+            // topojson.mesh() takes in a list of countries and spits out
+            // a path of the boarders between them
+            topojson.mesh(world, world.objects.countries, function (a, b) {
+              // this filter function is to retun only one bouarder per country
+              return a !== b;
+            })
+          )
+          .attr("class", "boundary")
+          .attr("d", path);
+        // append lines for graticules
+        // d3.geoGraticule can be passed right into datum to generate path
+        svg
+          .append("path")
+          .datum(graticule)
+          .attr("class", "graticule")
+          .attr("d", path);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     d3.select(self.frameElement).style("height", height + "px");
   </script>
