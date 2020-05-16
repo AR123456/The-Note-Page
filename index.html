@@ -25,26 +25,26 @@
   <script src="//d3js.org/topojson.v2.min.js"></script>
 
   <script>
-    var svg = d3.select("svg"),
+    const svg = d3.select("svg"),
       width = +svg.attr("width"),
       height = +svg.attr("height");
     // d3.map() creates a data structure called a map
     //  similar to a javascript object lets us
     // set and find items by key using maps set and get methods
-    var unemployment = d3.map();
+    const unemployment = d3.map();
 
-    var path = d3.geoPath();
-    // scaleLinear being used to create legend with help of the color var
-    var x = d3.scaleLinear().domain([1, 10]).rangeRound([600, 860]);
+    const path = d3.geoPath();
+    // scaleLinear being used to create legend with help of the color const
+    const x = d3.scaleLinear().domain([1, 10]).rangeRound([600, 860]);
 
-    var color = d3
+    const color = d3
       // any color going into it will be rounded to a spefic color
       .scaleThreshold()
       .domain(d3.range(2, 10))
       //  array of numbers of 2-10 for the color scale
       .range(d3.schemeBlues[9]);
 
-    var g = svg
+    const g = svg
       // this g is the legend
       .append("g")
       .attr("class", "key")
@@ -52,7 +52,7 @@
     // data join on colors we want to show on legend
     g.selectAll("rect")
       .data(
-        color.range().map(function (d) {
+        color.range().map((d) => {
           // d values are array of 2 numbers min max value
           // color should apply for
           d = color.invertExtent(d);
@@ -65,14 +65,14 @@
       .append("rect")
       .attr("height", 8)
       // positioning legend at top right corner of canvas
-      .attr("x", function (d) {
+      .attr("x", (d) => {
         return x(d[0]);
       })
-      .attr("width", function (d) {
+      .attr("width", (d) => {
         return x(d[1]) - x(d[0]);
       })
       // apply with desired color
-      .attr("fill", function (d) {
+      .attr("fill", (d) => {
         return color(d[0]);
       });
     // axis generator to fill in ticks beneath the legend bar of clors
@@ -90,7 +90,7 @@
       d3
         .axisBottom(x)
         .tickSize(13)
-        .tickFormat(function (x, i) {
+        .tickFormat((x, i) => {
           // add the % sign
           return i ? x : x + "%";
         })
@@ -109,7 +109,7 @@
             .await(ready);
     */
 
-    var promises = [
+    const promises = [
       //     getting from d3 web site
       // this data come with a projection so no need to set
       // if we wanted to set our own would need to start with a
@@ -118,16 +118,16 @@
       // to have projection built in
       d3.json("https://d3js.org/us-10m.v1.json"),
       // getting from local folder
-      d3.tsv("data/map.tsv", function (d) {
+      d3.tsv("data/map.tsv", (d) => {
         unemployment.set(d.id, +d.rate);
       }),
     ];
     // calling ready in the .then() function
     Promise.all(promises)
-      .then(function (data) {
+      .then((data) => {
         ready(data[0]);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
 
@@ -144,7 +144,7 @@
         // add a path for each county
         .enter()
         .append("path")
-        .attr("fill", function (d) {
+        .attr("fill", (d) => {
           // set fill based on unemployment rate
           return color((d.rate = unemployment.get(d.id)));
         })
@@ -153,7 +153,7 @@
         .attr("d", path)
         // title tool tip
         .append("title")
-        .text(function (d) {
+        .text((d) => {
           return d.rate + "%";
         });
 
@@ -161,7 +161,7 @@
         .append("path")
         .datum(
           // to get state boarders from topojson
-          topojson.mesh(us, us.objects.states, function (a, b) {
+          topojson.mesh(us, us.objects.states, (a, b) => {
             return a !== b;
           })
         )
