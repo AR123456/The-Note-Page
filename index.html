@@ -1,7 +1,7 @@
 <!-- 
 
     Adapted from Mike Bostock at bl.ocks.org
-    https://bl.ocks.org/mbostock/3734333
+    https://bl.ocks.org/mbostock/4060606
 
  -->
 
@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="" />
-  <title>8.2 - Visualization around the globe</title>
+  <title>8.4 - Choropleth maps</title>
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Custom CSS -->
@@ -17,88 +17,157 @@
 </head>
 <body>
   <nav class="navbar navbar-default"></nav>
+  <svg width="960" height="600"></svg>
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- TopoJson includes more info about topology, and places , need to make into geoJson for D3
-but is best starting place -->
+  <!-- schemeBlues color scheme comes from chromatic  -->
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="//d3js.org/topojson.v2.min.js"></script>
 
   <script>
-    const width = 800,
-      height = 800;
+    var svg = d3.select("svg"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
+    // d3.map() creates a data structure called a map
+    //  similar to a javascript object lets us
+    // set and find items by key using maps set and get methods
+    var unemployment = d3.map();
 
-    const projection = d3
-      // to use d3 need to define a projection
-      // .geoConicEqualArea()
-      // .geoMercator()
-      // .geoStereographic()
-      // .geoMiller()
-      .geoOrthographic()
+    var path = d3.geoPath();
+    // scaleLinear being used to create legend with help of the color var
+    var x = d3.scaleLinear().domain([1, 10]).rangeRound([600, 860]);
 
-      // scale sets how zoomed in the vis is
-      // .scale(153)
-      .scale(300)
-      // translate sets the center of the map
-      .translate([width / 2, height / 2])
-      .precision(0.1);
-    // the path generator takes the projection in an argument
-    const path = d3.geoPath().projection(projection);
+    var color = d3
+      // any color going into it will be rounded to a spefic color
+      .scaleThreshold()
+      .domain(d3.range(2, 10))
+      //  array of numbers of 2-10 for the color scale
+      .range(d3.schemeBlues[9]);
 
-    const graticule = d3.geoGraticule();
-
-    const svg = d3
-      .select("body")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
-    // V5 syntax
-    d3.json("data/world-110m.json")
-      .then((world) => {
-        console.log(world); // map on first load
-        // this object is of a type of Topology
-
-        // value that is getting passed to the datum method
-        // to append the land borders
-        // and make into geoJson
-        console.log(topojson.feature(world, world.objects.land));
-
-        console.log(graticule);
-        // apply a path to the SVG canvas
-        svg
-          .append("path")
-          // the datum comes from path generator
-          // geo path generator needs a geojson object
-          // call being made to topojson to make this conversion
-          // append lines for land boarders
-          // applying topojson.feature() method to convert to a geoJson type
-          .datum(topojson.feature(world, world.objects.land))
-          .attr("class", "land")
-          .attr("d", path);
-        // append lines for country borders
-        svg
-          .append("path")
-          .datum(
-            // topojson.mesh() takes in a list of countries and spits out
-            // a path of the boarders between them
-            topojson.mesh(world, world.objects.countries, (a, b) => {
-              // this filter function is to retun only one bouarder per country
-              return a !== b;
-            })
-          )
-          .attr("class", "boundary")
-          .attr("d", path);
-        // append lines for graticules
-        // d3.geoGraticule can be passed right into datum to generate path
-        svg
-          .append("path")
-          .datum(graticule)
-          .attr("class", "graticule")
-          .attr("d", path);
+    var g = svg
+      // this g is the legend
+      .append("g")
+      .attr("class", "key")
+      .attr("transform", "translate(0,40)");
+    // data join on colors we want to show on legend
+    g.selectAll("rect")
+      .data(
+        color.range().map(function (d) {
+          // d values are array of 2 numbers min max value
+          // color should apply for
+          d = color.invertExtent(d);
+          if (d[0] == null) d[0] = x.domain()[0];
+          if (d[1] == null) d[1] = x.domain()[1];
+          return d;
+        })
+      )
+      .enter()
+      .append("rect")
+      .attr("height", 8)
+      // positioning legend at top right corner of canvas
+      .attr("x", function (d) {
+        return x(d[0]);
       })
-      .catch((error) => {
+      .attr("width", function (d) {
+        return x(d[1]) - x(d[0]);
+      })
+      // apply with desired color
+      .attr("fill", function (d) {
+        return color(d[0]);
+      });
+    // axis generator to fill in ticks beneath the legend bar of clors
+    g.append("text")
+      .attr("class", "caption")
+      .attr("x", x.range()[0])
+      .attr("y", -6)
+      .attr("fill", "#000")
+      .attr("text-anchor", "start")
+      .attr("font-weight", "bold")
+      // label for legend
+      .text("Unemployment rate");
+
+    g.call(
+      d3
+        .axisBottom(x)
+        .tickSize(13)
+        .tickFormat(function (x, i) {
+          // add the % sign
+          return i ? x : x + "%";
+        })
+        .tickValues(color.domain())
+    )
+      .select(".domain")
+      .remove();
+
+    /*
+        Before V5
+        d3.queue()
+            .defer(d3.json, "https://d3js.org/us-10m.v1.json")
+            // the set() method here comes from d3 map()
+            .defer(d3.tsv, "data/map.tsv", function(d) { unemployment.set(d.id, +d.rate); })
+            // wait for d3.json and d3.tsv before exicuting the ready function below 
+            .await(ready);
+    */
+
+    var promises = [
+      //     getting from d3 web site
+      // this data come with a projection so no need to set
+      // if we wanted to set our own would need to start with a
+      //raw topojson file form elesware
+      // common for map examples found on line
+      // to have projection built in
+      d3.json("https://d3js.org/us-10m.v1.json"),
+      // getting from local folder
+      d3.tsv("data/map.tsv", function (d) {
+        unemployment.set(d.id, +d.rate);
+      }),
+    ];
+    // calling ready in the .then() function
+    Promise.all(promises)
+      .then(function (data) {
+        ready(data[0]);
+      })
+      .catch(function (error) {
         console.log(error);
       });
 
-    d3.select(self.frameElement).style("height", height + "px");
+    function ready(us) {
+      console.log(us);
+      console.log(unemployment);
+      svg
+        .append("g")
+        // getting some css from this class
+        .attr("class", "counties")
+        .selectAll("path")
+        // geojson collecton of counties with features for every county in US
+        .data(topojson.feature(us, us.objects.counties).features)
+        // add a path for each county
+        .enter()
+        .append("path")
+        .attr("fill", function (d) {
+          // set fill based on unemployment rate
+          return color((d.rate = unemployment.get(d.id)));
+        })
+        // not lack of need for projection geojson file from d3
+        // adds shape of county to the screen
+        .attr("d", path)
+        // title tool tip
+        .append("title")
+        .text(function (d) {
+          return d.rate + "%";
+        });
+
+      svg
+        .append("path")
+        .datum(
+          // to get state boarders from topojson
+          topojson.mesh(us, us.objects.states, function (a, b) {
+            return a !== b;
+          })
+        )
+        // getting some css  based on this class
+        .attr("class", "states")
+        .attr("d", path);
+    }
   </script>
 </body>
