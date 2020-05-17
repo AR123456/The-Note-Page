@@ -1,7 +1,7 @@
 <!-- 
 
-    Adapted from Mike Bostock at bl.ocks.org
-    https://bl.ocks.org/mbostock/4060606
+  Adapted from Mike Bostock at bl.ocks.org
+  https://bl.ocks.org/mbostock/3883195
 
  -->
 
@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="" />
-  <title>8.4 - Choropleth maps</title>
+  <title>7.4 - Area charts</title>
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Custom CSS -->
@@ -17,157 +17,16 @@
 </head>
 <body>
   <nav class="navbar navbar-default"></nav>
-  <svg width="960" height="600"></svg>
-
+  <svg width="600" height="400"></svg>
+  <!-- this is v5  -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- schemeBlues color scheme comes from chromatic  -->
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="//d3js.org/topojson.v2.min.js"></script>
 
-  <script>
-    const svg = d3.select("svg"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height");
-    // d3.map() creates a data structure called a map
-    //  similar to a javascript object lets us
-    // set and find items by key using maps set and get methods
-    const unemployment = d3.map();
+  <script></script>
 
-    const path = d3.geoPath();
-    // scaleLinear being used to create legend with help of the color const
-    const x = d3.scaleLinear().domain([1, 10]).rangeRound([600, 860]);
-
-    const color = d3
-      // any color going into it will be rounded to a spefic color
-      .scaleThreshold()
-      .domain(d3.range(2, 10))
-      //  array of numbers of 2-10 for the color scale
-      .range(d3.schemeBlues[9]);
-
-    const g = svg
-      // this g is the legend
-      .append("g")
-      .attr("class", "key")
-      .attr("transform", "translate(0,40)");
-    // data join on colors we want to show on legend
-    g.selectAll("rect")
-      .data(
-        color.range().map((d) => {
-          // d values are array of 2 numbers min max value
-          // color should apply for
-          d = color.invertExtent(d);
-          if (d[0] == null) d[0] = x.domain()[0];
-          if (d[1] == null) d[1] = x.domain()[1];
-          return d;
-        })
-      )
-      .enter()
-      .append("rect")
-      .attr("height", 8)
-      // positioning legend at top right corner of canvas
-      .attr("x", (d) => {
-        return x(d[0]);
-      })
-      .attr("width", (d) => {
-        return x(d[1]) - x(d[0]);
-      })
-      // apply with desired color
-      .attr("fill", (d) => {
-        return color(d[0]);
-      });
-    // axis generator to fill in ticks beneath the legend bar of clors
-    g.append("text")
-      .attr("class", "caption")
-      .attr("x", x.range()[0])
-      .attr("y", -6)
-      .attr("fill", "#000")
-      .attr("text-anchor", "start")
-      .attr("font-weight", "bold")
-      // label for legend
-      .text("Unemployment rate");
-
-    g.call(
-      d3
-        .axisBottom(x)
-        .tickSize(13)
-        .tickFormat((x, i) => {
-          // add the % sign
-          return i ? x : x + "%";
-        })
-        .tickValues(color.domain())
-    )
-      .select(".domain")
-      .remove();
-
-    /*
-        Before V5
-        d3.queue()
-            .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-            // the set() method here comes from d3 map()
-            .defer(d3.tsv, "data/map.tsv", function(d) { unemployment.set(d.id, +d.rate); })
-            // wait for d3.json and d3.tsv before exicuting the ready function below 
-            .await(ready);
-    */
-
-    const promises = [
-      //     getting from d3 web site
-      // this data come with a projection so no need to set
-      // if we wanted to set our own would need to start with a
-      //raw topojson file form elesware
-      // common for map examples found on line
-      // to have projection built in
-      d3.json("https://d3js.org/us-10m.v1.json"),
-      // getting from local folder
-      d3.tsv("data/map.tsv", (d) => {
-        unemployment.set(d.id, +d.rate);
-      }),
-    ];
-    // calling ready in the .then() function
-    Promise.all(promises)
-      .then((data) => {
-        ready(data[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    function ready(us) {
-      console.log(us);
-      console.log(unemployment);
-      svg
-        .append("g")
-        // getting some css from this class
-        .attr("class", "counties")
-        .selectAll("path")
-        // geojson collecton of counties with features for every county in US
-        .data(topojson.feature(us, us.objects.counties).features)
-        // add a path for each county
-        .enter()
-        .append("path")
-        .attr("fill", (d) => {
-          // set fill based on unemployment rate
-          return color((d.rate = unemployment.get(d.id)));
-        })
-        // not lack of need for projection geojson file from d3
-        // adds shape of county to the screen
-        .attr("d", path)
-        // title tool tip
-        .append("title")
-        .text((d) => {
-          return d.rate + "%";
-        });
-
-      svg
-        .append("path")
-        .datum(
-          // to get state boarders from topojson
-          topojson.mesh(us, us.objects.states, (a, b) => {
-            return a !== b;
-          })
-        )
-        // getting some css  based on this class
-        .attr("class", "states")
-        .attr("d", path);
-    }
-  </script>
+  <!-- External JS libraries -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/d3.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
 </body>
