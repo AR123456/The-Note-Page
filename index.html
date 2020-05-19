@@ -1,163 +1,73 @@
 <!-- 
-// stacked area Charts can show ratios over time 
-  Adapted from Mike Bostock at bl.ocks.org
-  https://bl.ocks.org/mbostock/3885211
+
+    Adapted from Mike Bostock at bl.ocks.org
+    https://bl.ocks.org/mbostock/4339184
 
  -->
 
 <!DOCTYPE html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="description" content="" />
-  <title>7.5 - Stacked area charts</title>
-  <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>9.3 - Tree diagrams</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <nav class="navbar navbar-default"></nav>
-  <!-- set svg h $ W  -->
-  <svg width="600" height="400"></svg>
-  <!-- version 4  -->
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
 
-  <script>
-    // boiler plate for margin convention
+    <nav class="navbar navbar-default"></nav>
+    <svg width="960" height="2000"></svg>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
     var svg = d3.select("svg"),
-      margin = { top: 20, right: 20, bottom: 30, left: 50 },
-      width = svg.attr("width") - margin.left - margin.right,
-      height = svg.attr("height") - margin.top - margin.bottom;
-    // specifier for year b and d are set to match the data
-    var parseDate = d3.timeParse("%Y %b %d");
-    // time on x axi
-    var x = d3.scaleTime().range([0, width]),
-      y = d3.scaleLinear().range([height, 0]),
-      // z = d3.scaleOrdinal(d3.schemeCategory20);
-      // https://github.com/d3/d3-scale-chromatic
-      z = d3.scaleOrdinal(d3.schemeDark2);
-    // call to d3 stack
-    var stack = d3.stack();
-    //path generator for area fields
-    var area = d3
-      // this passes the array data associated with the
-      ///groups(layers) to the area function.  the "d"
-      .area()
-      .x(function (d) {
-        // date object for each row
-        return x(d.data.date);
-      })
-      .y0(function (d) {
-        return y(d[0]);
-      })
-      .y1(function (d) {
-        return y(d[1]);
-      });
-    // setting the g variable
-    var g = svg
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    // the data loading function passing in the type function defined
-    // below - it transforms every data point in the array
-    // what is the syntax for passing in the type function in version 5?
-    // https://stackoverflow.com/questions/49941618/dynamic-loading-data-using-d3-csv-in-d3-v5
-    // http://learnjsdata.com/read_data.html
-    //v5 syntax
-    d3.tsv("data/stacked_area1.tsv", type)
-      .then((data) => {
-        console.log(data);
+        width = +svg.attr("width"),
+        height = +svg.attr("height"),
+        g = svg.append("g").attr("transform", "translate(40,0)");
 
-        // column headers, slice at 1 removes the
-        //date heading so we just have the  browser names
-        var keys = data.columns.slice(1);
-        // setting the x scale domain
-        x.domain(
-          d3.extent(data, function (d) {
-            return d.date;
-          })
-        );
-        // the y scale domanin defalts to a value of 0 to 1
-        // since y scale is 0 - 100% no need to set they y domain
-        // the list of browswer names is the domain for
-        // the colors in the color scale
-        z.domain(keys);
-        // passing list of browser names as the keys method to d3 stack
-        stack.keys(keys);
-        // raw data
-        console.log(data);
-        // result of stack functin being passed into
-        // data join
-        console.log(stack(data));
+    var tree = d3.tree()
+        .size([height, width - 160]);
 
-        var layer = g
-          // matching elements with class of layer
-          .selectAll(".layer")
-          // doing data join on stack of data
+    var stratify = d3.stratify()
+        .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
 
-          .data(stack(data))
-          .enter()
-          // appending svg groups for each of
-          //the 8 browsers which are the items in the array
-          .append("g")
-          .attr("class", "layer");
-        // attach path to each of the (8) groups
-        layer
-          .append("path")
-          // using area generator function
-          .attr("class", "area")
-          // giving it a fill color based on
-          // ordinal scale in key field
-          .style("fill", function (d) {
-            return z(d.key);
-          })
-          // set the d attribute of the paths with the
-          // area generator
-          // this passes the array data associated with the
-          ///groups(layers) to the area function
-          .attr("d", area);
-        // this block of code adds the text labels to the chart
-        // Only label the layers left at the end (if one browser disappears)
-        // this is not great design,lables could overlap and it dosent look nice
-        // a legand for each of the browsers would be better design
-        layer
-          .filter(function (d) {
-            return d[d.length - 1][1] - d[d.length - 1][0] > 0.01;
-          })
-          .append("text")
-          .attr("x", width - 6)
-          .attr("y", function (d) {
-            return y((d[d.length - 1][0] + d[d.length - 1][1]) / 2);
-          })
-          .attr("dy", ".35em")
-          .style("font", "10px sans-serif")
-          .style("text-anchor", "end")
-          .text(function (d) {
-            return d.key;
-          });
-        // adding the axes at the end of the data loading function
-        g.append("g")
-          .attr("class", "axis axis--x")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
+    d3.csv("data/tree.csv", function(error, data) {
+        if (error) throw error;
 
-        g.append("g")
-          .attr("class", "axis axis--y")
-          .call(d3.axisLeft(y).ticks(10, "%"));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        var root = stratify(data)
+            .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
 
-    // transfroms every data point in the array
-    function type(d, i, columns) {
-      // convert the data string into js date object
-      d.date = parseDate(d.date);
-      // make values in the object into a %
-      for (var i = 1, n = columns.length; i < n; ++i)
-        d[columns[i]] = d[columns[i]] / 100;
-      return d;
-    }
-  </script>
+        // Add the links (given by calling tree(root), which also adds positional x/y coordinates) for the nodes
+        var link = g.selectAll(".link")
+                .data(tree(root).links())
+            .enter().append("path")
+                .attr("class", "link")
+                .attr("d", d3.linkHorizontal()
+                    .x(function(d) { return d.y; })
+                    .y(function(d) { return d.x; })
+                );
+
+        // Add groups for each node in the hierarchy with circles and text labels
+        var node = g.selectAll(".node")
+            .data(root.descendants())
+            .enter().append("g")
+                .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+                .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+        node.append("circle")
+            .attr("r", 2.5);
+
+        node.append("text")
+            .attr("dy", 3)
+            .attr("x", function(d) { return d.children ? -8 : 8; })
+            .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+            .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+    });
+
+</script>
+
 </body>
