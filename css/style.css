@@ -4,19 +4,12 @@ svg {
     display: block;
 }
 
-.graticule {
-	fill: none;
-	stroke: #777;
-	stroke-width: .5px;
-	stroke-opacity: .5;
+.links line {
+	stroke: #999;
+	stroke-opacity: 0.6;
 }
 
-.land {
-	fill: #999;
-}
-
-.boundary {
-	fill: none;
+.nodes circle {
 	stroke: #fff;
-	stroke-width: .5px;
+	stroke-width: 1.5px;
 }
