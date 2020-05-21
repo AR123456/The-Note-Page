@@ -4,11 +4,19 @@ svg {
     display: block;
 }
 
-.arc text {
-  font: 10px sans-serif;
-  text-anchor: middle;
+.graticule {
+	fill: none;
+	stroke: #777;
+	stroke-width: .5px;
+	stroke-opacity: .5;
 }
 
-.arc path {
-  stroke: #fff;
+.land {
+	fill: #999;
+}
+
+.boundary {
+	fill: none;
+	stroke: #fff;
+	stroke-width: .5px;
 }
