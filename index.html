@@ -31,16 +31,16 @@
     // color of circle can be used too
 
     ///////////// set up canvas
-    var svg = d3.select("svg"),
+    const svg = d3.select("svg"),
       width = +svg.attr("width"),
       height = +svg.attr("height");
     ///////////make color scale ///////////
-    // var color = d3.scaleOrdinal(d3.schemeCategory20);
+    // const color = d3.scaleOrdinal(d3.schemeCategory20);
     // change for v5 of d3
-    var color = d3.scaleOrdinal(d3.schemeDark2);
+    const color = d3.scaleOrdinal(d3.schemeDark2);
 
     // Add "forces" to the simulation here
-    var simulation = d3
+    const simulation = d3
       .forceSimulation()
       // use center force to make sure nodes are balanced around center of canvas
       .force("center", d3.forceCenter(width / 2, height / 2))
@@ -53,7 +53,7 @@
       .force(
         "link",
         // using optional id method to identify connection
-        d3.forceLink().id(function (d) {
+        d3.forceLink().id((d) => {
           return d.id;
         })
       );
@@ -69,7 +69,7 @@
         console.log(graph);
 
         // Add lines for every link in the dataset
-        var link = svg
+        const link = svg
           .append("g")
           .attr("class", "links")
           .selectAll("line")
@@ -80,12 +80,12 @@
           .append("line")
           // set stroke width according to the value of each connection
           // characters that occur together in more scenes will have thicker line
-          .attr("stroke-width", function (d) {
+          .attr("stroke-width", (d) => {
             // using Math.sqrt so that non of the values are massivly thicker than others
             return Math.sqrt(d.value);
           });
         // Add circles for every node in the dataset
-        var node = svg
+        const node = svg
           .append("g")
           .attr("class", "nodes")
           .selectAll("circle")
@@ -95,7 +95,7 @@
           .append("circle")
           // each has radias of 5
           .attr("r", 5)
-          .attr("fill", function (d) {
+          .attr("fill", (d) => {
             // set fill based on the group they belong to
             return color(d.group);
           })
@@ -110,7 +110,7 @@
           );
         // Basic tooltips
         // namd of characer with hover over node
-        node.append("title").text(function (d) {
+        node.append("title").text((d) => {
           return d.id;
         });
         // Attach nodes to the simulation, add listener on the "tick" event
@@ -127,24 +127,24 @@
           //positional attributes to both links and arrays
           // so have access to source and target field x and y values
           link
-            .attr("x1", function (d) {
+            .attr("x1", (d) => {
               return d.source.x;
             })
-            .attr("y1", function (d) {
+            .attr("y1", (d) => {
               return d.source.y;
             })
-            .attr("x2", function (d) {
+            .attr("x2", (d) => {
               return d.target.x;
             })
-            .attr("y2", function (d) {
+            .attr("y2", (d) => {
               return d.target.y;
             });
           // circle x,y can use the x and y values the sim puts on for us
           node
-            .attr("cx", function (d) {
+            .attr("cx", (d) => {
               return d.x;
             })
-            .attr("cy", function (d) {
+            .attr("cy", (d) => {
               return d.y;
             });
         }
@@ -158,7 +158,7 @@
 
     //   console.log(graph);
     //   // Add lines for every link in the dataset
-    //   var link = svg
+    //   const link = svg
     //     .append("g")
     //     .attr("class", "links")
     //     .selectAll("line")
@@ -169,7 +169,7 @@
     //       return Math.sqrt(d.value);
     //     });
     //   // Add circles for every node in the dataset
-    //   var node = svg
+    //   const node = svg
     //     .append("g")
     //     .attr("class", "nodes")
     //     .selectAll("circle")
