@@ -1,5 +1,3 @@
-// creating the playing pices
-// Tetrominos object is an array of arrays
 export const TETROMINOS = {
   0: { shape: [[0]], color: "0,0,0" },
   I: {
@@ -25,14 +23,14 @@ export const TETROMINOS = {
       [0, "L", 0],
       [0, "L", "L"],
     ],
-    color: "223,173,35",
+    color: "223,173,36",
   },
   O: {
     shape: [
       ["O", "O"],
       ["O", "O"],
     ],
-    color: "223,217,35",
+    color: "223,217,36",
   },
   S: {
     shape: [
@@ -46,7 +44,6 @@ export const TETROMINOS = {
     shape: [
       [0, 0, 0],
       ["T", "T", "T"],
-
       [0, "T", 0],
     ],
     color: "132,61,198",
@@ -60,12 +57,9 @@ export const TETROMINOS = {
     color: "227,78,78",
   },
 };
-
 export const randomTetromino = () => {
   const tetrominos = "IJLOSTZ";
-  // generate random from string
   const randTetromino =
     tetrominos[Math.floor(Math.random() * tetrominos.length)];
-  // return the key value pair corresponding to the position of the object
   return TETROMINOS[randTetromino];
 };
