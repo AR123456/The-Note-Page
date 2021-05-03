@@ -1,14 +1,10 @@
-// 1) set stage width and height const exports
-// 2) function to create stage which is a multidementional array which represents rows and columns
 export const STAGE_WIDTH = 12;
-export const STAGE_HEIGTH = 20;
+export const STAGE_HEIGHT = 20;
 
-// import this to Tetris js component
 export const createStage = () =>
-  Array.from(Array(STAGE_HEIGTH), () =>
+  Array.from(Array(STAGE_HEIGHT), () =>
     new Array(STAGE_WIDTH).fill([0, "clear"])
   );
-
 export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
   for (let y = 0; y < player.tetromino.length; y += 1) {
     for (let x = 0; x < player.tetromino[y].length; x += 1) {
