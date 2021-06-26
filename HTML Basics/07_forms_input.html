@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Forms & Input</title>
+  </head>
+  <body>
+    <!-- The action attribute defines the action to be performed when the form is submitted.Usually, the form data is sent to a file on the server when the user clicks on the submit button. In the example below, the form data is sent to a file called "action_page.php". This file contains a server-side script that handles the form data: -->
+
+    <form action="process.php">
+      <!-- Text -->
+      <div>
+        <!-- The for attribute specifies which form element a label is bound to. -->
+        <!-- in the for attribute passing in the id of the input will cause the input box to highlight in user clicks on label -->
+        <label for="name">Name</label><br />
+        <!-- on the input it is the name attribute that communicates what is input to the server side code -->
+        <!-- The name attribute specifies the name of an <input> element.The name attribute is used to reference elements in a JavaScript, or to reference form data after a form is submitted.Note: Only form elements with a name attribute will have their values passed when submitting a form. -->
+        <!-- the value attribute will pre fill the box with the value John Doe it needs to be either deleted by user or removed with javascript  , HTML 5 has placeholder it will not be the value submitted with the form but just be an example   -->
+        <input type="text" id="name" name="name" value="John Doe" />
+      </div>
+      <!-- Email -->
+      <div>
+        <label for="email">Email</label><br />
+        <!-- type email check  if email -->
+        <!-- The <input type="email"> defines a field for an e-mail address.The input value is automatically validated to ensure it is a properly formatted e-mail address.To define an e-mail field that allows multiple e-mail addresses, add the "multiple" attribute. -->
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter an email"
+        />
+      </div>
+      <!-- Textarea -->
+      <div>
+        <label for="message">Message</label><br />
+        <!-- a textarea is like text but bigger and can make even bigger by passing in colums and rows  -->
+        <textarea name="message" id="message" cols="50" rows="5"></textarea>
+      </div>
+      <!-- Select -->
+      <div>
+        <label for="sex">Sex</label>
+        <!-- select and options tags make a drop down menu -->
+        <!-- The <select> element is used to create a drop-down list. The <select> element is most often used in a form, to collect user input. The name attribute is needed to reference the form data after the form is submitted (if you omit the name attribute, no data from the drop-down list will be submitted). The id attribute is needed to associate the drop-down list with a label. The <option> tags inside the <select> element define the available options in the drop-down list. Tip: Always add the <label> tag for best accessibility practices! -->
+        <select name="sex" id="sex">
+          <option value="male">Male</option>
+          <!-- the selected attribute here will pre select that value when page loads -->
+          <option value="female" selected>Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <!-- Number -->
+      <div>
+        <label for="age">Age</label><br />
+        <!-- making input type a number will create box with counter arrows  -->
+        <!-- The <input type="number"> defines a field for entering a number.Use the following attributes to specify restrictions:
+                max - specifies the maximum value allowed
+                min - specifies the minimum value allowed
+                step - specifies the legal number intervals
+                value - Specifies the default value
+      -->
+        <input type="number" name="age" id="age" />
+      </div>
+      <!-- Date
+      The <input type="date"> defines a date picker.The resulting value includes the year, month, and day.
+      -->
+      <div>
+        <label for="bithdate">Birthdate</label><br />
+        <input type="date" name="birthdate" id="birthdate" />
+      </div>
+      <!-- Radio -->
+      <!-- Radio buttons are normally presented in radio groups (a collection of radio buttons describing a set of related options). Only one radio button in a group can be selected at the same time.
+        Note: The radio group must have share the same name (the value of the name attribute) to be treated as a group. Once the radio group is created, selecting any radio button in that group automatically deselects any other selected radio button in the same group. You can have as many radio groups on a page as you want, as long as each group has its own name.
+        Note: The value attribute defines the unique value associated with each radio button. The value is not shown to the user, but is the value that is sent to the server on "submit" to identify which radio button that was selected. -->
+      <div>
+        <label for="membership">Membership</label>
+        <input type="radio" name="membership" value="simple" id="membership" />
+        Simple
+        <!-- if you add the attribute checked then this value will be pre selected when page loads -->
+        <input
+          type="radio"
+          name="membership"
+          value="standard"
+          id="membership"
+          checked
+        />
+        Standard
+        <input type="radio" name="membership" value="super" id="membership" />
+        Super
+      </div>
+      <!-- Checkbox -->
+      <!-- The checkbox is shown as a square box that is ticked (checked) when activated. Checkboxes are used to let a user select one or more options of a limited number of choices. -->
+      <div>
+        <label for="membership">I Like..</label>
+        <input type="checkbox" name="likes" value="bike" id="likes" /> Bike
+        <input type="checkbox" name="likes" value="car" id="likes" /> Car
+        <input type="checkbox" name="likes" value="boat" id="likes" /> Boat
+      </div>
+      <!-- Input submit  -->
+      <input type="submit" value="Submit on the input div" />
+      <!-- Button submit -->
+      <button type="submit">Submit on the button div</button>
+      <!-- type of reset will reset the whole form  -->
+      <!-- The <input type="reset"> defines a reset button which resets all form values to its initial values.Tip: Avoid reset buttons in your forms! It is frustrating for users if they click them by mistake. -->
+      <button type="reset">Reset</button>
+    </form>
+    <div><a href="01_basic_layout.html">Basic Layout </a></div>
+  </body>
+</html>
