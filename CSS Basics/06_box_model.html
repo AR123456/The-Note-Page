@@ -6,10 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Box Model / Margin & Padding</title>
     <style>
-      /* CSS Reset */
+      /* CSS Reset 
+      there is also Myers reset https://meyerweb.com/eric/tools/css/reset/
+      If using reset be sure to remember to add it back where needed. 
+      */
       * {
+        /* margin is the outside of the element */
         margin: 0;
+        /* padding is the inside of the element  */
         padding: 0;
+        /* The CSS box-sizing property allows us to include the padding and border in an element's total width and height. */
         box-sizing: border-box;
       }
 
@@ -27,10 +33,14 @@
         padding-bottom: 10px;
         padding-left: 20px;
 
-        /* Padding shorthand = top, right, bottom, left */
+        /* Padding shorthand = top, right, bottom, left 
+        order matters 
+        */
         padding: 10px 20px 10px 20px;
 
-        /* Padding shorthand = top/bottom left/right */
+        /* Padding shorthand = top/bottom left/right 
+        order matters 
+        */
         padding: 10px 20px;
 
         /* Margin on all sides */
@@ -42,10 +52,14 @@
         margin-bottom: 10px;
         margin-left: 20px;
 
-        /* Margin shorthand = top, right, bottom, left */
+        /* Margin shorthand = top, right, bottom, left
+        order matters 
+         */
         margin: 10px 20px 10px 20px;
 
-        /* Margin shorthand = top/bottom left/right */
+        /* Margin shorthand = top/bottom left/right 
+        order matters 
+        */
         margin: 10px 20px;
       }
 
