@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Selectors</title>
+    <style>
+      /* Element Selectors */
+      body {
+        background-color: rgb(128, 122, 122);
+      }
+
+      /* . is for classes */
+      .primary-heading {
+        color: blue;
+      }
+
+      /* # is for IDs */
+      #welcome {
+        background-color: #f4f4f4;
+      }
+
+      /* Multiple Selectors */
+      #welcome,
+      #about {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+
+      /* Nested Selectors - not comma between welcome and p that would mean all id's of welcome and all pargraph tags*/
+      /* p's in welcome ID  */
+      #welcome p {
+        font-size: 20px;
+      }
+
+      #about {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="welcome">
+      <h2 class="primary-heading">Welcome</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod qui iusto
+        perferendis nisi officia quidem ad enim maiores animi maxime.
+      </p>
+    </div>
+    <div id="about">
+      <h2>About</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+        laudantium voluptatum dolorum iure, eos et distinctio porro provident ut
+        assumenda.
+      </p>
+    </div>
+    <br /><br />
+    <hr />
+    <div><a href="/01_basic.html">Basic</a></div>
+    <div><a href="./02_selectors.html">Selectors</a></div>
+    <div><a href="/03_fonts.html ">Fonts</a></div>
+    <div><a href="/04_colors.html">Colors</a></div>
+    <div>
+      <a href="/05_backgrounds_borders.html ">Backgrounds and Borders</a>
+    </div>
+    <div><a href="/06_box_model.html">Box Model</a></div>
+    <div><a href="/07_float_align.html">Floats</a></div>
+    <div><a href="/08_links_buttons.html">Links and Buttons</a></div>
+    <div><a href="/09_menus.html">Menus</a></div>
+    <div><a href="/10_inline_block.html">In Line Block</a></div>
+    <div><a href="/11_position.html">Position</a></div>
+    <div><a href="/12_form_styling.html">Form Styling</a></div>
+  </body>
+</html>
