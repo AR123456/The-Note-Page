@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Entities</title>
-</head>
-<body>
-  <!-- Non breaking space -->
-  <p>Hello, my name is &nbsp; &nbsp; &nbsp; &nbsp;Brad</p>
-  <!-- Greater than and less than -->
-  <p>5 &gt; 2</p>
-  <p>5 &#62; 2</p>
-  <p>1 &lt; 2</p>
-  <p>1 &#60; 2</p>
-  <!-- Copyright -->
-  <p>&copy;</p>
-  <p>&reg;</p>
-  <!-- Currency -->
-  <p>&cent;</p>
-  <p>&pound;</p>
-  <p>&yen;</p>
-  <p>&euro;</p>
-  <!-- Suits -->
-  <p>&spades;</p>
-  <p>&clubs;</p>
-  <p>&hearts;</p>
-  <p>&diams;</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Entities</title>
+    <!-- https://www.w3schools.com/html/html_entities.asp -->
+  </head>
+  <body>
+    <!-- Security concerns with target="_blank"
+I strongly recommend that you always add rel="noreferrer noopener" to the anchor element whenever you use the target attribute:
+The rel attribute sets the relationship between your page and the linked URL. Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. 
+https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/
+-->
+    <div>
+      <a
+        href="https://dev.w3.org/html5/html-author/charref"
+        target="_blank"
+        rel="noreferrer noopener"
+        >Biglist of entites from W3</a
+      >
+    </div>
+    <!-- Non breaking space -->
+    <!-- &nbsp -->
+    <p>Hello, my name is &nbsp; &nbsp; &nbsp; &nbsp;Anne</p>
+    <!-- Greater than and less than -->
+    <p>5 &gt; 2</p>
+    <p>5 &#62; 2</p>
+    <p>1 &lt; 2</p>
+    <p>1 &#60; 2</p>
+    <!-- Copyright -->
+    <p>&copy;</p>
+    <p>&reg;</p>
+    <!-- Currency -->
+    <p>&cent;</p>
+    <p>&pound;</p>
+    <p>&yen;</p>
+    <p>&euro;</p>
+    <!-- Suits -->
+    <p>&spades;</p>
+    <p>&clubs;</p>
+    <p>&hearts;</p>
+    <p>&diams;</p>
 
-  <!-- Coputer code -->
-  <code>
-    &lt;?php echo 'Hello' ?&gt;
-  </code>
-  <p>Save the file by pressing <kbd>Ctrl + S</kbd></p>
-  <div><a href="01_basic_layout.html">Basic Layout </a>
-  </div>
-</body>
+    <!-- Coputer code -->
+    <!-- using code tag to display on page https://www.w3schools.com/tags/tag_code.asp -->
+    <code> &lt;?php echo 'Hello' ?&gt; </code>
+    <!-- using kbd to show in computer type syntax  -->
+    <p>Save the file by pressing <kbd>Ctrl + S</kbd></p>
+    <div><a href="01_basic_layout.html">Basic Layout </a></div>
+  </body>
 </html>
