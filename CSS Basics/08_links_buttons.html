@@ -11,23 +11,33 @@
       }
 
       a {
+        /* changing default blue color  */
         color: #333;
+        /* this willl remove the default underline seen on linnks */
         text-decoration: none;
       }
+      /* hover pseudo selector  */
+      /* https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes */
+      /*  syntax
+          selector:pseudo-class {
+          property: value;
+          }
 
+         */
       a:hover {
+        /* change color on hover  */
         color: coral;
       }
 
       /* a:visited {
-      color: red;
-    } */
+        color: red;
+      } */
 
       a:active {
         color: red;
       }
 
-      /* Button Styling */
+      /* Button Styling - can be on the actual button or on the a tag */
       .btn {
         background: #4c6ca0;
         color: #fff;
@@ -35,7 +45,10 @@
         font-size: 16px;
         padding: 10px 20px;
         border-radius: 5px;
-        cursor: pointer;
+        /* other cursor possiblitys
+          https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+           */
+        /* cursor: grab; */
       }
 
       .btn:hover {
