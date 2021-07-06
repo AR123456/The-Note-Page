@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  text-align: center;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+img {
+  /* translate move around on page */
+  /* translateX moves left rignt , neg moves left  */
+  /* transform: translateX(200px); */
+  /* translate y up and down  */
+  /* transform: translateY(200px); */
+  /* translate()  takes 2 values seperated by a coma  */
+  /* This value is a <length> or <percentage> representing the abscissa (horizontal, x-coordinate) of the translating vector. The ordinate (vertical, y-coordinate) of the translating vector will be set to 0. For example, translate(2px) is equivalent to translate(2px, 0). A percentage value refers to the width of the reference box defined by the transform-box property. */
+  transform: translate(-200px, 200px);
+  /* can also transform scale  */
+  /* 1 is default, any larger increases less than one decreases */
+  /* scaleX along x axis , scaleY along y axis */
+  transform: scale(1.2);
+  /* rotateX rotates like a BBQ spit  so 90deg will look just like a thin line */
+  /* transform: rotateX(60deg); */
+  /* rotatez  rotates like a clock face or compass*/
+  transform: rotateZ(45deg);
+  /* transforms can be chained together  */
+  transform: rotateZ(-90deg) translateY(200px) scale(1.3);
+}
