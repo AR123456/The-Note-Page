@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  text-align: center;
+}
+/* Transitions take element from one state to another in a certian way over a set amount of time  */
+.circle {
+  width: 100px;
+  padding: 50px 0;
+  line-height: 0;
+  margin: 60px auto;
+  background: pink;
+  color: #fff;
+  border-radius: 50%;
+  /* apply this transition to the circle */
+  /* this effects everything that is changed on the element */
+  /* pass in transition options  */
+  /* pass in just the time and it will transition everything */
+  /* transition: 1s; */
+  /* this is syntax to apply diffent transitions to the background and transform */
+  /* transition: background 1s, transform 0.3s; */
+  /*  this is syntax to put a delay on tranform  */
+  /* transition: background 1s, transform 0.3s 1s; */
+  /* this is adding timing ease in ease out ease ease in out or linear */
+  transition: background 1s, transform 0.3s 1s ease-in-out;
+}
+
+.circle:hover {
+  background: salmon;
+  transform: rotate(360deg);
+}
