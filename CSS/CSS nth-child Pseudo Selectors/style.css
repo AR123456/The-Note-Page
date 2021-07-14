@@ -1,0 +1,70 @@
+/* font  */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0pt;
+}
+/* base styling for li */
+li {
+  padding: 0.25rem;
+  margin: 0.25rem;
+  list-style: none;
+}
+/* psudo selectors A pseudo-class is used to define a special state of an element.
+
+For example, it can be used to:
+
+Style an element when a user mouses over it
+Style visited and unvisited links differently
+Style an element when it gets focus
+ */
+/* Tree-structural pseudo-classes
+These pseudo-classes relate to the location of an element within the document tree. 
+https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#tree-structural_pseudo-classes
+*/
+/* first child  */
+li:first-child {
+  background: red;
+}
+/* last child */
+li:last-child {
+  background: red;
+}
+/* the third one  */
+/* :nth-child()
+The :nth-child() CSS pseudo-class matches elements based on their position in a group of siblings. */
+li:nth-child(3) {
+  background: royalblue !important;
+}
+/* every 3rd li */
+/* :nth-child
+Uses An+B notation to select elements from a list of sibling elements. */
+/* <An+B>
+Represents elements in a list whose indices match those found in a custom pattern of numbers, defined by An+B, where:
+A is an integer step size,
+B is an integer offset,
+n is all nonnegative integers, starting from 0.
+It can be read as the An+Bth element of a list. */
+li:nth-child(3n + 0) {
+  background: orange;
+}
+/* every 3 after 7 */
+li:nth-child(3n + 7) {
+  background: yellowgreen;
+}
+/*  Every Odd */
+/* li:nth-child(odd) {
+  background: #ccc;
+} */
+/* every even  */
+/* li:nth-child(even) {
+  background: #ddd;
+} */
