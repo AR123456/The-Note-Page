@@ -1,0 +1,40 @@
+.container{
+
+    width: 100vh;
+    height: 100vw;
+    }
+
+.box{
+
+    width: 200px;
+    height: 200px;
+    color:#fff;
+    transition-duration: 3000ms;
+    transition-property: width;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.container:hover .box{
+    width: 600px;
+  
+}
+.one{
+    background: #07beb9;
+    /* transition-timing-function: linear; */
+    transition-timing-function: cubic-bezier(0.26,-0.04, 0.48, 0.96);
+ 
+}
+.two{
+    background: #3dccc7;
+    transition-timing-function: ease-in;
+}
+.three{
+    background: #9ceaef;
+    transition-timing-function: ease-out;
+}
+.four{
+    background: #b1f8f2;
+    transition-timing-function: ease-in-out;
+}
