@@ -1,0 +1,49 @@
+/* font  */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0pt;
+}
+/* any paragraph inside a div  */
+div p {
+  background: #ddd;
+}
+/* any paragraph that is a direct desendant of a div */
+div > p {
+  background: aqua;
+}
+/* any paragraph directly after a div, a sibling  */
+div + p {
+  color: red;
+}
+/*  by an attribute in this case any target  */
+a[target] {
+  background: greenyellow;
+}
+
+/*  by an attribute in this case target = blank  */
+a[target="_blank"] {
+  background: rgb(176, 154, 218);
+}
+/* Target specific attribute value  good for form inputs  */
+
+input[type="email"] {
+  width: 100%;
+}
+input[type="submit"] {
+  background: hotpink;
+}
+
+/* if p is preceded by a ul with same parent */
+ul ~ p {
+  background: #5218f1;
+  color: #fff;
+}
