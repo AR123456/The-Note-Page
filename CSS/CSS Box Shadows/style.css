@@ -1,0 +1,41 @@
+/* font  */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0pt;
+}
+.container {
+  display: flex;
+}
+.box {
+  padding: 1rem;
+  margin: 1rem;
+  background: coral;
+  color: #fff;
+  /* Box shadow settings  */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
+  /* offset-x | offset-y | color */
+  box-shadow: 10px 10px teal;
+
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 10px 10px 20px teal;
+  /* Negative values  top left */
+  box-shadow: -10px -10px 20px teal;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 10px 10px 20px 5px teal;
+  /* a more subtle example  */
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.3);
+  /* inset | offset-x | offset-y | color */
+  /* shadow on the inside  */
+  box-shadow: inset -10px -10px teal;
+  /* Multiple shadows - seperate by a camma   */
+  box-shadow: 3px 3px teal, -3px -3px olive;
+}
