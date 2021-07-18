@@ -1,0 +1,91 @@
+/*// BASE STYLES //*/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.grass,
+.sky,
+.road {
+  position: relative;
+}
+
+.sky {
+  height: 40%;
+  background: skyblue;
+}
+
+.grass {
+  height: 30%;
+  background: seagreen;
+}
+
+.road {
+  height: 30%;
+  background: dimgrey;
+  box-sizing: border-box;
+  border-top: 10px solid grey;
+  border-bottom: 10px solid grey;
+  width: 100%;
+}
+
+.lines {
+  box-sizing: border-box;
+  border: 5px dashed #fff;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+/* keyframes  */
+/* use a diffrent keyframe block for every type of animation we use on the page
+apply that keyfram animation to different elements on the web page  */
+/* The @keyframes CSS at-rule controls the intermediate steps in a CSS animation sequence by defining styles for keyframes (or waypoints) along the animation sequence. This gives more control over the intermediate steps of the animation sequence than transitions. */
+
+/* elements to animate  */
+.mario {
+  position: absolute;
+  top: -40px;
+  left: 0px;
+
+  animation-name: drive;
+  animation-duration: 3s;
+
+  animation-fill-mode: both;
+  /* repeat use iteration count  */
+  /* animation-iteration-count: 3; */
+  animation-iteration-count: infinite;
+}
+
+.luigi {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  /* reversing the drive annimation so luigi goes back wards  */
+  animation: drive;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  /*  use direction to reverse */
+  animation-direction: reverse;
+  /* can also  alternate between forward and revers */
+  /* animation-direction: alternate-reverse; */
+}
+/* keyframes  */
+
+@keyframes drive {
+  /* define the states from to  */
+  from {
+    /* the css element to trans form or animate from  */
+    transform: translateX(-200px);
+  }
+  to {
+    /* the css element to trans form or animate to  */
+    transform: translateX(1600px);
+  }
+}
+/* animation iteration count  */
