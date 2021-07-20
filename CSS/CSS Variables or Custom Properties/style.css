@@ -1,0 +1,54 @@
+/* Define variables a the top of the style sheet 
+for most usability assing to root */
+/* variables */
+:root {
+  /* colors are very handy to use vairable for  */
+  --light-color: #f4f4f4;
+  --primary-color: #333;
+  --secondary-color: #ccc;
+  /* can also set max width */
+  --max-width: 1100px;
+  /* flex layout vars */
+  --box-1-width: 1;
+  --box-2-width: 2;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  background: var(--light-color);
+  /* font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0pt; */
+}
+header {
+  background: var(--primary-color);
+  border-bottom: 5px var(--secondary-color) solid;
+  color: #fff;
+  text-align: center;
+}
+.container {
+  display: flex;
+  margin: auto;
+  max-width: var(--max-width);
+}
+.box {
+  background: var(--primary-color);
+  border-bottom: 5px var(--secondary-color) solid;
+  color: #fff;
+  padding: 1rem;
+  margin: 1rem;
+}
+.box-1 {
+  flex: var(--box-1-width);
+}
+.box-2 {
+  flex: var(--box-2-width);
+}
