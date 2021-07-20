@@ -1,0 +1,33 @@
+body {
+  background: #333;
+}
+.box {
+  background: #ffff;
+  width: 200px;
+  height: 200px;
+  /* when you use position relative you can use top bottom right  */
+  /* left and use them in animation  */
+  position: relative;
+  animation-name: animate1;
+  /* long hand  */
+  /* animation-duration: 2s;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in; */
+  /*  shorthand for above  */
+  animation: animate1 2s ease-in 2s 2 alternate forwards;
+}
+
+@keyframes animate1 {
+  from {
+    width: 200px;
+    top: 0;
+  }
+  to {
+    width: 600px;
+    background-color: red;
+    top: 300px;
+  }
+}
