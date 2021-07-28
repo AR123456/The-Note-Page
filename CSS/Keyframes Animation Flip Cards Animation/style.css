@@ -43,3 +43,26 @@ h1 {
 }
 
 /*// ANIMATION STYLES //*/
+
+.panels div.back {
+  /* rotate the 2d item 90 deg so it appears invisible  */
+  transform: rotateY(90deg);
+}
+.panels div.front {
+  /* move the "back" card behind the front, take out of dom flow by making absolute  */
+  position: absolute;
+}
+
+.panels li:hover div.front {
+  animation: twirl 0.2 ease-in forwards;
+}
+
+/* rotate on in other out to simulate the flip */
+@keyframes twirl {
+  0% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(90deg);
+  }
+}
