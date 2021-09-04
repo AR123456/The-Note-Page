@@ -1,12 +1,51 @@
+/* /////////Flexbox grid way  */
+
+/* .flex-container {
+  display: flex;
+  flex-wrap: wrap;
+} */
+/*  */
+/* .flex-item {
+  background: violet;
+
+  /* this dosent work when margin is added so have to re do the calc */
+/* width: calc(100% / 3);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+} */
+/* We'll need to adjust our width calculation to deal with the additional marginal space.
+
+
+We also need to clear the margin-right from every third item. */
+/* .flex-item { */
+/* one third - two margins divided equally among 3 items  */
+/* width: calc((100% / 3) - (2rem / 3));
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.flex-item:nth-child(3n) {
+  margin-right: 0;
+} */
+/* ////////////////////////////////////////////////////////////// */
+/* The Gap way of setting internal margins in Flex
+By utilizing gap, we get rid of the need to do most of our width hacking. This also allows us to go back to using flex grow/shrink values
+
+In this case, we still have display: flex and flex-wrap: wrap on our container, but now we also add our gap value. This is a short hand that represents both row and column gaps. Check Mozilla Developer Network's documentation for all the different methods.
+
+From there, instead of setting a width on each flex item, we'll set our flex grow, shrink and basis values. flex-basis will be how the browser determines how many columns to create. We'll still be using a calc() for that, but the resulting code is much cleaner. */
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
-/*  */
 .flex-item {
   background: violet;
-  /* this dosent work when margin is added so have to re do the calc */
-  width: calc(100% / 3);
+
+  flex: 1 1 calc((100% / 3) - 2rem);
   text-align: center;
   font-weight: bold;
   font-size: 1.4rem;
@@ -14,12 +53,18 @@
   margin-bottom: 1rem;
 }
 .flex-item {
-  /* width: calc(100% / 3); */
-  /*  // one-third - two margins divided equally among 3 items */
-  width: calc((100% / 3) - (2rem / 3));
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  /* // 1 across at mobile */
+  flex: 1 1 100%;
 }
-.flex-item:nth-child(3n) {
-  margin-right: 0;
+@media (min-width: 640px) {
+  .flex-item {
+    /* // 2 across at tabletish */
+    flex-basis: calc((100% / 2) - 1rem);
+  }
+}
+@media (min-width: 1024px) {
+  .flex-item {
+    /*  // 3 across at desktop */
+    flex-basis: calc((100% / 3) - 2rem);
+  }
 }
