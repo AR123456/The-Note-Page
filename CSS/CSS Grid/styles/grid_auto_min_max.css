@@ -1,0 +1,19 @@
+/* Auto Fit with min max can make grid responisve, it good is certan situaltion like an image gallery but not so mc for other webistes  */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.item {
+  padding: 3rem;
+  background: #f4f4f4;
+  border: #ccc 1px solid;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/* auto fit 
+https://developer.mozilla.org/en-US/docs/Web/CSS/minmax
+
+For Grid this is the equivalent of using media queries inline.
+*/
