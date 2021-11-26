@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scrollytelling - Simple</title>
+    <!-- brining in scrollama and the intersection obserrver API  -->
+    <script src="https://unpkg.com/intersection-observer"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: sans-serif;
+        color: #555;
+        background-color: #fff;
+        font-size: 1.4em;
+      }
+      section {
+        height: 100%;
+      }
+      div {
+        height: 100%;
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 50px;
+      }
+      div.step {
+        background: #000;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div><h1>A Simple Scrollytelling Experience</h1></div>
+      <div class="step"><p>As objects scroll into view...</p></div>
+      <div class="step"><p>they can change appearance...</p></div>
+      <div class="step"><p>and draw attention to themselves</p></div>
+      <div class="step"><p>and if you didn't notice...</p></div>
+      <div class="step"><p>the old ones can disappear</p></div>
+    </section>
+
+    <script type="text/javascript">
+      // the function that is scrollama instantiated
+      const scroller = scrollama();
+
+      scroller
+        .setup({
+          // JSON options  our steps happen to be CSS class .step
+          // the step is the only required option to pass in
+          step: ".step",
+          // can also add a debug to see in browser what is happening
+          debug: true,
+          // can change the offset or place on page from the top that triggers
+          offset: 0.25,
+          // progress - instead of triggering just one event, can keep triggering and return a value or % of scroll that has occured
+          progress: true,
+          // order by default is true or remembers where user has scrolled to on browser refresh
+          order: true,
+          //once fires event only one time if set to true.  the default is false
+          once: false,
+          // threshold default is 4  Is the number of pixels above or below the offset value when the trigger might occur
+          threshold: 4,
+          //   // if you are using a shadow dom and the events are inside it you need to tell scollama where to find them
+          //   parent:
+        })
+        .onStepEnter((response) => {
+          // scrollama uses chained methods like jquery does
+          console.log(response);
+          //   response is JSON object with 3 things the element, the index and the direction
+        })
+        .onStepExit((response) => {
+          console.log(response);
+        });
+    </script>
+  </body>
+</html>
