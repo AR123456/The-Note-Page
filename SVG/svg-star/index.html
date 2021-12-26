@@ -4,23 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snowglake</title>
+    <title>SVG Star</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- The SVG tag represents the frame of the image and every SVG element has to come within an SVG tag. The same is true in the opposite direction. HTML tags can’t be within an SVG tag, so we can’t have a div or a header tag inside an SVG. 
  -->
     <svg width="200" height="200" viewBox="-100 -100 200 200">
-      <circle cx="0" cy="20" r="70" fill="#d1495b"></circle>
-      <circle
-        cx="0"
-        cy="-75"
-        r="12"
-        fill="none"
-        stroke="#F78257"
-        stroke-width="2"
-      ></circle>
-      <rect x="-17.5" y="-65" width="35" height="20" fill="#f9237"></rect>
+      <!-- With the outer group we translate the whole star downwards by 5 units. -->
+      <!-- group them with a g tag and rotate them together group them with a g tag and rotate them together -->
+      <g transform="translate(0 5)">
+        <g>
+          <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+          <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+        </g>
+        <!-- rotated the same way, so we can group them with a g tag and rotate them together -->
+        <g transform="rotate(72)">
+          <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+          <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+        </g>
+        <g transform="rotate(-72)">
+          <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+          <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+        </g>
+        <g transform="rotate(144)">
+          <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+          <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+        </g>
+        <g transform="rotate(-144)">
+          <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+          <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+        </g>
+      </g>
     </svg>
 
     <script src="app.js"></script>
