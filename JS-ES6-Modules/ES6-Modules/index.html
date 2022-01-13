@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ES6 Modules</title>
+  </head>
+  <body>
+    <div class="grandparent">
+      <div class="parent">
+        <div class="child"></div>
+      </div>
+    </div>
+    <!-- here using the scrpt tags with user kind of solves the problem  except that if there is another file that defines printName if will overide the one from User.js solution is to do this as an exort instead.  -->
+    <!-- <script src="User.js"></script>
+    <script src="app.js"></script> -->
+    <!-- instead here using type of module to tell the browser we are using modules
+      <!-- just define one scrpt in the tag and handle with import export of the other fles  -->
+    <!-- If you are putting the script tag at the top of the html can also incide defer -->
+    <!-- <script src="app.js" defer type="module"></script> -->
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
