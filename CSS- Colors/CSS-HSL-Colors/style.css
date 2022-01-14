@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+body,
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.color {
+  /* can also easaly change colors with vars and in javascript  */
+  --hue: 200;
+  --saturation: 100%;
+  --lightness: 50%;
+  width: 90%;
+  height: 150px;
+  /* defining this way is hard to know what this is.  There is rgb in colorpicker, hsl or hexidecimal  
+  hue saturation ligntess
+  hue = color on the wheel in degrees 0 - 360
+  saturation = lower the number the more gray 
+  lightnes= 50% is normal lower than 50 more black  added higher than 50 more white in it 0=black, 100 = white
+   */
+  /* This is very handy to just change the lightness on a hover button to get a nice effect.   Only have to change the one value */
+  /* background-color: hsl(133, 39%, 34%); */
+  /* using vars */
+  background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+}
+/*  using vars easaly just change the lightness on hover 
+this nice becasue if you change the hue or color this selecto will still work to lighten the new color on hover
+*/
+.color:hover {
+  --lightness: 30%;
+}
+
+/*  You can also use hsla to represent a partially transparent color. This function takes a fourth parameter which is a value between 0 and 1 where 1 is completely opaque and 0 is completely transparent. */
+.transparent {
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.3);
+  /* background-color: hsla(255, 44%, 61%, 0.63); */
+}
