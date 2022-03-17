@@ -1,0 +1,27 @@
+/* starting off with basic reset to remove default stuff that gets in the way */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.6;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+.container {
+  width: 85%;
+  max-width: 65em;
+  margin: 0 auto;
+}
+/* https://www.youtube.com/watch?v=X1dz0xRbSJc */
