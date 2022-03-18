@@ -122,8 +122,37 @@ section {
   position: absolute;
   top: 10%;
   left: 10%;
+  /* this makes the background a perfect square  */
   padding: 75% 75% 0 0;
+  /* making the square a circle */
   border-radius: 50%;
   background: #2193b0;
+  /* put the circle behind the image  */
   z-index: -1;
+}
+.featured__details {
+  opacity: 0;
+  -webkit-transition: opacity 250ms linear;
+  transition: opacity 250ms linear;
+}
+.product {
+  background: radial-gradient(
+    var(--clr-inner, limegreen),
+    var(--clr-outler, purple)
+  );
+  padding: 3em;
+  border-radius: 1rem;
+  margin-bottom: 5em;
+  text-align: center;
+}
+.product__title {
+  font-size: clamp(3rem, calc(5vw + 1rem), 5.5rem);
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+}
+
+.product__image {
+  margin: -5em 0 0 0;
 }
