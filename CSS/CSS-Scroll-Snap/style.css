@@ -11,6 +11,11 @@ body {
   overflow: hidden;
   margin: 0pt;
 } */
+:root {
+  --theme-hue: 230;
+  --theme-saturation: 85%;
+  --theme-hs: var(--theme-hue), var(--theme-saturation);
+}
 * {
   margin: 0;
   box-sizing: border-box;
@@ -20,6 +25,8 @@ body {
   min-height: 100vh;
   font-family: system-ui, sans-serif;
   font-size: 1.5rem;
+  background-color: hsl(var(--theme-hs), 95%);
+  color: hsl(var(--theme-hs), 25%);
 }
 body,
 #slides,
@@ -38,4 +45,29 @@ body,
 .slide--text,
 .slide--title {
   place-content: center;
+}
+h1,
+h2 {
+  line-height: 1.1;
+}
+a {
+  color: inherit;
+}
+.content {
+  padding: 2rem;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+.content * + * {
+  margin-top: 0.5em;
+}
+.slide--text .content {
+  max-width: 40ch;
+}
+.slide--title {
+  background-image: linear-gradient(
+    125deg,
+    hsl(var(--theme-hs), 95%),
+    hsl(var(--theme-hs), 75%)
+  );
 }
