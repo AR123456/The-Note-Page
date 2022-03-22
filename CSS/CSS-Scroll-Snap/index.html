@@ -12,15 +12,30 @@
       <li class="slide slide--text">
         <div class="content">
           <h1>Presentation Title</h1>
-          <p>Presented by Me</p>
-          <p>
-            <a href="#">Link to stuff about me</a>
-          </p>
+          <p>Presented by Your Name</p>
+          <p><a target="_blank" href="https://twitter.com/5t3ph">@5t3ph</a></p>
         </div>
       </li>
-      <li class="slide slide--title">
+      <li class="slide slide--title" data-topic="CSS">
         <div class="content">
           <h2>Topic 1</h2>
+        </div>
+      </li>
+      <li class="slide slide--demo" data-topic="CSS">
+        <div class="style">
+          <style contenteditable="true">
+            .modern-container {
+              --container-width: 40ch;
+
+              width: min(var(--container-width), 100% - 3rem);
+              margin-inline: auto;
+            }
+          </style>
+        </div>
+        <div class="demo">
+          <div class="modern-container">
+            <div class="box">container</div>
+          </div>
         </div>
       </li>
     </ol>
