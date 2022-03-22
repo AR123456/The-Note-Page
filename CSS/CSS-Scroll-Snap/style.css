@@ -1,16 +1,3 @@
-/* * {
-  box-sizing: border-box;
-}
-body {
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0pt;
-} */
 :root {
   --theme-hue: 230;
   --theme-saturation: 85%;
@@ -70,4 +57,25 @@ a {
     hsl(var(--theme-hs), 95%),
     hsl(var(--theme-hs), 75%)
   );
+}
+/* use display properties on <style> to make it visible. placed it within another container to make it a resizable  Then, the <style> element itself to display: block and apply properties to give it a code editor look and feel. */
+.style {
+  display: grid;
+  align-items: center;
+  background-color: hsl(var(--theme-hs), 5%);
+  padding-inline: max(5vw, 2rem) 3rem;
+  font-size: 1.35rem;
+  overflow-y: hidden;
+  resize: horizontal;
+}
+style {
+  display: block;
+  outline: none;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  color: hsl(var(--theme-hs), 85%);
+  background: none;
+  white-space: pre;
+  line-height: 1.65;
+  tab-size: 2;
+  hyphens: none;
 }
