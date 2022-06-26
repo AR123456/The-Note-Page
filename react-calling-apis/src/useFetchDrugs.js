@@ -59,6 +59,9 @@ const useFetchDrugs = (params) => {
   const [state, dispatch] = useReducer(reducer, { drugs: [], loading: true });
   // useEffect hook to controle when state updates
   useEffect(() => {
+    // using this so that an axios request is not sent for every keystroke in the search box
+    // createing the cancelToken
+    const cancelToken = axios.CancelToken.source();
     // in dispatch, by convention
     // types are actions, payloads is the data for the type
     // frist   state - set state to loading state
@@ -66,6 +69,8 @@ const useFetchDrugs = (params) => {
     // second call axios  - get data
     axios
       .get(BASE_URL, {
+        // using the cancel token here
+        cancelToken: cancelToken.token,
         //pass in some params
         // markdown true will make descriptions appear in markdow so  easier to work with
         // this may not be needed for the FDA API
@@ -80,9 +85,16 @@ const useFetchDrugs = (params) => {
       })
       // catch the error
       .catch((e) => {
+        // we are intentionally canceling the token so do not treat like an error, just return
+        if (axios.isCancel(e)) return;
         dispatch({ type: ACTIONS.ERROR, payload: { error: e } });
       });
-
+    // function to clean up old code
+    return () => {
+      //this will run any time params is changed (or if other things were being passed into the items in the [])
+      // cancel the old axios request - be sure to put a check in the catch so the when this is done we do not dispatch an error
+      cancelToken.cancel();
+    };
     // this use effect will run any time a params changes
   }, [params]);
 

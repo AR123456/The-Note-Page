@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 
 function App() {
   const { drugs, loading, error } = useFetchDrugs();
+  console.log(drugs);
   return (
     <Container className="App">
       {loading && <h1>Loading...</h1>}
