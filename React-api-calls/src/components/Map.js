@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
 // import LocationInfoBox from "./LocationInfoBox";
@@ -7,15 +7,23 @@ import LocationMarker from "./LocationMarker";
 // const NATURAL_EVENT_WILDFIRE = 8;
 
 const Map = ({ eventData, center, zoom }) => {
+  //
   //   const [locationInfo, setLocationInfo] = useState(null);
+  //   // map through the event data that is comming in - ev is event
 
   //   const markers = eventData.map((ev, index) => {
-  //     if (ev.categories[0].id === NATURAL_EVENT_WILDFIRE) {
+  //     // for each event check to see if it is a wild fire, if so return..
+  //     // if (ev.categories[0].id === NATURAL_EVENT_WILDFIRE) {
+  //     // if (ev.categories[0].id === 8) {
+  //     // the cat is now wildfires
+  //     if (ev.categories[0].id === "wildfires") {
   //       return (
   //         <LocationMarker
   //           key={index}
-  //           lat={ev.geometries[0].coordinates[1]}
-  //           lng={ev.geometries[0].coordinates[0]}
+  //           //   lat={ev.geometries[0].coordinates[1]}
+  //           //   lng={ev.geometries[0].coordinates[0]}
+  //           lat={ev.geometry[0].coordinates[1]}
+  //           lng={ev.geometry[0].coordinates[0]}
   //           onClick={() => setLocationInfo({ id: ev.id, title: ev.title })}
   //         />
   //       );
@@ -27,7 +35,7 @@ const Map = ({ eventData, center, zoom }) => {
     <div className="map">
       <GoogleMapReact
         //   this should not be put out onweb
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: "AIzaSyC6WKbJkJmbGIVQPLStfz6yOwPUz3wEIjc" }}
         defaultCenter={center}
         defaultZoom={zoom}
       >
