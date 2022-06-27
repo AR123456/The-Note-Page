@@ -19,8 +19,11 @@ function App() {
       );
       //destructure just the evets
       const { events } = await res.json();
+      // console.log(events[0]);
+      console.log(events[0].categories[0].id); //=wildfires
       // set the event data to events, this is putting it into state eventData
       setEventData(events);
+
       // we have the data so this is now false
       setLoading(false);
     };
@@ -29,6 +32,7 @@ function App() {
     // i am getting nothing here even pointing to new site
     // https://www.youtube.com/watch?v=ontX4zfVqK8
     console.log(eventData);
+    // console.log(eventData[0].categories[0].id);
   }, []);
 
   return (
