@@ -1,4 +1,3 @@
-import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
 // import LocationInfoBox from "./LocationInfoBox";
@@ -7,6 +6,8 @@ import LocationMarker from "./LocationMarker";
 // const NATURAL_EVENT_WILDFIRE = 8;
 
 const Map = ({ eventData, center, zoom }) => {
+  // comes back undefined at first, then data loads
+  console.log(eventData);
   //
   //   const [locationInfo, setLocationInfo] = useState(null);
   //   // map through the event data that is comming in - ev is event
