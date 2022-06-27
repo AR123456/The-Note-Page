@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import GoogleMapReact from "google-map-react";
-// import LocationMarker from "./LocationMarker";
+import LocationMarker from "./LocationMarker";
 // import LocationInfoBox from "./LocationInfoBox";
 
 // define constants
@@ -27,10 +27,11 @@ const Map = ({ eventData, center, zoom }) => {
     <div className="map">
       <GoogleMapReact
         //   this should not be put out onweb
-        bootstrapURLKeys={{ key: "#" }}
+        bootstrapURLKeys={{ key: "" }}
         defaultCenter={center}
         defaultZoom={zoom}
       >
+        <LocationMarker lat={center.lat} lng={center.lng}></LocationMarker>
         {/* {markers} */}
       </GoogleMapReact>
       {/* {locationInfo && <LocationInfoBox info={locationInfo} />} */}
