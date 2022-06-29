@@ -6,6 +6,30 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+// refreshing the token
+app.post("/refresh", (req, res) => {
+  const refreshToken = req.body.refreshToken;
+  const spotifyApi = new SpotifyWebApi({
+    redirectUri: "http://localhost:3000",
+    clientId: "3",
+    clientSecret: "3",
+    refreshToken,
+  });
+  spotifyApi
+    .refreshAccessToken()
+    .then((data) => {
+      // console.log(data.body);
+      res.json({
+        // should they be access_token, expires_in?
+        accessToken: data.body.accessToken,
+        expiresIn: data.body.expiresIn,
+      });
+    })
+    .catch(() => {
+      res.sendStatus(400);
+    });
+});
+
 // just posting a simple login application
 app.post("/login", (req, res) => {
   // pass the code up in the req.body
@@ -13,8 +37,8 @@ app.post("/login", (req, res) => {
   // creating a class here- these should be in a .env
   const spotifyApi = new SpotifyWebApi({
     redirectUri: "http://localhost:3000",
-    clientId: "a3856d12aaac4e8490ecb4268d2fa21b",
-    clientSecret: "5d2d39db580c4cc1b3bf7f74851fea99",
+    clientId: "3",
+    clientSecret: "3",
   });
   spotifyApi
     .authorizationCodeGrant(code)
