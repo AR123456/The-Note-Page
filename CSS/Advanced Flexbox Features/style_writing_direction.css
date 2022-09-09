@@ -1,0 +1,46 @@
+.flex {
+  display: flex;
+}
+.box {
+  flex-grow: 1;
+  width: 200px;
+  height: 200px;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(200, 100%, 80%);
+  border: 3px solid hsl(200, 100%, 50%);
+}
+.flex {
+  /* gap property in flex box -supported in almost all bowser */
+  /* no need to use grid  */
+  /* gap: 2rem; */
+  /*  works when content wraps too  */
+  /* flex-wrap: wrap; */
+}
+/* also works when changing document flow  */
+/* .flex {
+  flex-direction: column;
+  flex-direction: row;
+  flex-direction: row-reverse;
+  flex-direction: column-reverse;
+} */
+/* by default it is row based but can change the writing mode  */
+.flex {
+  /*  this will even turn the text around  */
+  writing-mode: vertical-lr;
+  /* changes the postion at flex-start  */
+  align-items: flex-start;
+  /*  this will even turn the text around  */
+  writing-mode: vertical-rl;
+  /* changes the postion at flex-start  */
+  align-items: flex-start;
+}
+.box {
+}
+.box:nth-child(2) {
+  height: 100px;
+  width: 100px;
+}
+/* https://www.youtube.com/watch?v=1zKX71GYisE */
