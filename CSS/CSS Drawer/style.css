@@ -49,3 +49,24 @@ p {
   margin: 50px 20px;
   top: 100px;
 }
+.slideshow-indicator {
+  display: flex;
+  width: 30%;
+  align-items: center;
+}
+.slideshow-indicator div {
+  margin: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(208, 208, 208);
+}
+.slideshow-indicator div:last-child {
+  background-color: rgb(0, 166, 233);
+}
+.modal-button {
+  width: 70px;
+  height: 70px;
+}
+svg {
+  stroke: rgb(0, 166, 233);
+}
