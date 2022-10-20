@@ -9,6 +9,10 @@ const targetSheet = styleSheetsArray.find((styleSheet) => {
     }
   }
 });
+// style sheets list interface
+// cons loging out some of it
+// cssRules property
+// https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules
 console.log(targetSheet);
 console.log(targetSheet.cssRules);
 console.log(targetSheet.cssRules[0]);
