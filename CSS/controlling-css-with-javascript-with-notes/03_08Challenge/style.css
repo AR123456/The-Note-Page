@@ -40,3 +40,11 @@ body {
 
   /* transform: rotate(105deg); */
 }
+/* .box {
+  width: 22rem;
+  height: 22rem;
+  border: 1rem solid black;
+  transition: transform 1s ease-in-out;
+  transform: rotate(105deg);
+  transform-origin: center;
+} */
