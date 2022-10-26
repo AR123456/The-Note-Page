@@ -21,3 +21,4 @@ console.log(styleSheet.cssRules[4].style.getPropertyValue("--font-size"));
 
 console.log(styleSheet.cssRules[4].styleMap.get("--font-size").value);
 console.log(styleSheet.cssRules[4].styleMap.get("--font-size").unit);
+// 3em is computationaly dependend a relatvie unit
