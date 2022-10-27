@@ -16,18 +16,20 @@ const rootRules = document.styleSheets[0].cssRules[0];
 // change color swatch text to display current HSLA value
 // make text readable across all color options
 
-window.CSS.registerProperty({
-  name: "--hue",
-  syntax: "<integer>",
-  inherits: false,
-  initialValue: "20",
-});
+// window.CSS.registerProperty({
+//   name: "--hue",
+//   syntax: "<integer>",
+//   inherits: false,
+//   initialValue: "20",
+// });
 
 hue.addEventListener("input", () => {
   console.log(hue.value);
-  rootRules.style.setProperty("--hue", hue.value);
-  console.log(rootRules.selectorText.hue);
-  console.log(rootRules);
+  // property name and the value
+  rootRules.style.setProperty("hue", hue.value);
+  console.log(currentColors.getPropertyValue("--hue"));
+  // console.log(rootRules);
+  console.log(colorSwatch.innerHTML);
 });
 saturation.addEventListener("input", () => {
   console.log(saturation.value);
