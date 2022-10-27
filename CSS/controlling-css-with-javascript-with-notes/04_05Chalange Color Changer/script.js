@@ -23,16 +23,19 @@ window.CSS.registerProperty({
   initialValue: "20",
 });
 
-hue.addEventListener("change", () => {
- 
+hue.addEventListener("input", () => {
   console.log(hue.value);
+  rootRules.style.setProperty("--hue", hue.value);
+  console.log(rootRules.selectorText.hue);
+  console.log(rootRules);
 });
-saturation.addEventListener("change", () => {
+saturation.addEventListener("input", () => {
   console.log(saturation.value);
 });
-lightness.addEventListener("change", () => {
+lightness.addEventListener("input", () => {
   console.log(lightness.value);
 });
-alpha.addEventListener("change", () => {
+alpha.addEventListener("input", () => {
   console.log(alpha.value);
 });
+// console.log(window.getComputedStyle(colorSwatch));
