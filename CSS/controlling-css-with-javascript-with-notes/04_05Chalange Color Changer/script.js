@@ -19,7 +19,7 @@ const rootRules = document.styleSheets[0].cssRules[0];
 const currentColors = window.getComputedStyle(colorSwatch);
 
 hue.addEventListener("input", () => {
-  console.log(hue.value);
+  // console.log(hue.value);
   // property name and the value
   rootRules.style.setProperty("--hue", hue.value);
   console.log(currentColors.getPropertyValue("--hue"));
@@ -34,13 +34,37 @@ hue.addEventListener("input", () => {
 });
 saturation.addEventListener("input", () => {
   console.log(saturation.value);
+  rootRules.style.setProperty("--saturation", saturation.value);
+  colorSwatch.innerHTML = `hsla(${currentColors.getPropertyValue(
+    "--hue"
+  )}, ${currentColors.getPropertyValue(
+    "--saturation"
+  )}%, ${currentColors.getPropertyValue(
+    "--lightness"
+  )}%, ${currentColors.getPropertyValue("--alpha")});`;
 });
 lightness.addEventListener("input", () => {
   console.log(lightness.value);
+  rootRules.style.setProperty("--lightness", lightness.value);
+  colorSwatch.innerHTML = `hsla(${currentColors.getPropertyValue(
+    "--hue"
+  )}, ${currentColors.getPropertyValue(
+    "--saturation"
+  )}%, ${currentColors.getPropertyValue(
+    "--lightness"
+  )}%, ${currentColors.getPropertyValue("--alpha")});`;
 });
 alpha.addEventListener("input", () => {
-  parseInt(alpha.value) / 100;
-  console.log(alpha.value);
+  // console.log(alpha.value);
   console.log(parseInt(alpha.value) / 100);
+  alphaNew = parseInt(alpha.value) / 100;
+  rootRules.style.setProperty("--alpha", alphaNew);
+  colorSwatch.innerHTML = `hsla(${currentColors.getPropertyValue(
+    "--hue"
+  )}, ${currentColors.getPropertyValue(
+    "--saturation"
+  )}%, ${currentColors.getPropertyValue(
+    "--lightness"
+  )}%, ${currentColors.getPropertyValue("--alpha")});`;
 });
 // console.log(window.getComputedStyle(colorSwatch));
