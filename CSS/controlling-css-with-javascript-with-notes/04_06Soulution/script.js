@@ -1,3 +1,5 @@
+// this solution is very verbose
+
 // the sliders
 const hue = document.querySelector("#hue");
 const saturation = document.querySelector("#saturation");
