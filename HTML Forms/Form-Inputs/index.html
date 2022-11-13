@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Form</title>
+  </head>
+  <body>
+    <!-- default is to submit to "/" or the same page you are on  -->
+    <!-- default metood is GET so do not have to specify, append to URL and send to another page on site    -->
+    <!-- use post when there is a sever and you need to save some information   -->
+    <!-- Browsers can only handle GETs so if you try to use POST and there is no server will get an error -->
+    <!-- GET is in URL  POST is in body  -->
+    <!-- <form action="results.html" method="GET"> -->
+    <!-- use the enctype when submitting a file  enctype of multipart form data sends the file in parts since it is too large to send all at once  -->
+    <form action="results.html" method="GET" enctype="multipart/form-data">
+      <div id="error"></div>
+      <div>
+        <!-- use for so that label highlights input with ID matching name -->
+        <label for="name">Name</label>
+        <!-- in order for this to show up in the dom it needs a name -->
+        <!-- value sets the default value for the property  -->
+        <!-- required forces user to fill in before form can be submitted if there is a default value defined that gets submitted -->
+        <input type="text" id="name" name="name" value="User" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <!-- inputs are self closing  -->
+        <!-- type of password hides what is being typed in box  -->
+        <!-- placeholder shows text but dosnet submit like value does  -->
+        <input type="password" id="password" name="password" />
+      </div>
+      <div>
+        <label for="age">Age</label>
+        <!-- 11:01 into video https://www.youtube.com/watch?v=fNcJuPIZ2WE -->
+        <input
+          type="number"
+          name="age"
+          id="age"
+          min=".001"
+          max="100"
+          step="any"
+        />
+      </div>
+      <div>
+        <label for="date ">Date of birth</label>
+        <!-- date picker  -->
+        <input type="date" name="date" id="date" min="1905-06-10" />
+      </div>
+      <div>
+        Favorite Food Checkboxes
+        <!-- each check box gets its own label -->
+        <!-- with check boxes users can check all or some -->
+        <div>
+          <label for="banana">Banana</label>
+          <input type="checkbox" name="banana" id="banana" />
+        </div>
+        <div>
+          <label for="apple">Apple</label>
+          <input type="checkbox" name="apple" id="apple" />
+        </div>
+      </div>
+      <!--  Radio buttons only get one choice  -->
+      <div>
+        Gender
+        <div>
+          <label for="male">Male</label>
+          <!-- all radio buttons need to share same name  and each one needs to have a value so that something gets submitted-->
+          <input type="radio" name="gender" id="male" value="male" />
+        </div>
+        <div>
+          <label for="female">Female</label>
+          <!-- all radio buttons need to share same name -->
+          <input type="radio" name="gender" id="female" value="female" />
+        </div>
+      </div>
+      <!-- select is diffent but acts a lot like an input element 
+       -->
+      <div>
+        <label for="eyeColor">Eye eyeColor</label>
+        <!-- adding multiple allows for selection of more than one with use of CNTL key  -->
+        <select name="eyeColor" id="eyeColor" multiple>
+          <option value="Green">Green</option>
+          <option value="Blue">Blue</option>
+          <option value="Brown">Brown</option>
+          <!-- using label presents as choice instead of putting it between the tags  -->
+          <option label="Red" value="red"></option>
+        </select>
+      </div>
+      <!-- text area allows for more room -->
+      <div>
+        <!-- the value goes in here not inside the tag -->
+        <textarea name="bio" id="bio" cols="30" rows="10">
+       This default text is like the value attribute it gets submitted in the URL just like other stuff in the "GET" method .
+        </textarea>
+      </div>
+      <div>
+        <!-- a hidden input element needs no label -->
+        <input type="hidden" name="hidden" value="hidden Hi " />
+      </div>
+      <!-- the file input lets you submit a file -->
+      <div>
+        <label for="file">File</label>
+        <input type="file" id="file" name="file" />
+      </div>
+      <!-- phone type input gives user a telephone keypad if they are on a mobile -->
+      <div>
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" />
+      </div>
+      <!--  a url type input  give user a special keypad for entering uls if they are on a mobile -->
+      <div>
+        <label for="url">URL</label>
+        <input type="url" name="url" id="url" />
+      </div>
+      <!-- color is used for a color picker  -->
+      <div>
+        <label for="color">Color</label>
+        <input type="color" name="color" id="color" />
+      </div>
+      <!-- type of submit so that enter key will also submit the form  -->
+      <button type="submit ">Submit</button>
+      <!-- when a button has a type of reset it will reset the form back to its defaults -->
+      <button type="reset">Reset</button>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
