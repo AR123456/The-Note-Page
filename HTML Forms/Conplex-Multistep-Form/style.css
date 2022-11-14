@@ -5,6 +5,7 @@
   padding: 0.5rem;
   max-width: 300px;
   margin: 0 auto;
+  display: none;
 }
 .form-group {
   display: flex;
@@ -30,4 +31,7 @@
   margin: 0;
   margin-bottom: 1rem;
   text-align: center;
+}
+.card.active {
+  display: block;
 }
