@@ -10,7 +10,7 @@
   <body>
     <form action="" data-multi-step>
       <!-- only first step active by default  -->
-      <div class="card active" data-step="1">
+      <div class="card" data-step>
         <h3 class="step-title">This is step one of multi step form</h3>
         <div class="form-group">
           <label for="email">Email</label>
@@ -21,9 +21,9 @@
           <input type="password" id="password" name="password" />
         </div>
         <!-- this button has type of button not submit -->
-        <button type="button">Next</button>
+        <button type="button" data-next>Next</button>
       </div>
-      <div class="card" data-step="2">
+      <div class="card" data-step>
         <h3 class="step-title">This is step two of multi step form</h3>
         <div class="form-group">
           <label for="address">Address</label>
@@ -38,10 +38,10 @@
           <input type="text" name="zipcode" id="zipcode" />
         </div>
         <!-- this button has type of button not submit -->
-        <button type="button">Previous</button>
-        <button type="button">Next</button>
+        <button type="button" data-previous>Previous</button>
+        <button type="button" data-next>Next</button>
       </div>
-      <div class="card" data-step="3">
+      <div class="card" data-step>
         <h3 class="step-title">This is step three of multi step form</h3>
         <div class="form-group">
           <label for="address">First Name</label>
@@ -53,7 +53,7 @@
         </div>
 
         <!-- this button has type of button not submit -->
-        <button type="button">Previous</button>
+        <button type="button" data-previous>Previous</button>
 
         <button type="submit">Submit</button>
       </div>
