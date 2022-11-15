@@ -11,13 +11,16 @@
     <!-- https://www.youtube.com/watch?v=iX_QyjdctsQ&t=245s -->
     <h1>HTML Tags top 5</h1>
     <form action="">
+      <!-- fieldset helps screen readers and puts a box around the actual elements.  And puts text inside of elements so we know what it is supposed to be -->
       <fieldset>
+        <!-- legend used with fieldset to add to surrounding border box -->
         <legend>Favorites</legend>
         <div>
           <label>Color</label>
         </div>
         <div>
           <input type="text" list="color-list" />
+          <!-- datalist  built in searchable field, can completion match or add a value that is not even in the list  -->
           <datalist id="color-list">
             <option value="Red"></option>
             <option value="Green"></option>
@@ -28,6 +31,22 @@
             <option value="Purple"></option>
             <option value="Cyan"></option>
             <option value="Pink"></option>
+          </datalist>
+        </div>
+        <br />
+        <div>
+          <label>Fruit</label>
+        </div>
+        <div>
+          <!-- the list property needs to match the id of the list -->
+          <input type="text" list="fruit-list" />
+          <datalist id="fruit-list">
+            <option value="Banana"></option>
+            <option value="Strawberry"></option>
+            <option value="Blackberry"></option>
+            <option value="Blueberry"></option>
+            <option value="Peach"></option>
+            <option value="Pear"></option>
           </datalist>
         </div>
       </fieldset>
