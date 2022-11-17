@@ -22,6 +22,7 @@
           <input type="text" list="color-list" />
           <!-- datalist  built in searchable field, can completion match or add a value that is not even in the list  -->
           <datalist id="color-list">
+            <!-- the value atribute that shows in the drop down  -->
             <option value="Red"></option>
             <option value="Green"></option>
             <option value="Blue"></option>
@@ -32,6 +33,13 @@
             <option value="Cyan"></option>
             <option value="Pink"></option>
           </datalist>
+        </div>
+        <br />
+        <div>
+          <label>Color Picker</label>
+        </div>
+        <div>
+          <input type="color" />
         </div>
         <br />
         <div>
@@ -48,6 +56,27 @@
             <option value="Peach"></option>
             <option value="Pear"></option>
           </datalist>
+        </div>
+        <br />
+        <!-- time  -->
+        <div>
+          <label>Time</label>
+        </div>
+        <div>
+          <input type="time" />
+        </div>
+        <!-- the progress tag - often use as part of a form -->
+        <div>
+          <label>File upload no min or max</label>
+        </div>
+        <div>
+          <progress></progress>
+        </div>
+        <div>
+          <label>File upload half done</label>
+        </div>
+        <div>
+          <progress value="50" max="100"></progress>
         </div>
       </fieldset>
     </form>
