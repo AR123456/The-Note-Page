@@ -10,7 +10,8 @@
   </head>
   <body>
     <!-- https://www.youtube.com/watch?v=iX_QyjdctsQ&t=245s -->
-    <h1>HTML Tags top 5</h1>
+    <h3>HTML Tags top 5</h3>
+
     <form action="">
       <!-- fieldset helps screen readers and puts a box around the actual elements.  And puts text inside of elements so we know what it is supposed to be -->
       <fieldset>
@@ -82,28 +83,34 @@
       </fieldset>
     </form>
     <br />
-    <div><h2>The sub and sup elements</h2></div>
+    <div><h4>The sub and sup elements</h4></div>
     <div>
       <p>H <sub>2</sub>O</p>
-    </div>
-    <div>
       <p>O <sub>2</sub></p>
-    </div>
-    <div>
       <p>X <sup>^</sup>2 <sup>*</sup>y <sup>^</sup>4</p>
     </div>
-    <br />
+
     <div>
-      Serving a small picture image if the screen is small and a larger image if
-      the screen is larger
+      <h5>
+        Serving a small picture image if the screen is small and a larger image
+        if the screen is larger
+      </h5>
     </div>
     <picture>
       <!-- srcset is a path to another image -->
       <!-- the media query says only show the larger image if the screen is a min width of ...  -->
-      <source srcset="/cool-brain.jpg" media="(min-width: 400px)" />
+      <!-- the source element supports webp image -->
+      <source srcset="/cool-brain.jpg" media="(min-width: 40px)" />
       <!-- after the source tag put the image to display on smaller screen -->
-      <img src="/heart-small.jpg" style="width: 300px" alt="" />
+      <img src="/heart-small.jpg" style="width: 30px" alt="" />
     </picture>
+    <!-- templates do not show up on their own, access via javascript  -->
+    <template>
+      <h5>
+        this is a template, you only see this because of what is happening in
+        app.js !
+      </h5>
+    </template>
     <script src="app.js"></script>
   </body>
 </html>
