@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- meta tag can provide card like pop ups  -->
     <link rel="stylesheet" href="style.css" />
     <title>Important HTML Tags</title>
   </head>
@@ -80,6 +81,29 @@
         </div>
       </fieldset>
     </form>
+    <br />
+    <div><h2>The sub and sup elements</h2></div>
+    <div>
+      <p>H <sub>2</sub>O</p>
+    </div>
+    <div>
+      <p>O <sub>2</sub></p>
+    </div>
+    <div>
+      <p>X <sup>^</sup>2 <sup>*</sup>y <sup>^</sup>4</p>
+    </div>
+    <br />
+    <div>
+      Serving a small picture image if the screen is small and a larger image if
+      the screen is larger
+    </div>
+    <picture>
+      <!-- srcset is a path to another image -->
+      <!-- the media query says only show the larger image if the screen is a min width of ...  -->
+      <source srcset="/cool-brain.jpg" media="(min-width: 400px)" />
+      <!-- after the source tag put the image to display on smaller screen -->
+      <img src="/heart-small.jpg" style="width: 300px" alt="" />
+    </picture>
     <script src="app.js"></script>
   </body>
 </html>
