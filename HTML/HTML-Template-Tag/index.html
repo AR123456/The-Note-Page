@@ -10,7 +10,7 @@
   <body>
     <h1>HTML Template Tag</h1>
     <h3>Use case a list that can be dynamically added to</h3>
-    <ul>
+    <ul id="list">
       <li>
         <span>Item 1:</span>
         <span>Content 1</span>
@@ -19,10 +19,11 @@
         <span>Item 2:</span>
         <span>Content 2</span>
       </li>
-      <template>
+      <button id="add-item">Add Item</button>
+      <template id="list-item-template">
         <li>
-          <span>Item: </span>
-          <span>Content</span>
+          <span class="title">Item: </span>
+          <span class="content">Content</span>
         </li>
       </template>
     </ul>
