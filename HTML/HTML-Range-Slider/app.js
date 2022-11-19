@@ -7,4 +7,5 @@ range.addEventListener("input", (e) => {
   label.innerHTML = value;
   // make the position of the element follow the range
   // calculate the position of the label and have it follow the thumb
+  // doing this with JS
 });
