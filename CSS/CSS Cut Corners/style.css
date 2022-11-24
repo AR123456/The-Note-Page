@@ -4,3 +4,14 @@ body {
   place-content: center;
   font-size: clamp(2rem, 1rem + 5vw, 4rem);
 }
+/* locally scoped custom property variables  */
+.button {
+  --background-color: white;
+  --border-color: linear-gradient(to bottom right, red, blue);
+  --border-width: 0.5em;
+  --edge-size: 0.5em;
+
+  display: inline-grid;
+  padding: 0.5em 1.5em;
+  border: 0;
+}
