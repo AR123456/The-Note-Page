@@ -24,3 +24,12 @@ body {
     /* bottom left  */ 0 100%
   );
 }
+.button::before,
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.button::before {
+  background: var(--border-color);
+}
