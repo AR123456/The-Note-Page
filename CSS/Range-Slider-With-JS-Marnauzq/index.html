@@ -10,34 +10,38 @@
   <body>
     <div id="wrapper">
       <div id="sliderContainer">
+        Savings plan Inputs
         <div class="tick-slider">
           <div class="tick-slider-header">
-            <h5><label for="weightSlider">Total weight</label></h5>
-            <h5>kg</h5>
+            <h5><label for="weightSlider">Savings goal $:</label></h5>
+            <h5>$</h5>
+          </div>
+          <div class="input-amount col-2 col-lg-2">
+            <input id="savingsInput" value="10000" style="width: 85px" />
           </div>
           <div class="tick-slider-value-container">
-            <div id="weightLabelMin" class="tick-slider-label">0</div>
-            <div id="weightLabelMax" class="tick-slider-label">100000</div>
-            <div id="weightValue" class="tick-slider-value"></div>
+            <div id="goalLabelMin" class="tick-slider-label">0</div>
+            <div id="goalLabelMax" class="tick-slider-label">100000</div>
+            <div id="goalValue" class="tick-slider-value"></div>
           </div>
           <div class="tick-slider-background"></div>
-          <div id="weightProgress" class="tick-slider-progress"></div>
-          <div id="weightTicks" class="tick-slider-tick-container"></div>
+          <div id=" goalProgress" class="tick-slider-progress"></div>
+          <div id="goalTickmarks" class="tick-slider-tick-container"></div>
           <input
-            id="weightSlider"
+            id=" savingsRange"
             class="tick-slider-input"
             type="range"
             min="0"
             max="100000"
-            step="25000"
+            step="2500"
             value="10000"
-            data-tick-step="5000"
-            data-tick-id="weightTicks"
-            data-value-id="weightValue"
-            data-progress-id="weightProgress"
+            data-tick-step="2500"
+            data-tick-id="goalTickmarks"
+            data-value-id="goalValue"
+            data-progress-id=" goalProgress"
             data-handle-size="18"
-            data-min-label-id="weightLabelMin"
-            data-max-label-id="weightLabelMax"
+            data-min-label-id="goalLabelMin"
+            data-max-label-id="goalLabelMax"
           />
         </div>
         <div class="tick-slider">
