@@ -1,12 +1,16 @@
 /* https://codepen.io/viestursm/pen/BayEjaN */
-
+/* blue  #053E6A */
+/* green #2fa22f */
+/* background #ffffff */
+/* track #BFBFBF */
 @import url("https://fonts.googleapis.com/css?family=Hind+Madurai:300,600|Poppins:300&display=swap");
 
 :root {
-  --yellow: #ffd049;
-  --light-yellow: #fdf2d2;
-  --orange: #ffa929;
-  --light-gray: #e3e4e8;
+  --yellow: #2fa22f;
+  --light-yellow: blue;
+  --orange: #2fa22f;
+  /* track */
+  --light-gray: black;
   --gray: #71738b;
   --light-blue: #7a7c93;
   --blue: #34385a;
