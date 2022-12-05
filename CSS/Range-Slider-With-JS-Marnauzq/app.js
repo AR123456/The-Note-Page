@@ -4,7 +4,7 @@ function init() {
   const sliders = document.getElementsByClassName("tick-slider-input");
 
   for (let slider of sliders) {
-    slider.oninput = onSliderInput;
+    // slider.oninput = onSliderInput;
 
     // updateValue(slider);
     // updateValuePosition(slider);
@@ -70,7 +70,7 @@ function getSliderPercent(slider) {
 // This function is drawing the tick marks onto the page
 function setTicks(slider) {
   let container = document.getElementById(slider.dataset.tickId);
-
+  console.log(container);
   const spacing = parseFloat(slider.dataset.tickStep);
   // console.log("spacing" + spacing);
   const sliderRange = slider.max - slider.min;
