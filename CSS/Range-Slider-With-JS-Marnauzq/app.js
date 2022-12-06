@@ -6,9 +6,9 @@ function init() {
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
 
-    updateValue(slider);
-    updateValuePosition(slider);
-    updateLabels(slider);
+    // updateValue(slider);
+    // updateValuePosition(slider);
+    // updateLabels(slider);
     updateProgress(slider);
 
     setTicks(slider);
@@ -16,57 +16,44 @@ function init() {
 }
 
 function onSliderInput(event) {
-  updateValue(event.target);
-  updateValuePosition(event.target);
-  updateLabels(event.target);
+  // after first draw this updates what is green vs what is black
   updateProgress(event.target);
 }
 
 function updateValue(slider) {
-  let value = document.getElementById(slider.dataset.valueId);
-
-  value.innerHTML = "<div>" + slider.value + "</div>";
+  // let value = document.getElementById(slider.dataset.valueId);
+  // value.innerHTML = "<div>" + slider.value + "</div>";
 }
 
 function updateValuePosition(slider) {
-  let value = document.getElementById(slider.dataset.valueId);
-
-  const percent = getSliderPercent(slider);
-
-  const sliderWidth = slider.getBoundingClientRect().width;
-  const valueWidth = value.getBoundingClientRect().width;
-  const handleSize = slider.dataset.handleSize;
-
-  let left =
-    percent * (sliderWidth - handleSize) + handleSize / 2 - valueWidth / 2;
-
-  left = Math.min(left, sliderWidth - valueWidth);
-  left = slider.value === slider.min ? 0 : left;
-
-  value.style.left = left + "px";
+  // let value = document.getElementById(slider.dataset.valueId);
+  // const percent = getSliderPercent(slider);
+  // const sliderWidth = slider.getBoundingClientRect().width;
+  // const valueWidth = value.getBoundingClientRect().width;
+  // const handleSize = slider.dataset.handleSize;
+  // let left =
+  //   percent * (sliderWidth - handleSize) + handleSize / 2 - valueWidth / 2;
+  // left = Math.min(left, sliderWidth - valueWidth);
+  // left = slider.value === slider.min ? 0 : left;
+  // value.style.left = left + "px";
 }
 
 function updateLabels(slider) {
-  const value = document.getElementById(slider.dataset.valueId);
-  const minLabel = document.getElementById(slider.dataset.minLabelId);
-  const maxLabel = document.getElementById(slider.dataset.maxLabelId);
-
-  const valueRect = value.getBoundingClientRect();
-  const minLabelRect = minLabel.getBoundingClientRect();
-  const maxLabelRect = maxLabel.getBoundingClientRect();
-
-  const minLabelDelta = valueRect.left - minLabelRect.left;
-  const maxLabelDelta = maxLabelRect.left - valueRect.left;
-
-  const deltaThreshold = 32;
-
-  if (minLabelDelta < deltaThreshold) minLabel.classList.add("hidden");
-  else minLabel.classList.remove("hidden");
-
-  if (maxLabelDelta < deltaThreshold) maxLabel.classList.add("hidden");
-  else maxLabel.classList.remove("hidden");
+  // const value = document.getElementById(slider.dataset.valueId);
+  // const minLabel = document.getElementById(slider.dataset.minLabelId);
+  // const maxLabel = document.getElementById(slider.dataset.maxLabelId);
+  // const valueRect = value.getBoundingClientRect();
+  // const minLabelRect = minLabel.getBoundingClientRect();
+  // const maxLabelRect = maxLabel.getBoundingClientRect();
+  // const minLabelDelta = valueRect.left - minLabelRect.left;
+  // const maxLabelDelta = maxLabelRect.left - valueRect.left;
+  // const deltaThreshold = 32;
+  // if (minLabelDelta < deltaThreshold) minLabel.classList.add("hidden");
+  // else minLabel.classList.remove("hidden");
+  // if (maxLabelDelta < deltaThreshold) maxLabel.classList.add("hidden");
+  // else maxLabel.classList.remove("hidden");
 }
-
+// this used to make color green to left and black to right changeing as slider moves
 function updateProgress(slider) {
   let progress = document.getElementById(slider.dataset.progressId);
   const percent = getSliderPercent(slider);
