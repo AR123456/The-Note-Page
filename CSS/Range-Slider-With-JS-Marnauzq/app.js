@@ -51,3 +51,49 @@ function setTicks(slider) {
 
 window.onload = init;
 // window.addEventListener("resize", onResize);
+
+// ///////////////  syncing inputs
+// getting range and text inputs
+const sliderGoal = document.getElementById("savingsRange");
+const inputGoal = document.getElementById("savingsInput");
+function syncInputs() {
+  // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
+
+  sliderGoal.addEventListener("input", function () {
+    inputGoal.value = this.value;
+  });
+  inputGoal.addEventListener("input", function () {
+    sliderGoal.value = this.value;
+  });
+  // sliderYears.addEventListener("input", function () {
+  //   inputYears.value = this.value;
+  // });
+  // inputYears.addEventListener("input", function () {
+  //   sliderYears.value = this.value;
+  // });
+  // sliderCurrentSaved.addEventListener("input", function () {
+  //   inputCurrentSaved.value = this.value;
+  // });
+  // inputCurrentSaved.addEventListener("input", function () {
+  //   sliderCurrentSaved.value = this.value;
+  // });
+  // sliderMonthlySavings.addEventListener("input", function () {
+  //   inputMonthlySavings.value = this.value;
+  // });
+  // inputMonthlySavings.addEventListener("input", function () {
+  //   sliderMonthlySavings.value = this.value;
+  // });
+  // sliderExpectedRate.addEventListener("input", function () {
+  //   inputExpectedRate.value = this.value;
+  // });
+  // inputExpectedRate.addEventListener("input", function () {
+  //   sliderExpectedRate.value = this.value;
+  // });
+  // sliderInflationRate.addEventListener("input", function () {
+  //   inputInflationRate.value = this.value;
+  // });
+  // inputInflationRate.addEventListener("input", function () {
+  //   sliderInflationRate.value = this.value;
+  // });
+}
+syncInputs();

@@ -10,35 +10,48 @@
   <body>
     <div id="wrapper">
       <div id="sliderContainer">
-        <div class="tick-slider">
-          <div class="tick-slider-header">
-            <h5><label for="weightSlider">Total weight</label></h5>
-            <h5>kg</h5>
+        <div class="input-group-text row mb-3">
+          <div class="col-2 col-lg-2">
+            <!-- the "for on the label puts matching ID into focus" -->
+            <label for="savingsInput">Savings goal $: </label>
           </div>
-          <div class="tick-slider-value-container">
-            <div id="weightLabelMin" class="tick-slider-label">0</div>
-            <div id="weightLabelMax" class="tick-slider-label">40</div>
-            <div id="weightValue" class="tick-slider-value"></div>
+
+          <div class="input-amount col-2 col-lg-2">
+            <input id="savingsInput" value="10000" style="width: 85px" />
           </div>
-          <div class="tick-slider-background"></div>
-          <div id="weightProgress" class="tick-slider-progress"></div>
-          <div id="weightTicks" class="tick-slider-tick-container"></div>
-          <input
-            id="weightSlider"
-            class="tick-slider-input"
-            type="range"
-            min="0"
-            max="40"
-            step="5"
-            value="9"
-            data-tick-step="5"
-            data-tick-id="weightTicks"
-            data-value-id="weightValue"
-            data-progress-id="weightProgress"
-            data-handle-size="18"
-            data-min-label-id="weightLabelMin"
-            data-max-label-id="weightLabelMax"
-          />
+          <div class="col-sm-8 col-lg-8">
+            <output for="savingsInput"></output>
+            <div class="tick-slider">
+              <div class="tick-slider-header">
+                <!-- <h5><label for="weightSlider">Total weight</label></h5> -->
+                <h5>$</h5>
+              </div>
+              <div class="tick-slider-value-container">
+                <div id="weightLabelMin" class="tick-slider-label">0</div>
+                <div id="weightLabelMax" class="tick-slider-label">40</div>
+                <div id="weightValue" class="tick-slider-value"></div>
+              </div>
+              <div class="tick-slider-background"></div>
+              <div id="weightProgress" class="tick-slider-progress"></div>
+              <div id="weightTicks" class="tick-slider-tick-container"></div>
+              <input
+                id="weightSlider"
+                class="tick-slider-input"
+                type="range"
+                min="0"
+                max="40"
+                step="5"
+                value="9"
+                data-tick-step="5"
+                data-tick-id="weightTicks"
+                data-value-id="weightValue"
+                data-progress-id="weightProgress"
+                data-handle-size="18"
+                data-min-label-id="weightLabelMin"
+                data-max-label-id="weightLabelMax"
+              />
+            </div>
+          </div>
         </div>
         <!-- <div class="tick-slider">
           <div class="tick-slider-header">
