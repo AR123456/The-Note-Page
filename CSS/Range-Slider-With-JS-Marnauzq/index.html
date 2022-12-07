@@ -17,7 +17,13 @@
           </div>
 
           <div class="input-amount col-2 col-lg-2">
-            <input id="savingsInput" value="10000" style="width: 85px" />
+            <input
+              class="numeric-input"
+              id="savingsInput"
+              type="number"
+              value="100"
+              style="width: 85px"
+            />
           </div>
           <div class="col-sm-8 col-lg-8">
             <output for="savingsInput"></output>
@@ -27,28 +33,27 @@
                 <h5>$</h5>
               </div>
               <div class="tick-slider-value-container">
-                <div id="weightLabelMin" class="tick-slider-label">0</div>
-                <div id="weightLabelMax" class="tick-slider-label">40</div>
-                <div id="weightValue" class="tick-slider-value"></div>
+                <div id="savingsLabelMin" class="tick-slider-label">0</div>
+                <div id="savingsLabelMax" class="tick-slider-label">1000</div>
+                <div id="savingsValue" class="tick-slider-value"></div>
               </div>
               <div class="tick-slider-background"></div>
-              <div id="weightProgress" class="tick-slider-progress"></div>
-              <div id="weightTicks" class="tick-slider-tick-container"></div>
+              <div id="savingsProgress" class="tick-slider-progress"></div>
+              <div id="savingsTicks" class="tick-slider-tick-container"></div>
               <input
-                id="weightSlider"
+                id="savingsRange"
                 class="tick-slider-input"
                 type="range"
                 min="0"
-                max="40"
-                step="5"
-                value="9"
-                data-tick-step="5"
-                data-tick-id="weightTicks"
-                data-value-id="weightValue"
-                data-progress-id="weightProgress"
-                data-handle-size="18"
-                data-min-label-id="weightLabelMin"
-                data-max-label-id="weightLabelMax"
+                max="1000"
+                step="100"
+                value="100"
+                data-tick-step="100"
+                data-tick-id="savingsTicks"
+                data-value-id="savingsValue"
+                data-progress-id="savingsProgress"
+                data-min-label-id="savingsLabelMin"
+                data-max-label-id="savingsLabelMax"
               />
             </div>
           </div>
