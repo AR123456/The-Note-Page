@@ -48,6 +48,7 @@ syncInputs();
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
 function init() {
+  syncInputs();
   // get all the inputs - could this be changed to target  input[type="range"]
   const sliders = document.getElementsByClassName("tick-slider-input");
 
@@ -55,7 +56,6 @@ function init() {
   //TODO
 
   for (let slider of sliders) {
-    console.log(slider, inputGoal);
     slider.oninput = onSliderInput;
 
     updateProgress(slider);
@@ -63,11 +63,13 @@ function init() {
   }
 }
 function onSliderInput(event) {
+  syncInputs();
   // after first draw this updates what is green vs what is black
   updateProgress(event.target);
 }
 // this used to make color green to left and black to right changeing as slider moves
 function updateProgress(slider) {
+  syncInputs();
   // dataset object has all the data-  stuff defined on the input
   // console.log(slider.dataset);
 
@@ -82,6 +84,7 @@ function updateProgress(slider) {
 }
 // using this to update slider black to green
 function getSliderPercent(slider) {
+  syncInputs();
   const range = slider.max - slider.min;
   // console.log(range);
   const absValue = slider.value - slider.min;
