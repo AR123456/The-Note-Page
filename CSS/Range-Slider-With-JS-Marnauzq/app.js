@@ -50,12 +50,14 @@ syncInputs();
 function init() {
   // get all the inputs - could this be changed to target  input[type="range"]
   const sliders = document.getElementsByClassName("tick-slider-input");
+
   // get the numeric text box inputs - doing this to try to get the value from the input box to update the progress bar
   //TODO
-  const numericInputs = document.getElementsByClassName("numeric-input");
 
   for (let slider of sliders) {
+    console.log(slider, inputGoal);
     slider.oninput = onSliderInput;
+
     updateProgress(slider);
     setTicks(slider);
   }
@@ -68,9 +70,12 @@ function onSliderInput(event) {
 function updateProgress(slider) {
   // dataset object has all the data-  stuff defined on the input
   // console.log(slider.dataset);
+
   // this is coming from the data-progress-id of each of the inputs
   let progress = document.getElementById(slider.dataset.progressId);
+
   const percent = getSliderPercent(slider);
+
   // TODO why is "%" needed here
   // what this ends up being is the % of the track that is green
   progress.style.width = percent * 100 + "%";
@@ -78,7 +83,9 @@ function updateProgress(slider) {
 // using this to update slider black to green
 function getSliderPercent(slider) {
   const range = slider.max - slider.min;
+  // console.log(range);
   const absValue = slider.value - slider.min;
+  // console.log(absValue);
 
   return absValue / range;
 }
