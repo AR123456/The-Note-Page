@@ -4,92 +4,257 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style3.css" />
+    <title>Cross Browser Range Inputs</title>
   </head>
   <body>
-    <div id="wrapper">
-      <div id="sliderContainer">
-        <div class="tick-slider">
-          <div class="tick-slider-header">
-            <h5><label for="weightSlider">Total weight</label></h5>
-            <h5>kg</h5>
+    <div class="container-fluid">
+      <form action="">
+        <!-- BUTTONS -->
+        <div class="card">
+          <div class="card-body">
+            <div class="container px-4">
+              <div class="row gx-5">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button
+                    class="p-3 border bg-light text-center"
+                    id="calculate"
+                    type="button"
+                  >
+                    Calculate
+                  </button>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button
+                    class="p-3 border bg-light text-center"
+                    id="viewReport"
+                    type="button"
+                  >
+                    View Report
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tick-slider-value-container">
-            <div id="weightLabelMin" class="tick-slider-label">0</div>
-            <div id="weightLabelMax" class="tick-slider-label">40</div>
-            <div id="weightValue" class="tick-slider-value"></div>
-          </div>
-          <div class="tick-slider-background"></div>
-          <div id="weightProgress" class="tick-slider-progress"></div>
-          <div id="weightTicks" class="tick-slider-tick-container"></div>
-          <input
-            id="weightSlider"
-            class="tick-slider-input"
-            type="range"
-            min="0"
-            max="40"
-            step="5"
-            value="9"
-            data-tick-step="5"
-            data-tick-id="weightTicks"
-            data-value-id="weightValue"
-            data-progress-id="weightProgress"
-            data-handle-size="18"
-            data-min-label-id="weightLabelMin"
-            data-max-label-id="weightLabelMax"
-          />
         </div>
-        <div class="tick-slider">
-          <div class="tick-slider-header">
-            <h5><label for="sizeSlider">Total size</label></h5>
-            <h5>cm</h5>
+        <div class="card">
+          <div class="card-body" id="actualTime">
+            <!-- <span
+              >You will reach your goal in <span id="actualTime"></span> months.</span>
+            </span> -->
+            <!-- <span
+              >You will need <span id="actualTime"></span> months to reach your goal.</span>
+            </span> -->
           </div>
-          <div class="tick-slider-value-container">
-            <div id="sizeLabelMin" class="tick-slider-label">0</div>
-            <div id="sizeLabelMax" class="tick-slider-label">300</div>
-            <div id="sizeValue" class="tick-slider-value"></div>
-          </div>
-          <div class="tick-slider-background"></div>
-          <div id="sizeProgress" class="tick-slider-progress"></div>
-          <div id="sizeTicks" class="tick-slider-tick-container"></div>
-          <input
-            id="sizeSlider"
-            class="tick-slider-input"
-            type="range"
-            min="0"
-            max="300"
-            step="25"
-            value="150"
-            data-tick-step="25"
-            data-tick-id="sizeTicks"
-            data-value-id="sizeValue"
-            data-progress-id="sizeProgress"
-            data-handle-size="18"
-            data-min-label-id="sizeLabelMin"
-            data-max-label-id="sizeLabelMax"
-          />
         </div>
-      </div>
-    </div>
+        <div class="card">
+          <div class="card-body">
+            Savings Plan Inputs
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="savingsInput">Savings goal $: </label>
+              </div>
 
-    <!-- Twitter link -->
-    <a
-      class="twitter"
-      style="position: fixed; left: 20px; bottom: 20px; opacity: 0.2"
-      href="https://twitter.com/park_narrative"
-      target="_blank"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 72 72"
-      >
-        <path
-          fill="black"
-          d="M67.812 16.141a26.246 26.246 0 0 1-7.519 2.06 13.134 13.134 0 0 0 5.756-7.244 26.127 26.127 0 0 1-8.313 3.176A13.075 13.075 0 0 0 48.182 10c-7.229 0-13.092 5.861-13.092 13.093 0 1.026.118 2.021.338 2.981-10.885-.548-20.528-5.757-26.987-13.679a13.048 13.048 0 0 0-1.771 6.581c0 4.542 2.312 8.551 5.824 10.898a13.048 13.048 0 0 1-5.93-1.638c-.002.055-.002.11-.002.162 0 6.345 4.513 11.638 10.504 12.84a13.177 13.177 0 0 1-3.449.457c-.846 0-1.667-.078-2.465-.231 1.667 5.2 6.499 8.986 12.23 9.09a26.276 26.276 0 0 1-16.26 5.606A26.21 26.21 0 0 1 4 55.976a37.036 37.036 0 0 0 20.067 5.882c24.083 0 37.251-19.949 37.251-37.249 0-.566-.014-1.134-.039-1.694a26.597 26.597 0 0 0 6.533-6.774z"
-        ></path></svg
-    ></a>
+              <div class="input-amount col-2 col-lg-2">
+                <input id="savingsInput" value="10000" style="width: 85px" />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <output for="savingsInput"></output>
+
+                <div
+                  id="goalTickmarks"
+                  class="tick-slider-tick-container"
+                ></div>
+                <input
+                  class="tick-slider-input"
+                  data-tick-step="2500"
+                  data-tick-id="goalTickmarks"
+                  id="savingsRange"
+                  type="range"
+                  min="0"
+                  max="100000"
+                  list="goalTickmarks"
+                  value="10000"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="yearsInput">Years to save </label>
+              </div>
+
+              <div class="input-amount col-2 col-lg-2">
+                <input
+                  id="yearsInput"
+                  min="0"
+                  max="100"
+                  value="10"
+                  type="number"
+                  style="width: 85px"
+                />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <datalist id="yearsTickmarks">
+                  <option value="1" label="1"></option>
+                  <option value="34" label="34"></option>
+                  <option value="67" label="67"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+                <input
+                  id="yearsRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="yearsTickmarks"
+                  value="10"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="currentSavedInput">Current saved </label>
+              </div>
+
+              <div class="input-amount col-2 col-lg-2">
+                <input
+                  id="currentSavedInput"
+                  value="1000"
+                  type="number"
+                  style="width: 85px"
+                />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <datalist id="currentSavedTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="250000" label="2"></option>
+                  <option value="500000" label="5"></option>
+                  <option value="750000" label="7"></option>
+                  <option value="1000000" label="10"></option>
+                </datalist>
+                <input
+                  id="currentSavedRange"
+                  type="range"
+                  min="0"
+                  max="1000000"
+                  list="currentSavedTickmarks"
+                  value="1000"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="monthlySavingsInput">Monthly Savings $: </label>
+              </div>
+
+              <div class="input-amount col-2 col-lg-2">
+                <input
+                  id="monthlySavingsInput"
+                  value="500"
+                  type="number"
+                  style="width: 85px"
+                />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <datalist id="monthlySavingsTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="250000" label="2"></option>
+                  <option value="500000" label="5"></option>
+                  <option value="750000" label="7"></option>
+                  <option value="1000000" label="10"></option>
+                </datalist>
+                <input
+                  id="monthlySavingsRange"
+                  type="range"
+                  min="0"
+                  max="1000000"
+                  list="monthlySavingsTickmarks"
+                  value="500"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedRateInput"
+                  >Expected Rate of Return %:
+                </label>
+              </div>
+
+              <div class="input-amount col-2 col-lg-2">
+                <input
+                  id="expectedRateInput"
+                  value="2"
+                  type="number"
+                  style="width: 85px"
+                />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <datalist id="rateTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+                <input
+                  id="expectedRateRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="rateTickmarks"
+                  value="2"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div class="input-group-text row mb-3">
+              <div class="col-2 col-lg-2">
+                <!-- the "for on the label puts matching ID into focus" -->
+                <label for="expectedInflationInput">
+                  Expected Rate of Inflation %:
+                </label>
+              </div>
+
+              <div class="input-amount col-2 col-lg-2">
+                <input
+                  id="expectedInflationInput"
+                  value="1"
+                  type="number"
+                  style="width: 85px"
+                />
+              </div>
+              <div class="col-sm-8 col-lg-8">
+                <datalist id="inflationTickmarks">
+                  <option value="0" label="0"></option>
+                  <option value="25" label="25"></option>
+                  <option value="50" label="50"></option>
+                  <option value="77" label="75"></option>
+                  <option value="100" label="100"></option>
+                </datalist>
+                <input
+                  id="expectedInflationRange"
+                  type="range"
+                  min="0"
+                  max="100"
+                  list="inflationTickmarks"
+                  value="1"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
