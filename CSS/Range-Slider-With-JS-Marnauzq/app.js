@@ -50,17 +50,14 @@ syncInputs();
 function init() {
   // get all the inputs - could this be changed to target  input[type="range"]
   const sliders = document.getElementsByClassName("tick-slider-input");
-  const numberInput = document.getElementsByClassName("numeric-input");
 
   // get the numeric text box inputs - doing this to try to get the value from the input box to update the progress bar
   //TODO
 
   for (let slider of sliders) {
-    numberInput.oninput = onSliderInput;
-
     slider.oninput = onSliderInput;
 
-    updateProgress(slider, numberInput);
+    updateProgress(slider);
     setTicks(slider);
   }
 }
@@ -69,7 +66,7 @@ function onSliderInput(event) {
   updateProgress(event.target);
 }
 // this used to make color green to left and black to right changeing as slider moves
-function updateProgress(slider, numberInput) {
+function updateProgress(slider) {
   // dataset object has all the data-  stuff defined on the input
   // console.log(slider.dataset);
 
@@ -84,10 +81,11 @@ function updateProgress(slider, numberInput) {
 }
 // using this to update slider black to green
 function getSliderPercent(slider) {
+  console.log(inputGoal);
   const range = slider.max - slider.min;
-  // console.log(range);
+  console.log(range);
   const absValue = slider.value - slider.min;
-  // console.log(absValue);
+  console.log(absValue);
 
   return absValue / range;
 }
