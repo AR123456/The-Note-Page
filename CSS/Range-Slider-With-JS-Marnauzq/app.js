@@ -1,91 +1,82 @@
-// ///////////////  syncing inputs
-// getting range and text inputs
-const sliderGoal = document.getElementById("savingsRange");
-const inputGoal = document.getElementById("savingsInput");
-function syncInputs() {
-  // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
-
-  sliderGoal.addEventListener("input", function () {
-    inputGoal.value = this.value;
-  });
-  inputGoal.addEventListener("input", function () {
-    sliderGoal.value = this.value;
-  });
-
-  // sliderYears.addEventListener("input", function () {
-  //   inputYears.value = this.value;
-  // });
-  // inputYears.addEventListener("input", function () {
-  //   sliderYears.value = this.value;
-  // });
-  // sliderCurrentSaved.addEventListener("input", function () {
-  //   inputCurrentSaved.value = this.value;
-  // });
-  // inputCurrentSaved.addEventListener("input", function () {
-  //   sliderCurrentSaved.value = this.value;
-  // });
-  // sliderMonthlySavings.addEventListener("input", function () {
-  //   inputMonthlySavings.value = this.value;
-  // });
-  // inputMonthlySavings.addEventListener("input", function () {
-  //   sliderMonthlySavings.value = this.value;
-  // });
-  // sliderExpectedRate.addEventListener("input", function () {
-  //   inputExpectedRate.value = this.value;
-  // });
-  // inputExpectedRate.addEventListener("input", function () {
-  //   sliderExpectedRate.value = this.value;
-  // });
-  // sliderInflationRate.addEventListener("input", function () {
-  //   inputInflationRate.value = this.value;
-  // });
-  // inputInflationRate.addEventListener("input", function () {
-  //   sliderInflationRate.value = this.value;
-  // });
-}
-syncInputs();
-
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
 function init() {
-  // get all the inputs - could this be changed to target  input[type="range"]
   const sliders = document.getElementsByClassName("tick-slider-input");
-
-  // get the numeric text box inputs - doing this to try to get the value from the input box to update the progress bar
-  //TODO
 
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
 
+    updateValue(slider);
+    updateValuePosition(slider);
+    updateLabels(slider);
     updateProgress(slider);
+
     setTicks(slider);
   }
 }
+
 function onSliderInput(event) {
-  // after first draw this updates what is green vs what is black
+  updateValue(event.target);
+  updateValuePosition(event.target);
+  updateLabels(event.target);
   updateProgress(event.target);
 }
-// this used to make color green to left and black to right changeing as slider moves
-function updateProgress(slider) {
-  // dataset object has all the data-  stuff defined on the input
-  // console.log(slider.dataset);
 
-  // this is coming from the data-progress-id of each of the inputs
-  let progress = document.getElementById(slider.dataset.progressId);
+function updateValue(slider) {
+  let value = document.getElementById(slider.dataset.valueId);
+
+  value.innerHTML = "<div>" + slider.value + "</div>";
+}
+
+function updateValuePosition(slider) {
+  let value = document.getElementById(slider.dataset.valueId);
 
   const percent = getSliderPercent(slider);
 
-  // TODO why is "%" needed here
-  // what this ends up being is the % of the track that is green
+  const sliderWidth = slider.getBoundingClientRect().width;
+  const valueWidth = value.getBoundingClientRect().width;
+  const handleSize = slider.dataset.handleSize;
+
+  let left =
+    percent * (sliderWidth - handleSize) + handleSize / 2 - valueWidth / 2;
+
+  left = Math.min(left, sliderWidth - valueWidth);
+  left = slider.value === slider.min ? 0 : left;
+
+  value.style.left = left + "px";
+}
+
+function updateLabels(slider) {
+  const value = document.getElementById(slider.dataset.valueId);
+  const minLabel = document.getElementById(slider.dataset.minLabelId);
+  const maxLabel = document.getElementById(slider.dataset.maxLabelId);
+
+  const valueRect = value.getBoundingClientRect();
+  const minLabelRect = minLabel.getBoundingClientRect();
+  const maxLabelRect = maxLabel.getBoundingClientRect();
+
+  const minLabelDelta = valueRect.left - minLabelRect.left;
+  const maxLabelDelta = maxLabelRect.left - valueRect.left;
+
+  const deltaThreshold = 32;
+
+  if (minLabelDelta < deltaThreshold) minLabel.classList.add("hidden");
+  else minLabel.classList.remove("hidden");
+
+  if (maxLabelDelta < deltaThreshold) maxLabel.classList.add("hidden");
+  else maxLabel.classList.remove("hidden");
+}
+
+function updateProgress(slider) {
+  let progress = document.getElementById(slider.dataset.progressId);
+  const percent = getSliderPercent(slider);
+
   progress.style.width = percent * 100 + "%";
 }
-// using this to update slider black to green
+
 function getSliderPercent(slider) {
-  console.log(inputGoal);
   const range = slider.max - slider.min;
-  console.log(range);
   const absValue = slider.value - slider.min;
-  console.log(absValue);
 
   return absValue / range;
 }
@@ -97,7 +88,6 @@ function setTicks(slider) {
   const tickCount = sliderRange / spacing + 1; // +1 to account for 0
 
   for (let ii = 0; ii < tickCount; ii++) {
-    // spans will be added to the div with class tick-slider-tick-containger
     let tick = document.createElement("span");
 
     tick.className = "tick-slider-tick";
@@ -106,5 +96,13 @@ function setTicks(slider) {
   }
 }
 
+function onResize() {
+  const sliders = document.getElementsByClassName("tick-slider-input");
+
+  for (let slider of sliders) {
+    updateValuePosition(slider);
+  }
+}
+
 window.onload = init;
-// window.addEventListener("resize", onResize);
+window.addEventListener("resize", onResize);

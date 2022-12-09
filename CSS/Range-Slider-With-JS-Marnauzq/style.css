@@ -6,9 +6,10 @@
 @import url("https://fonts.googleapis.com/css?family=Hind+Madurai:300,600|Poppins:300&display=swap");
 
 :root {
+  --yellow: #ffd049;
   --light-yellow: #fdf2d2;
-  --green: #2fa22f;
-  --light-gray: black;
+  --orange: #ffa929;
+  --light-gray: #e3e4e8;
   --gray: #71738b;
   --light-blue: #7a7c93;
   --blue: #34385a;
@@ -20,13 +21,13 @@
   --slider-track-border-radius: 4px;
 }
 
-/* * {
+* {
   box-sizing: border-box;
-} */
+}
 
-/* body {
+body {
   margin: 0 auto;
-} */
+}
 
 #wrapper {
   position: absolute;
@@ -126,7 +127,7 @@
 }
 
 .tick-slider-progress {
-  background-color: var(--green);
+  background-color: var(--yellow);
 }
 
 .tick-slider-tick-container {
@@ -213,7 +214,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
 
-  background: var(--green);
+  background: var(--orange);
 
   border-radius: var(--slider-handle-border-radius);
 
@@ -238,7 +239,7 @@ input[type="range"]::-moz-range-thumb {
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
 
-  background: var(--green);
+  background: var(--orange);
 
   border: none;
   border-radius: var(--slider-handle-border-radius);
