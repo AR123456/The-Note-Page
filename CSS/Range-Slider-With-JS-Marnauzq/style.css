@@ -12,7 +12,8 @@
   /* handle  */
   --orange: #2fa22f;
   /* track before color */
-  --light-gray: #e8e3e3;
+  /* --light-gray: #e8e3e3; */
+  --light-gray: black;
   --gray: #71738b;
   --light-blue: #7a7c93;
   --blue: #34385a;

@@ -43,6 +43,7 @@
             </div>
           </div>
         </div>
+
         <div class="card">
           <div class="card-body" id="actualTime">
             <!-- <span
@@ -53,9 +54,11 @@
             </span> -->
           </div>
         </div>
+        <!-- inputs -->
         <div class="card">
           <div class="card-body">
             Savings Plan Inputs
+            <!-- goal -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
@@ -70,35 +73,49 @@
                   class="num-box-input"
                 />
               </div>
-              <div class="col-sm-8 col-lg-8">
-                <output for="savingsInput"></output>
+              <!-- goal slider -->
+              <div class="tick-slider">
+                <div class="col-sm-8 col-lg-8">
+                  <!-- <output for="savingsInput"></output> -->
 
-                <datalist id="goalTickmarks">
-                  <option value="0" label="$0"></option>
+                  <!-- <datalist id="goalTickmarks"> -->
+                  <!-- <option value="0" label="$0"></option> -->
                   <!-- <option value="125000"></option> -->
-                  <option value="25000" label="$25k"></option>
-                  <option value="50000" label="$50k"></option>
-                  <option value="75000" label="$75k"></option>
-                  <option value="100000" label="$100k"></option>
-                </datalist>
-                <input
-                  id="savingsRange"
-                  type="range"
-                  class="tick-slider-input"
-                  data-tick-step="500"
-                  data-tick-id="goalTicks"
-                  data-value-id="goalValue"
-                  data-progress-id="goalProgress"
-                  data-min-label-id="goalLabelMin"
-                  data-max-label-id="goalLabelMax"
-                  min="0"
-                  max="100000"
-                  list="goalTickmarks"
-                  value="10000"
-                  style="width: 100%"
-                />
+                  <!-- <option value="25000" label="$25k"></option>
+                    <option value="50000" label="$50k"></option>
+                    <option value="75000" label="$75k"></option>
+                    <option value="100000" label="$100k"></option>
+                  </datalist> -->
+                  <div class="tick-slider-value-container">
+                    <div id="goalLabelMin" class="tick-slider-label">0</div>
+                    <div id="goalLabelMax" class="tick-slider-label">
+                      100000
+                    </div>
+                    <div id="goalValue" class="tick-slider-value"></div>
+                  </div>
+                  <div class="tick-slider-background"></div>
+                  <div id="goalProgress" class="tick-slider-progress"></div>
+                  <div id="goalTicks" class="tick-slider-tick-container"></div>
+                  <input
+                    id="savingsRange"
+                    type="range"
+                    class="tick-slider-input"
+                    data-tick-step="500"
+                    data-tick-id="goalTicks"
+                    data-value-id="goalValue"
+                    data-progress-id="goalProgress"
+                    data-min-label-id="goalLabelMin"
+                    data-max-label-id="goalLabelMax"
+                    min="0"
+                    max="100000"
+                    list="goalTickmarks"
+                    value="10000"
+                    style="width: 100%"
+                  />
+                </div>
               </div>
             </div>
+            <!-- years -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
@@ -135,6 +152,7 @@
                 />
               </div>
             </div>
+            <!-- current saved -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
@@ -170,6 +188,7 @@
                 />
               </div>
             </div>
+            <!-- monthly savings -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
@@ -205,7 +224,7 @@
                 />
               </div>
             </div>
-
+            <!-- expected rate of return -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
@@ -243,6 +262,7 @@
                 />
               </div>
             </div>
+            <!-- expected inflation  -->
             <div class="input-group-text row mb-3">
               <div class="col-2 col-lg-2">
                 <!-- the "for on the label puts matching ID into focus" -->
