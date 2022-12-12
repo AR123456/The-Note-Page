@@ -6,10 +6,13 @@
 @import url("https://fonts.googleapis.com/css?family=Hind+Madurai:300,600|Poppins:300&display=swap");
 
 :root {
-  --yellow: #ffd049;
+  /* track to left of handle  */
+  --yellow: #2fa22f;
   --light-yellow: #fdf2d2;
-  --orange: #ffa929;
-  --light-gray: #e3e4e8;
+  /* handle  */
+  --orange: #2fa22f;
+  /* track before color */
+  --light-gray: #e8e3e3;
   --gray: #71738b;
   --light-blue: #7a7c93;
   --blue: #34385a;
