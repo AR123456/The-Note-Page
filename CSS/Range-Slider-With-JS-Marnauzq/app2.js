@@ -23,7 +23,9 @@ function onSliderInput(event) {
 }
 
 function updateValue(slider) {
+  // coming from input value using data-value-id
   let value = document.getElementById(slider.dataset.valueId);
+  console.log(value);
 
   value.innerHTML = "<div>" + slider.value + "</div>";
 }
