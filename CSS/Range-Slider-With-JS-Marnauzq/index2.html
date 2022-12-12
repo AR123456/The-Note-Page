@@ -21,32 +21,38 @@
             <!-- ////////////////////goal area  -->
             <div class="tick-slider">
               <div class="tick-slider-header">
-                <h5><label for="weightSlider">Savings Goal</label></h5>
-                <h5>kg</h5>
+                <h5><label for="goalSlider">Savings Goal</label></h5>
+                <h5>$</h5>
               </div>
               <div class="tick-slider-value-container">
-                <div id="weightLabelMin" class="tick-slider-label">0</div>
-                <div id="weightLabelMax" class="tick-slider-label">40</div>
-                <div id="weightValue" class="tick-slider-value"></div>
+                <div id="goalLabelMin" class="tick-slider-label">0</div>
+                <div id="goalLabelMin" class="tick-slider-label">25000</div>
+                <div id="goalLabelMin" class="tick-slider-label">50000</div>
+                <div id="goalLabelMin" class="tick-slider-label">75000</div>
+                <div id="goalLabelMax" class="tick-slider-label">100000</div>
+                <!-- floating value container also if I comment out the line the tick marks disaper  -->
+                <div id="goalValue" class="tick-slider-value"></div>
               </div>
-              <div class="tick-slider-background"></div>
-              <div id="weightProgress" class="tick-slider-progress"></div>
-              <div id="weightTicks" class="tick-slider-tick-container"></div>
+              <!-- If i comment out this slider black background ( to the right disapears) -->
+              <div class="tick-slider-background">xxx</div>
+              <!-- If I comment out this div the tick marks and green to left disapear -->
+              <div id="goalProgress" class="tick-slider-progress">yyy</div>
+              <div id="goalTicks" class="tick-slider-tick-container">zzz</div>
               <input
-                id="weightSlider"
+                id="goalSlider"
                 class="tick-slider-input"
                 type="range"
                 min="0"
-                max="40"
+                max="100000"
                 step="5"
-                value="9"
-                data-tick-step="5"
-                data-tick-id="weightTicks"
-                data-value-id="weightValue"
-                data-progress-id="weightProgress"
+                value="20000"
+                data-tick-step="5000"
+                data-tick-id="goalTicks"
+                data-value-id="goalValue"
+                data-progress-id="goalProgress"
                 data-handle-size="18"
-                data-min-label-id="weightLabelMin"
-                data-max-label-id="weightLabelMax"
+                data-min-label-id="goalLabelMin"
+                data-max-label-id="goalLabelMax"
               />
             </div>
             <!-- /////////////////////years area  -->
@@ -81,7 +87,7 @@
               />
             </div>
             <!-- /////////////////////////current saved area  -->
-            <div class="tick-slider">
+            <!-- <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5><label for="sizeSlider">Current saved</label></h5>
                 <h5>cm</h5>
@@ -110,9 +116,9 @@
                 data-min-label-id="sizeLabelMin"
                 data-max-label-id="sizeLabelMax"
               />
-            </div>
+            </div> -->
             <!-- //////////////////Monthly to save area  -->
-            <div class="tick-slider">
+            <!-- <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5><label for="sizeSlider">Monthly savings</label></h5>
                 <h5>cm</h5>
@@ -141,9 +147,9 @@
                 data-min-label-id="sizeLabelMin"
                 data-max-label-id="sizeLabelMax"
               />
-            </div>
+            </div> -->
             <!-- ///////////////// expected rate area -->
-            <div class="tick-slider">
+            <!-- <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5><label for="sizeSlider">Expected rate of return</label></h5>
                 <h5>cm</h5>
@@ -172,9 +178,9 @@
                 data-min-label-id="sizeLabelMin"
                 data-max-label-id="sizeLabelMax"
               />
-            </div>
+            </div> -->
             <!--  //////////////////////expected Inflation  -->
-            <div class="tick-slider">
+            <!-- <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5>
                   <label for="sizeSlider">Expected rate of inflation</label>
@@ -205,7 +211,7 @@
                 data-min-label-id="sizeLabelMin"
                 data-max-label-id="sizeLabelMax"
               />
-            </div>
+            </div> -->
           </div>
         </div>
       </form>

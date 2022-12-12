@@ -1,21 +1,23 @@
 // looking at using Javascript to generate slider marks
 // https://codepen.io/viestursm/pen/BayEjaN
 function init() {
+  // getting slider to pass into the functions that control appearance and behavior
+  // each range input has the class tick-slider-input
   const sliders = document.getElementsByClassName("tick-slider-input");
-
+  // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
-
     updateValue(slider);
     updateValuePosition(slider);
     updateLabels(slider);
     updateProgress(slider);
-
     setTicks(slider);
   }
 }
-
+// when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
+  //event.target is input#weightSlider.tick-slider-input
+
   updateValue(event.target);
   updateValuePosition(event.target);
   updateLabels(event.target);
@@ -24,13 +26,15 @@ function onSliderInput(event) {
 
 function updateValue(slider) {
   // coming from input value using data-value-id
+  // dataset is on the event (slider) object
   let value = document.getElementById(slider.dataset.valueId);
-  console.log(value);
 
+  // the value above the handle
   value.innerHTML = "<div>" + slider.value + "</div>";
 }
-
+// updating the position of the value box above the handle
 function updateValuePosition(slider) {
+  // coming from input value using data-value-id
   let value = document.getElementById(slider.dataset.valueId);
 
   const percent = getSliderPercent(slider);
@@ -75,7 +79,7 @@ function updateProgress(slider) {
 
   progress.style.width = percent * 100 + "%";
 }
-
+// this is getting the position of the handle relative to its range
 function getSliderPercent(slider) {
   const range = slider.max - slider.min;
   const absValue = slider.value - slider.min;

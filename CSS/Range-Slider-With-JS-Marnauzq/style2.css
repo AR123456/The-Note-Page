@@ -19,7 +19,8 @@
   --blue: #34385a;
 
   --slider-handle-size: 14px;
-  --slider-handle-border-radius: 2px;
+  /* round handle  */
+  --slider-handle-border-radius: 50%;
   --slider-handle-margin-top: -4px;
   --slider-track-height: 6px;
   --slider-track-border-radius: 4px;
