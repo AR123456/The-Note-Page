@@ -75,10 +75,24 @@ function init() {
     // updateLabels(slider);
     // updateProgress(slider);
 
-    // setTicks(slider);
+    setTicks(slider);
   }
 }
 init();
+function setTicks(slider) {
+  let container = document.getElementById(slider.dataset.tickId);
+  const spacing = parseFloat(slider.dataset.tickStep);
+  const sliderRange = slider.max - slider.min;
+  const tickCount = sliderRange / spacing + 1; // +1 to account for 0
+
+  for (let ii = 0; ii < tickCount; ii++) {
+    let tick = document.createElement("span");
+
+    tick.className = "tick-slider-tick";
+
+    container.appendChild(tick);
+  }
+}
 
 // calculate  function
 const calculate = () => {
