@@ -64,10 +64,12 @@ syncInputs();
 // https://codepen.io/viestursm/pen/BayEjaN
 function init() {
   const sliders = document.getElementsByClassName("tick-slider-input");
+  const inputs = document.getElementsByClassName("num-box-input");
 
   for (let slider of sliders) {
     // slider.oninput = onSliderInput;
     console.log("the for loop is looping ");
+
     // updateValue(slider);
     // updateValuePosition(slider);
     // updateLabels(slider);
