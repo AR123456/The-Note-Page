@@ -43,12 +43,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+/*  */
 #sliderContainer {
   width: 100%;
-  max-width: 440px;
+  /* this is making the containing div too narrow  */
+  /* max-width: 440px; */
+  padding: 50px;
 
-  padding: 56px 40px;
+  /* padding: 56px 40px; */
+  margin: 10px;
 
   border-radius: 40px;
 

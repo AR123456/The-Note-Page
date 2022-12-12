@@ -19,41 +19,52 @@
         <div id="wrapper">
           <div id="sliderContainer">
             <!-- ////////////////////goal area  -->
-            <div class="tick-slider">
-              <div class="tick-slider-header">
-                <h5><label for="goalSlider">Savings Goal</label></h5>
-                <h5>$</h5>
+            <div class="row mb-3">
+              <div class="tick-slider">
+                <!-- input div  -->
+                <div class="col-2 col-lg-2">
+                  <input id="savingsInput" value="10000" style="width: 85px" />
+                </div>
+                <div class="col-sm-8 col-lg-8">
+                  <div class="tick-slider-header">
+                    <h5><label for="goalSlider">Savings Goal</label></h5>
+                    <h5>$</h5>
+                  </div>
+                  <div class="tick-slider-value-container">
+                    <div id="goalLabelMin" class="tick-slider-label">0</div>
+                    <div id="goalLabelMin" class="tick-slider-label">25000</div>
+                    <div id="goalLabelMin" class="tick-slider-label">50000</div>
+                    <div id="goalLabelMin" class="tick-slider-label">75000</div>
+                    <div id="goalLabelMax" class="tick-slider-label">
+                      100000
+                    </div>
+                    <!-- floating value container also if I comment out the line the tick marks disaper  -->
+                    <div id="goalValue" class="tick-slider-value"></div>
+                  </div>
+                  <!-- If i comment out this slider black background ( to the right disapears) -->
+                  <div class="tick-slider-background"></div>
+                  <!-- If I comment out this div the tick marks and green to left disapear -->
+                  <div id="goalProgress" class="tick-slider-progress"></div>
+                  <!-- If i comment out this div the tick marks only disapear   -->
+                  <div id="goalTicks" class="tick-slider-tick-container"></div>
+                  <input
+                    id="goalSlider"
+                    class="tick-slider-input"
+                    type="range"
+                    min="0"
+                    max="100000"
+                    step="5"
+                    value="20000"
+                    data-tick-step="5000"
+                    data-tick-id="goalTicks"
+                    data-value-id="goalValue"
+                    data-progress-id="goalProgress"
+                    data-handle-size="18"
+                    data-min-label-id="goalLabelMin"
+                    data-max-label-id="goalLabelMax"
+                  />
+                </div>
               </div>
-              <div class="tick-slider-value-container">
-                <div id="goalLabelMin" class="tick-slider-label">0</div>
-                <div id="goalLabelMin" class="tick-slider-label">25000</div>
-                <div id="goalLabelMin" class="tick-slider-label">50000</div>
-                <div id="goalLabelMin" class="tick-slider-label">75000</div>
-                <div id="goalLabelMax" class="tick-slider-label">100000</div>
-                <!-- floating value container also if I comment out the line the tick marks disaper  -->
-                <div id="goalValue" class="tick-slider-value"></div>
-              </div>
-              <!-- If i comment out this slider black background ( to the right disapears) -->
-              <div class="tick-slider-background">xxx</div>
-              <!-- If I comment out this div the tick marks and green to left disapear -->
-              <div id="goalProgress" class="tick-slider-progress">yyy</div>
-              <div id="goalTicks" class="tick-slider-tick-container">zzz</div>
-              <input
-                id="goalSlider"
-                class="tick-slider-input"
-                type="range"
-                min="0"
-                max="100000"
-                step="5"
-                value="20000"
-                data-tick-step="5000"
-                data-tick-id="goalTicks"
-                data-value-id="goalValue"
-                data-progress-id="goalProgress"
-                data-handle-size="18"
-                data-min-label-id="goalLabelMin"
-                data-max-label-id="goalLabelMax"
-              />
             </div>
             <!-- /////////////////////years area  -->
             <div class="tick-slider">
