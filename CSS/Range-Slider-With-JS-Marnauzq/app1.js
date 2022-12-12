@@ -60,6 +60,24 @@ function syncInputs() {
   });
 }
 syncInputs();
+// function to set tickmarks
+// https://codepen.io/viestursm/pen/BayEjaN
+function init() {
+  const sliders = document.getElementsByClassName("tick-slider-input");
+
+  for (let slider of sliders) {
+    // slider.oninput = onSliderInput;
+    console.log("the for loop is looping ");
+    // updateValue(slider);
+    // updateValuePosition(slider);
+    // updateLabels(slider);
+    // updateProgress(slider);
+
+    // setTicks(slider);
+  }
+}
+init();
+
 // calculate  function
 const calculate = () => {
   goal = parseFloat(inputGoal.value);
@@ -118,5 +136,3 @@ calculateButton.onclick = function () {
 };
 //TODO work on formatting to match example site, look at DYI jumbotron
 // TODO for the chart will need to know given plan if goal will be reached and compare that to what the actual plan (monthly savings) need to be to achieve it. In the given amount of time
-
-r;
