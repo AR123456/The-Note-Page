@@ -18,25 +18,20 @@
       <form action="">
         <div id="wrapper">
           <div id="sliderContainer">
+            <br /><br /><br />
+
             <!-- ////////////////////goal area  -->
             <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5><label for="goalSlider">Savings Goal</label></h5>
                 <h5>$</h5>
               </div>
-              <div>
-                <h5><label id="goalValue">Savings Goal</label></h5>
-              </div>
-
               <div class="tick-slider-value-container">
                 <div id="goalLabelMin" class="tick-slider-label">0</div>
-                <div id="goalLabelMin" class="tick-slider-label">25000</div>
-                <div id="goalLabelMin" class="tick-slider-label">50000</div>
-                <div id="goalLabelMin" class="tick-slider-label">75000</div>
+
                 <div id="goalLabelMax" class="tick-slider-label">100000</div>
                 <!-- floating value container also if I comment out the line the tick marks disaper  -->
-                <!-- moving this up into the label so the floating value is above and on same row as la -->
-                <!-- <div id="goalValue" class="tick-slider-value"></div> -->
+                <div id="goalValue" class="tick-slider-value"></div>
               </div>
               <!-- If i comment out this slider black background ( to the right disapears) -->
               <div class="tick-slider-background"></div>
@@ -61,163 +56,200 @@
                 data-max-label-id="goalLabelMax"
               />
             </div>
+
             <!-- /////////////////////years area  -->
             <div class="tick-slider">
               <div class="tick-slider-header">
-                <h5><label for="sizeSlider">Years</label></h5>
-                <h5>cm</h5>
+                <h5><label for="yearSlider">Years</label></h5>
+                <h5>Y</h5>
               </div>
               <div class="tick-slider-value-container">
-                <div id="sizeLabelMin" class="tick-slider-label">0</div>
-                <div id="sizeLabelMax" class="tick-slider-label">300</div>
-                <div id="sizeValue" class="tick-slider-value"></div>
+                <div id="yearLabelMin" class="tick-slider-label">0</div>
+                <div id="yearLabelMax" class="tick-slider-label">100</div>
+                <div id="yearValue" class="tick-slider-value"></div>
               </div>
               <div class="tick-slider-background"></div>
-              <div id="sizeProgress" class="tick-slider-progress"></div>
-              <div id="sizeTicks" class="tick-slider-tick-container"></div>
+              <div id="yearProgress" class="tick-slider-progress"></div>
+              <div id="yearTicks" class="tick-slider-tick-container"></div>
               <input
-                id="sizeSlider"
+                id="yearSlider"
                 class="tick-slider-input"
                 type="range"
                 min="0"
-                max="300"
-                step="25"
-                value="150"
-                data-tick-step="25"
-                data-tick-id="sizeTicks"
-                data-value-id="sizeValue"
-                data-progress-id="sizeProgress"
+                max="100"
+                step="1"
+                value="10"
+                data-tick-step="5"
+                data-tick-id="yearTicks"
+                data-value-id="yearValue"
+                data-progress-id="yearProgress"
                 data-handle-size="18"
-                data-min-label-id="sizeLabelMin"
-                data-max-label-id="sizeLabelMax"
+                data-min-label-id="yearLabelMin"
+                data-max-label-id="yearLabelMax"
               />
             </div>
+
             <!-- /////////////////////////current saved area  -->
-            <!-- <div class="tick-slider">
+            <div class="tick-slider">
               <div class="tick-slider-header">
-                <h5><label for="sizeSlider">Current saved</label></h5>
-                <h5>cm</h5>
+                <h5><label for="currentSavedSlider">Current saved</label></h5>
+                <h5>$</h5>
               </div>
               <div class="tick-slider-value-container">
-                <div id="sizeLabelMin" class="tick-slider-label">0</div>
-                <div id="sizeLabelMax" class="tick-slider-label">300</div>
-                <div id="sizeValue" class="tick-slider-value"></div>
+                <div id="currentSavedLabelMin" class="tick-slider-label">0</div>
+                <div id="currentSavedLabelMax" class="tick-slider-label">
+                  100000
+                </div>
+                <div id="currentSavedValue" class="tick-slider-value"></div>
               </div>
               <div class="tick-slider-background"></div>
-              <div id="sizeProgress" class="tick-slider-progress"></div>
-              <div id="sizeTicks" class="tick-slider-tick-container"></div>
+              <div id="currentSavedProgress" class="tick-slider-progress"></div>
+              <div
+                id="currentSavedTicks"
+                class="tick-slider-tick-container"
+              ></div>
               <input
-                id="sizeSlider"
+                id="currentSavedSlider"
                 class="tick-slider-input"
                 type="range"
                 min="0"
-                max="300"
-                step="25"
-                value="150"
-                data-tick-step="25"
-                data-tick-id="sizeTicks"
-                data-value-id="sizeValue"
-                data-progress-id="sizeProgress"
+                max="100000"
+                step="500"
+                value="10000"
+                data-tick-step="5000"
+                data-tick-id="currentSavedTicks"
+                data-value-id="currentSavedValue"
+                data-progress-id="currentSavedProgress"
                 data-handle-size="18"
-                data-min-label-id="sizeLabelMin"
-                data-max-label-id="sizeLabelMax"
+                data-min-label-id="currentSavedLabelMin"
+                data-max-label-id="currentSavedLabelMax"
               />
-            </div> -->
+            </div>
+
             <!-- //////////////////Monthly to save area  -->
-            <!-- <div class="tick-slider">
-              <div class="tick-slider-header">
-                <h5><label for="sizeSlider">Monthly savings</label></h5>
-                <h5>cm</h5>
-              </div>
-              <div class="tick-slider-value-container">
-                <div id="sizeLabelMin" class="tick-slider-label">0</div>
-                <div id="sizeLabelMax" class="tick-slider-label">300</div>
-                <div id="sizeValue" class="tick-slider-value"></div>
-              </div>
-              <div class="tick-slider-background"></div>
-              <div id="sizeProgress" class="tick-slider-progress"></div>
-              <div id="sizeTicks" class="tick-slider-tick-container"></div>
-              <input
-                id="sizeSlider"
-                class="tick-slider-input"
-                type="range"
-                min="0"
-                max="300"
-                step="25"
-                value="150"
-                data-tick-step="25"
-                data-tick-id="sizeTicks"
-                data-value-id="sizeValue"
-                data-progress-id="sizeProgress"
-                data-handle-size="18"
-                data-min-label-id="sizeLabelMin"
-                data-max-label-id="sizeLabelMax"
-              />
-            </div> -->
-            <!-- ///////////////// expected rate area -->
-            <!-- <div class="tick-slider">
-              <div class="tick-slider-header">
-                <h5><label for="sizeSlider">Expected rate of return</label></h5>
-                <h5>cm</h5>
-              </div>
-              <div class="tick-slider-value-container">
-                <div id="sizeLabelMin" class="tick-slider-label">0</div>
-                <div id="sizeLabelMax" class="tick-slider-label">300</div>
-                <div id="sizeValue" class="tick-slider-value"></div>
-              </div>
-              <div class="tick-slider-background"></div>
-              <div id="sizeProgress" class="tick-slider-progress"></div>
-              <div id="sizeTicks" class="tick-slider-tick-container"></div>
-              <input
-                id="sizeSlider"
-                class="tick-slider-input"
-                type="range"
-                min="0"
-                max="300"
-                step="25"
-                value="150"
-                data-tick-step="25"
-                data-tick-id="sizeTicks"
-                data-value-id="sizeValue"
-                data-progress-id="sizeProgress"
-                data-handle-size="18"
-                data-min-label-id="sizeLabelMin"
-                data-max-label-id="sizeLabelMax"
-              />
-            </div> -->
-            <!--  //////////////////////expected Inflation  -->
-            <!-- <div class="tick-slider">
+            <div class="tick-slider">
               <div class="tick-slider-header">
                 <h5>
-                  <label for="sizeSlider">Expected rate of inflation</label>
+                  <label for="monthlySavingsSlider">Monthly savings</label>
                 </h5>
-                <h5>cm</h5>
+                <h5>$</h5>
               </div>
               <div class="tick-slider-value-container">
-                <div id="sizeLabelMin" class="tick-slider-label">0</div>
-                <div id="sizeLabelMax" class="tick-slider-label">300</div>
-                <div id="sizeValue" class="tick-slider-value"></div>
+                <div id="monthlySavingsLabelMin" class="tick-slider-label">
+                  0
+                </div>
+                <div id="monthlySavingsLabelMax" class="tick-slider-label">
+                  100000
+                </div>
+                <div id="monthlySavingsValue" class="tick-slider-value"></div>
               </div>
               <div class="tick-slider-background"></div>
-              <div id="sizeProgress" class="tick-slider-progress"></div>
-              <div id="sizeTicks" class="tick-slider-tick-container"></div>
+              <div
+                id="monthlySavingsProgress"
+                class="tick-slider-progress"
+              ></div>
+              <div
+                id="monthlySavingsTicks"
+                class="tick-slider-tick-container"
+              ></div>
               <input
-                id="sizeSlider"
+                id="monthlySavingsSlider"
                 class="tick-slider-input"
                 type="range"
                 min="0"
-                max="300"
-                step="25"
-                value="150"
-                data-tick-step="25"
-                data-tick-id="sizeTicks"
-                data-value-id="sizeValue"
-                data-progress-id="sizeProgress"
+                max="100000"
+                step="5"
+                value="10000"
+                data-tick-step="5000"
+                data-tick-id="monthlySavingsTicks"
+                data-value-id="monthlySavingsValue"
+                data-progress-id="monthlySavingsProgress"
                 data-handle-size="18"
-                data-min-label-id="sizeLabelMin"
-                data-max-label-id="sizeLabelMax"
+                data-min-label-id="monthlySavingsLabelMin"
+                data-max-label-id="monthlySavingsLabelMax"
               />
-            </div> -->
+            </div>
+
+            <!-- ///////////////// expected rate area -->
+            <div class="tick-slider">
+              <div class="tick-slider-header">
+                <h5><label for="rateSlider">Expected rate of return</label></h5>
+                <h5>%</h5>
+              </div>
+              <div class="tick-slider-value-container">
+                <div id="rateLabelMin" class="tick-slider-label">0</div>
+                <div id="rateLabelMax" class="tick-slider-label">100</div>
+                <div id="rateValue" class="tick-slider-value"></div>
+              </div>
+              <div class="tick-slider-background"></div>
+              <div id="rateProgress" class="tick-slider-progress"></div>
+              <div id="rateTicks" class="tick-slider-tick-container"></div>
+              <input
+                id="rateSlider"
+                class="tick-slider-input"
+                type="range"
+                min="0"
+                max="50"
+                step="1"
+                value="2"
+                data-tick-step="5"
+                data-tick-id="rateTicks"
+                data-value-id="rateValue"
+                data-progress-id="rateProgress"
+                data-handle-size="18"
+                data-min-label-id="rateLabelMin"
+                data-max-label-id="rateLabelMax"
+              />
+            </div>
+
+            <!--  //////////////////////expected Inflation  -->
+            <div class="tick-slider">
+              <div class="tick-slider-header">
+                <h5>
+                  <label for="expectedInflationSlider"
+                    >Expected rate of inflation</label
+                  >
+                </h5>
+                <h5>%</h5>
+              </div>
+              <div class="tick-slider-value-container">
+                <div id="expectedInflationLabelMin" class="tick-slider-label">
+                  0
+                </div>
+                <div id="expectedInflationLabelMax" class="tick-slider-label">
+                  100
+                </div>
+                <div
+                  id="expectedInflationValue"
+                  class="tick-slider-value"
+                ></div>
+              </div>
+              <div class="tick-slider-background"></div>
+              <div
+                id="expectedInflationProgress"
+                class="tick-slider-progress"
+              ></div>
+              <div
+                id="expectedInflationTicks"
+                class="tick-slider-tick-container"
+              ></div>
+              <input
+                id="expectedInflationSlider"
+                class="tick-slider-input"
+                type="range"
+                min="0"
+                max="50"
+                step="1"
+                value="2"
+                data-tick-step="5"
+                data-tick-id="expectedInflationTicks"
+                data-value-id="expectedInflationValue"
+                data-progress-id="expectedInflationProgress"
+                data-handle-size="18"
+                data-min-label-id="expectedInflationLabelMin"
+                data-max-label-id="expectedInflationLabelMax"
+              />
+            </div>
           </div>
         </div>
       </form>
