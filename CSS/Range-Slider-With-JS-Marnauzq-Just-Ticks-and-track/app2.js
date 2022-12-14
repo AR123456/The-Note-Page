@@ -8,7 +8,7 @@ function init() {
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
     updateValue(slider);
-    updateValuePosition(slider);
+
     updateLabels(slider);
     updateProgress(slider);
     setTicks(slider);
@@ -17,9 +17,7 @@ function init() {
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
   //event.target is input#weightSlider.tick-slider-input
-
   updateValue(event.target);
-  // updateValuePosition(event.target);
   updateLabels(event.target);
   updateProgress(event.target);
 }
@@ -31,21 +29,6 @@ function updateValue(slider) {
 
   // the value above the handle
   value.innerHTML = "<div>" + slider.value + "</div>";
-}
-// updating the position of the value box above the handle
-function updateValuePosition(slider) {
-  // when I remove this code still getting slider and tick marks
-  // // coming from input value using data-value-id
-  // let value = document.getElementById(slider.dataset.valueId);
-  // const percent = getSliderPercent(slider);
-  // const sliderWidth = slider.getBoundingClientRect().width;
-  // const valueWidth = value.getBoundingClientRect().width;
-  // const handleSize = slider.dataset.handleSize;
-  // let left =
-  //   percent * (sliderWidth - handleSize) + handleSize / 2 - valueWidth / 2;
-  // left = Math.min(left, sliderWidth - valueWidth);
-  // left = slider.value === slider.min ? 0 : left;
-  // value.style.left = left + "px";
 }
 
 function updateLabels(slider) {
@@ -98,13 +81,4 @@ function setTicks(slider) {
   }
 }
 
-// function onResize() {
-//   const sliders = document.getElementsByClassName("tick-slider-input");
-
-//   for (let slider of sliders) {
-//     // updateValuePosition(slider);
-//   }
-// }
-
 window.onload = init;
-// window.addEventListener("resize", onResize);
