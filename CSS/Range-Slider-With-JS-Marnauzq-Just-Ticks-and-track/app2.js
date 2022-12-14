@@ -9,7 +9,6 @@ function init() {
     slider.oninput = onSliderInput;
     updateValue(slider);
 
-    // updateLabels(slider);
     updateProgress(slider);
     setTicks(slider);
   }
@@ -18,7 +17,7 @@ function init() {
 function onSliderInput(event) {
   //event.target is input#weightSlider.tick-slider-input
   updateValue(event.target);
-  // updateLabels(event.target);
+
   updateProgress(event.target);
 }
 
@@ -29,22 +28,6 @@ function updateValue(slider) {
 
   // the value above the handle
   value.innerHTML = "<div>" + slider.value + "</div>";
-}
-
-function updateLabels(slider) {
-  // const value = document.getElementById(slider.dataset.valueId);
-  // const minLabel = document.getElementById(slider.dataset.minLabelId);
-  // const maxLabel = document.getElementById(slider.dataset.maxLabelId);
-  // const valueRect = value.getBoundingClientRect();
-  // const minLabelRect = minLabel.getBoundingClientRect();
-  // const maxLabelRect = maxLabel.getBoundingClientRect();
-  // const minLabelDelta = valueRect.left - minLabelRect.left;
-  // const maxLabelDelta = maxLabelRect.left - valueRect.left;
-  // const deltaThreshold = 32;
-  // if (minLabelDelta < deltaThreshold) minLabel.classList.add("hidden");
-  // else minLabel.classList.remove("hidden");
-  // if (maxLabelDelta < deltaThreshold) maxLabel.classList.add("hidden");
-  // else maxLabel.classList.remove("hidden");
 }
 
 function updateProgress(slider) {
