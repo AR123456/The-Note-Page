@@ -7,8 +7,7 @@ function init() {
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
-    updateValue(slider);
-
+    // updateValue(slider);
     updateProgress(slider);
     setTicks(slider);
   }
@@ -16,31 +15,27 @@ function init() {
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
   //event.target is input#weightSlider.tick-slider-input
-  updateValue(event.target);
-
+  // updateValue(event.target);
   updateProgress(event.target);
 }
 
 function updateValue(slider) {
-  // coming from input value using data-value-id
-  // dataset is on the event (slider) object
-  let value = document.getElementById(slider.dataset.valueId);
-
-  // the value above the handle
-  value.innerHTML = "<div>" + slider.value + "</div>";
+  // // coming from input value using data-value-id
+  // // dataset is on the event (slider) object
+  // let value = document.getElementById(slider.dataset.valueId);
+  // // the value above the handle
+  // value.innerHTML = "<div>" + slider.value + "</div>";
 }
 
 function updateProgress(slider) {
   let progress = document.getElementById(slider.dataset.progressId);
   const percent = getSliderPercent(slider);
-
   progress.style.width = percent * 100 + "%";
 }
 // this is getting the position of the handle relative to its range
 function getSliderPercent(slider) {
   const range = slider.max - slider.min;
   const absValue = slider.value - slider.min;
-
   return absValue / range;
 }
 
@@ -49,12 +44,9 @@ function setTicks(slider) {
   const spacing = parseFloat(slider.dataset.tickStep);
   const sliderRange = slider.max - slider.min;
   const tickCount = sliderRange / spacing + 1; // +1 to account for 0
-
   for (let ii = 0; ii < tickCount; ii++) {
     let tick = document.createElement("span");
-
     tick.className = "tick-slider-tick";
-
     container.appendChild(tick);
   }
 }
