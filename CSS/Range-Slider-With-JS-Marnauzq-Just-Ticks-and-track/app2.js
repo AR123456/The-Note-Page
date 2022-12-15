@@ -7,6 +7,7 @@ function init() {
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
+
     updateProgress(slider);
     setTicks(slider);
   }
@@ -14,23 +15,29 @@ function init() {
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
   //event.target is input#weightSlider.tick-slider-input
-
   updateProgress(event.target);
 }
 
 // updateProgress used to display handle on track green vs black
 function updateProgress(slider) {
+  // progressId coming from "data-progress-id" data set on each range input
   let progress = document.getElementById(slider.dataset.progressId);
+  // percent is the percent handle has traveled
   const percent = getSliderPercent(slider);
+  // giving input via data-progress-id style
   progress.style.width = percent * 100 + "%";
 }
 // this is getting the position of the handle relative to its range
 function getSliderPercent(slider) {
   //slider AKA event.target.value
   // console.log(event.target.value);
-
+  // slider.max and min are coming from range input min and max
   const range = slider.max - slider.min;
+  // slider.value is comming from intial value or what value is when handle dragged
   const absValue = slider.value - slider.min;
+  // console.log(absValue / range);
+  // returning the percent of the way the handle has traveled
+  // accross the slider
   return absValue / range;
 }
 
