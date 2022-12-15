@@ -1,4 +1,4 @@
-/* https://codepen.io/viestursm/pen/BayEjaN */
+/* https://codepen.io/viestursm --yellow/pen/BayEjaN */
 /* blue  #053E6A */
 /* green #2fa22f */
 /* background #ffffff */
@@ -6,11 +6,10 @@
 @import url("https://fonts.googleapis.com/css?family=Hind+Madurai:300,600|Poppins:300&display=swap");
 
 :root {
-  /* track to left of handle  */
-  --yellow: #2fa22f;
+  /* track to left of handle and thumb  */
+  --green: #2fa22f;
   --light-yellow: #fdf2d2;
-  /* handle  */
-  --orange: #2fa22f;
+
   /* track before color */
   /* --light-gray: #e8e3e3; */
   --light-gray: black;
@@ -135,7 +134,7 @@ body {
 }
 
 .tick-slider-progress {
-  background-color: var(--yellow);
+  background-color: var(--green);
 }
 
 .tick-slider-tick-container {
@@ -222,7 +221,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
 
-  background: var(--orange);
+  background: var(--green);
 
   border-radius: var(--slider-handle-border-radius);
 
@@ -247,7 +246,7 @@ input[type="range"]::-moz-range-thumb {
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
 
-  background: var(--orange);
+  background: var(--green);
 
   border: none;
   border-radius: var(--slider-handle-border-radius);
