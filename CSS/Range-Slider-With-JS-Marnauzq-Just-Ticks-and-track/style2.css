@@ -8,15 +8,9 @@
 :root {
   /* track to left of handle and thumb  */
   --green: #2fa22f;
-  --light-yellow: #fdf2d2;
-
   /* track before color */
-  /* --light-gray: #e8e3e3; */
-  --light-gray: black;
+  --black: black;
   --gray: #71738b;
-  --light-blue: #7a7c93;
-  --blue: #34385a;
-
   --slider-handle-size: 14px;
   /* round handle  */
   --slider-handle-border-radius: 50%;
@@ -66,22 +60,22 @@ body {
   justify-content: space-between;
   margin-bottom: 24px;
 }
-
-.tick-slider-header > h5 {
+/* TODO do i need this div */
+/* .tick-slider-header > h5 {
   margin: 0;
 
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 300;
   color: var(--gray);
-}
+} */
 
 .tick-slider {
   position: relative;
 
   width: 100%;
 }
-
+/* TODO do I need this div ?  */
 .tick-slider-value-container {
   position: relative;
   width: 100%;
@@ -92,11 +86,11 @@ body {
 
   margin-bottom: 12px;
 
-  font-family: "Hind Madurai", sans-serif;
+  /* font-family: "Hind Madurai", sans-serif; */
   font-size: 18px;
   color: var(--gray);
 }
-
+/* TODO do I need this div  */
 .tick-slider-value {
   position: absolute;
   top: 0;
@@ -130,7 +124,7 @@ body {
 
 .tick-slider-background {
   width: 100%;
-  background-color: var(--light-gray);
+  background-color: var(--black);
 }
 
 .tick-slider-progress {
