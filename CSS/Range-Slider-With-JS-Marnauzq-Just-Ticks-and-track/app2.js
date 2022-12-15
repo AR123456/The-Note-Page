@@ -14,17 +14,10 @@ function init() {
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
   //event.target is input#weightSlider.tick-slider-input
-  // updateValue(event.target);
+
   updateProgress(event.target);
 }
 
-function updateValue(slider) {
-  // // coming from input value using data-value-id
-  // // dataset is on the event (slider) object
-  // let value = document.getElementById(slider.dataset.valueId);
-  // // the value above the handle
-  // value.innerHTML = "<div>" + slider.value + "</div>";
-}
 // updateProgress used to display handle on track green vs black
 function updateProgress(slider) {
   let progress = document.getElementById(slider.dataset.progressId);
