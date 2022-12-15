@@ -9,12 +9,13 @@ function init() {
     slider.oninput = onSliderInput;
 
     updateProgress(slider);
+    // the slider is not in the onInput because it is defined on page load and doesnt change after that.
     setTicks(slider);
   }
 }
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
-  //event.target is input#weightSlider.tick-slider-input
+  //event.target is input id  name then append the class name #name.tick-slider-input
   updateProgress(event.target);
 }
 
@@ -42,11 +43,16 @@ function getSliderPercent(slider) {
 }
 
 function setTicks(slider) {
+  // get the data-tick-id from each input range input
   let container = document.getElementById(slider.dataset.tickId);
+  // get the data-tick-step value for each input range
   const spacing = parseFloat(slider.dataset.tickStep);
+  // get the min and max from the range input and do the math
   const sliderRange = slider.max - slider.min;
+  // starting from 0
   const tickCount = sliderRange / spacing + 1; // +1 to account for 0
-  for (let ii = 0; ii < tickCount; ii++) {
+  for (let i = 0; i < tickCount; i++) {
+    // create a spans with class tick-slider-tick
     let tick = document.createElement("span");
     tick.className = "tick-slider-tick";
     container.appendChild(tick);
