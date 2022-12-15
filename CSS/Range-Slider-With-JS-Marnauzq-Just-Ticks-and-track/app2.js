@@ -7,7 +7,6 @@ function init() {
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
-    // updateValue(slider);
     updateProgress(slider);
     setTicks(slider);
   }
@@ -26,7 +25,7 @@ function updateValue(slider) {
   // // the value above the handle
   // value.innerHTML = "<div>" + slider.value + "</div>";
 }
-
+// updateProgress used to display handle on track green vs black
 function updateProgress(slider) {
   let progress = document.getElementById(slider.dataset.progressId);
   const percent = getSliderPercent(slider);
@@ -34,6 +33,9 @@ function updateProgress(slider) {
 }
 // this is getting the position of the handle relative to its range
 function getSliderPercent(slider) {
+  //slider AKA event.target.value
+  // console.log(event.target.value);
+
   const range = slider.max - slider.min;
   const absValue = slider.value - slider.min;
   return absValue / range;
