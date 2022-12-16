@@ -66,21 +66,7 @@ body {
 
   width: 100%;
 }
-/* TODO do I need this div ?  */
-.tick-slider-value-container {
-  position: relative;
-  width: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-bottom: 12px;
-
-  /* font-family: "Hind Madurai", sans-serif; */
-  font-size: 18px;
-  color: var(--gray);
-}
 /* TODO do I need this div  */
 .tick-slider-value {
   position: absolute;
