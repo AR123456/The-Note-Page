@@ -26,17 +26,7 @@
 body {
   margin: 0 auto;
 }
-
-#wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/*  */
+/* this is centering and putting rounded corners around all range inputs */
 #sliderContainer {
   width: 100%;
   /* this is making the containing div too narrow  */
@@ -50,20 +40,9 @@ body {
 
   box-shadow: 0px 8px 40px rgba(128, 128, 128, 0.15);
 }
-
-#sliderContainer > div:first-child {
-  margin-bottom: 48px;
-}
-
-.tick-slider-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
+/* this is important without it none of the ranges appear  */
 .tick-slider {
   position: relative;
-
   width: 100%;
 }
 
@@ -105,19 +84,8 @@ body {
 .tick-slider-tick {
   width: 2px;
   height: 2px;
-
   border-radius: 50%;
-
   background-color: white;
-}
-
-.tick-slider-label {
-  opacity: 0.85;
-  transition: opacity 0.1s ease;
-}
-
-.tick-slider-label.hidden {
-  opacity: 0;
 }
 
 /*
@@ -158,21 +126,14 @@ input[type="range"]::-moz-focus-outer {
 */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
-
   background: var(--green);
-
   border-radius: var(--slider-handle-border-radius);
-
   cursor: pointer;
-
   margin-top: var(--slider-handle-margin-top);
-
   -webkit-transform: scale(1);
   transform: scale(1);
-
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -183,17 +144,12 @@ input[type="range"]:focus::-webkit-slider-thumb {
 
 input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
-
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
-
   background: var(--green);
-
   border: none;
   border-radius: var(--slider-handle-border-radius);
-
   cursor: pointer;
-
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
