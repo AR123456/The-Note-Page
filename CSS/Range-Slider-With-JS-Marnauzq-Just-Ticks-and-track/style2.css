@@ -68,7 +68,7 @@ body {
 }
 
 /* TODO do I need this div  */
-.tick-slider-value {
+/* .tick-slider-value {
   position: absolute;
   top: 0;
 
@@ -77,7 +77,7 @@ body {
   color: var(--blue);
 
   border-radius: var(--slider-handle-border-radius);
-}
+} */
 
 .tick-slider-value > div {
   animation: bulge 0.3s ease-out;
