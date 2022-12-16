@@ -60,15 +60,6 @@ body {
   justify-content: space-between;
   margin-bottom: 24px;
 }
-/* TODO do i need this div */
-/* .tick-slider-header > h5 {
-  margin: 0;
-
-  font-family: "Poppins", sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-  color: var(--gray);
-} */
 
 .tick-slider {
   position: relative;
