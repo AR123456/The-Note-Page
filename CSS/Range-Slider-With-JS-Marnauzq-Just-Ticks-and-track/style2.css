@@ -67,10 +67,6 @@ body {
   width: 100%;
 }
 
-.tick-slider-value > div {
-  animation: bulge 0.3s ease-out;
-}
-
 .tick-slider-background,
 .tick-slider-progress,
 .tick-slider-tick-container {
@@ -122,20 +118,6 @@ body {
 
 .tick-slider-label.hidden {
   opacity: 0;
-}
-
-@keyframes bulge {
-  0% {
-    transform: scale(1);
-  }
-
-  25% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
 }
 
 /*
