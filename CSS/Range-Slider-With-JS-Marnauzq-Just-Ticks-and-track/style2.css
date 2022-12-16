@@ -67,18 +67,6 @@ body {
   width: 100%;
 }
 
-/* TODO do I need this div  */
-/* .tick-slider-value {
-  position: absolute;
-  top: 0;
-
-  font-weight: bold;
-
-  color: var(--blue);
-
-  border-radius: var(--slider-handle-border-radius);
-} */
-
 .tick-slider-value > div {
   animation: bulge 0.3s ease-out;
 }
