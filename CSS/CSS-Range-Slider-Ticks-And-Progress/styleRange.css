@@ -31,12 +31,15 @@ input[type="range"]:focus {
   outline: none;
 }
 input[type="range"]::-webkit-slider-runnable-track {
-  background: #bfbfbf;
-  border: 0.2px solid #010101;
-  border-radius: var(--slider-track-border-radius);
   width: 100%;
   height: var(--slider-track-height);
   cursor: pointer;
+  background: #bfbfbf;
+  /* once I get track coded this backgound needs to be none  */
+  /* background: none; */
+  /* once track coded remove this boarder styling  */
+  border: 0.2px solid #010101;
+  border-radius: var(--slider-track-border-radius);
 }
 input[type="range"]::-webkit-slider-thumb {
   margin-top: var(--slider-handle-margin-top);
@@ -56,7 +59,10 @@ input[type="range"]:focus::-webkit-slider-thumb {
   transform: scale(1.2);
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #cccccc;
+  background: none;
+}
+input[type="range"]:active::-webkit-slider-runnable-track {
+  background: none;
 }
 input[type="range"]::-moz-range-track {
   background: var(--green);
