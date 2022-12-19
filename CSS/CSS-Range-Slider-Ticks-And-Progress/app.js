@@ -125,11 +125,11 @@ function init() {
   // getting slider to pass into the functions that control appearance and behavior
   // each range input has the class tick-slider-input
   const sliders = document.getElementsByClassName("tick-slider-input");
-  console.log(sliders);
+
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
-
+    // console.log(slider);
     updateProgress(slider);
     // the slider is not in the onInput because it is defined on page load and doesnt change after that.
     setTicks(slider);
@@ -165,18 +165,24 @@ function getSliderPercent(slider) {
 }
 
 function setTicks(slider) {
+  // console.log(slider);
   // get the data-tick-id from each input range input
   let container = document.getElementById(slider.dataset.tickId);
+  // console.log(container);
   // get the data-tick-step value for each input range
   const spacing = parseFloat(slider.dataset.tickStep);
+  // console.log(spacing);
   // get the min and max from the range input and do the math
   const sliderRange = slider.max - slider.min;
+  // console.log(sliderRange);
   // starting from 0
   const tickCount = sliderRange / spacing + 1; // +1 to account for 0
+  // console.log(tickCount);
   for (let i = 0; i < tickCount; i++) {
     // create a spans with class tick-slider-tick
     let tick = document.createElement("span");
     tick.className = "tick-slider-tick";
+    // console.log(tick);
     container.appendChild(tick);
   }
 }

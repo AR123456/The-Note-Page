@@ -21,24 +21,36 @@
   /* track round ends a bit  */
   --slider-track-border-radius: 4px;
 }
+option {
+  display: flex;
+  width: 100%;
+}
+datalist {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: stretch;
+  color: black;
+  width: 110%;
+}
 input[type="range"] {
   width: 100%;
   margin: 5.5px 0;
   background-color: transparent;
   -webkit-appearance: none;
 }
-input[type="range"]:focus {
+/* input[type="range"]:focus {
   outline: none;
-}
+} */
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: var(--slider-track-height);
   cursor: pointer;
   background: #bfbfbf;
   /* once I get track coded this backgound needs to be none  */
-  /* background: none; */
+  background: none;
   /* once track coded remove this boarder styling  */
-  border: 0.2px solid #010101;
+  /* border: 0.2px solid #010101; */
   border-radius: var(--slider-track-border-radius);
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -54,8 +66,13 @@ input[type="range"]::-webkit-slider-thumb {
   transform: scale(1);
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+/* Mouse-over effects */
+input[type="range"]:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
 input[type="range"]:hover::-webkit-slider-thumb,
 input[type="range"]:focus::-webkit-slider-thumb {
+  opacity: 1;
   transform: scale(1.2);
 }
 input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -132,21 +149,10 @@ input[type="range"]:focus::-ms-fill-upper {
   }
 }
 /* TODO add to HTML  */
-.tick-slider-progress {
-  background-color: var(--green);
-}
-.tick-slider-background {
+/* this is important without it none of the ranges appear  */
+.tick-slider {
+  position: relative;
   width: 100%;
-  background-color: var(--black);
-}
-.tick-slider-tick-container {
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 calc(var(--slider-handle-size) / 2);
 }
 .tick-slider-background,
 .tick-slider-progress,
@@ -154,16 +160,30 @@ input[type="range"]:focus::-ms-fill-upper {
   position: absolute;
   bottom: 5px;
   left: 0;
-
   height: var(--slider-track-height);
-
   pointer-events: none;
-
   border-radius: var(--slider-track-border-radius);
-
   z-index: -1;
 }
 .tick-slider-background {
   width: 100%;
   background-color: var(--black);
+}
+.tick-slider-progress {
+  background-color: var(--green);
+}
+
+.tick-slider-tick-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(var(--slider-handle-size) / 2);
+}
+
+.tick-slider-tick {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: white;
 }
