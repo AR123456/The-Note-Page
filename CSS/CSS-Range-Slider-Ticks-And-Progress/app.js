@@ -125,6 +125,7 @@ function init() {
   // getting slider to pass into the functions that control appearance and behavior
   // each range input has the class tick-slider-input
   const sliders = document.getElementsByClassName("tick-slider-input");
+  console.log(sliders);
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
     slider.oninput = onSliderInput;
