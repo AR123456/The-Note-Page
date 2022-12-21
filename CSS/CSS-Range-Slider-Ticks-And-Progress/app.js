@@ -156,6 +156,10 @@ function onSliderInput(event) {
   updateProgress(event.target);
 }
 function onBoxInput() {
+  // TODO make the value in here the value of the range slider
+  slider.value = this.value;
+  // pass this .value into updateProgress ?
+  updateProgress(slider.value);
   console.log(this.value);
 }
 // updateProgress used to display handle on track green vs black
