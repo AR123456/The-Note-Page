@@ -27,36 +27,43 @@ function syncInputs() {
   });
   inputGoal.addEventListener("input", function () {
     sliderGoal.value = this.value;
+    // console.log(sliderGoal.dataset);
+    updateProgress(sliderGoal);
   });
   sliderYears.addEventListener("input", function () {
     inputYears.value = this.value;
   });
   inputYears.addEventListener("input", function () {
     sliderYears.value = this.value;
+    updateProgress(sliderYears);
   });
   sliderCurrentSaved.addEventListener("input", function () {
     inputCurrentSaved.value = this.value;
   });
   inputCurrentSaved.addEventListener("input", function () {
     sliderCurrentSaved.value = this.value;
+    updateProgress(sliderCurrentSaved);
   });
   sliderMonthlySavings.addEventListener("input", function () {
     inputMonthlySavings.value = this.value;
   });
   inputMonthlySavings.addEventListener("input", function () {
     sliderMonthlySavings.value = this.value;
+    updateProgress(sliderMonthlySavings);
   });
   sliderExpectedRate.addEventListener("input", function () {
     inputExpectedRate.value = this.value;
   });
   inputExpectedRate.addEventListener("input", function () {
     sliderExpectedRate.value = this.value;
+    updateProgress(sliderExpectedRate);
   });
   sliderInflationRate.addEventListener("input", function () {
     inputInflationRate.value = this.value;
   });
   inputInflationRate.addEventListener("input", function () {
     sliderInflationRate.value = this.value;
+    updateProgress(sliderInflationRate);
   });
 }
 syncInputs();
@@ -128,8 +135,9 @@ function init() {
 
   // when the page loads use the default values to set up sliders
   for (let slider of sliders) {
+    // add event listener
     slider.oninput = onSliderInput;
-    // console.log(slider);
+
     updateProgress(slider);
     // the slider is not in the onInput because it is defined on page load and doesnt change after that.
     setTicks(slider);
