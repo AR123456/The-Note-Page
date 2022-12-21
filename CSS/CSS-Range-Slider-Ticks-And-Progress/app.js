@@ -21,7 +21,9 @@ const viewReportButton = document.getElementById("viewReport");
 // function to sync range and  text box inputs
 function syncInputs() {
   // https://stackoverflow.com/questions/64199456/changing-the-value-of-the-range-slider-and-input-box-at-the-same-time
+  // TODO would a for loop make this more dry
 
+  // /////////////////////////
   sliderGoal.addEventListener("input", function () {
     inputGoal.value = this.value;
   });
@@ -29,6 +31,7 @@ function syncInputs() {
     sliderGoal.value = this.value;
     // console.log(sliderGoal.dataset);
     updateProgress(sliderGoal);
+    console.log("syncing");
   });
   sliderYears.addEventListener("input", function () {
     inputYears.value = this.value;
@@ -142,13 +145,19 @@ function init() {
     // the slider is not in the onInput because it is defined on page load and doesnt change after that.
     setTicks(slider);
   }
+  const inputBoxes = document.getElementsByClassName("box-input");
+  for (let inputBox of inputBoxes) {
+    inputBox.oninput = onBoxInput;
+  }
 }
 // when range handle is moved pass in that event to update the slider
 function onSliderInput(event) {
   //event.target is input id  name then append the class name #name.tick-slider-input
   updateProgress(event.target);
 }
-
+function onBoxInput() {
+  console.log(this.value);
+}
 // updateProgress used to display handle on track green vs black
 function updateProgress(slider) {
   // progressId coming from "data-progress-id" data set on each range input
