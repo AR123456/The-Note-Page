@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let years = 10;
+      let goal = 10;
+      let expectedReturn = 3;
+      let monthlySaved = 500;
+      let currentSaved = 1000;
+      const nper = years * 12;
+      console.log(nper);
+      const APR = expectedReturn / 100;
+      const rate = APR / nper; // monthly rate of return
+
+      console.log(rate);
+      const pmt = monthlySaved;
+      console.log(pmt);
+      const pv = currentSaved;
+      console.log(pv);
+      // 1 for pymt at begining of month, 0 at end
+      const type = 1;
+      console.log(type);
+
+      function calcFV(rate, nper, pmt, pv, type) {
+        var pow = Math.pow(1 + rate, nper),
+          fv;
+        if (rate) {
+          fv = (-pmt * (1 + rate * type) * (1 - pow)) / rate - -pv * pow;
+        } else {
+          fv = -1 * (-pv + -pmt * nper);
+        }
+        return fv.toFixed(2);
+      }
+      const FV = calcFV(rate, nper, pmt, pv, type);
+      console.log(`The calculated future value ${FV}`);
+
+      let growthYears = [pv];
+      let newPV = calcFV(rate, 12, pmt, pv, type);
+      growthYears.push(newPV);
+      for (let i = 1; i < years; i++) {
+        newPV = calcFV(rate, 12, pmt, newPV, type);
+
+        growthYears.push(newPV);
+      }
+      // alternativly a while loop would work 
+      // while (years >= 0) {
+      //   newPV = calcFV(rate, 12, pmt, newPV, type);
+      //   years--;
+      //   growthYears.push(newPV);
+      // }
+      console.log(growthYears);
+    </script>
+  </body>
+</html>
