@@ -10,14 +10,12 @@ function generateTable() {
     // creates a table row
     const row = document.createElement("tr");
     // columns in row
-    for (let j = 0; row1Arr.length < 3; j++) {
+    for (let j = 0; j < 3; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       const cell = document.createElement("td");
-      const cellText = document.createTextNode(
-        `cell in row ${i}, column ${row1Arr[j]}`
-      );
+      const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
       cell.appendChild(cellText);
       row.appendChild(cell);
     }
