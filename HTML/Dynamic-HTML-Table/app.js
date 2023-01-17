@@ -4,41 +4,48 @@ function generateTable() {
   const tblHead = document.createElement("thead");
   const tblBody = document.createElement("tbody");
   const row = document.createElement("tr");
-  const rowTH = document.createElement("th");
+
   // create th head with header rows
-  rowTH.innerHTML = `
+  tblHead.innerHTML = `
   <th>${"Company"}</th>
   <th>${"Contact"}</th>
   <th>${"Country"}</th>
-  <th><a href="#" class="btn btn-danger btn-sm delete">X</a></th>
+ 
 `;
-  tblHead.appendChild(rowTH);
 
-  row.innerHTML = `
-  <td>${"book.title"}</td>
-  <td>${"book.author"}</td>
-  <td>${"book.isbn"}</td>
-  <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
-`;
   tblBody.appendChild(row);
-  // creating all cells
-  for (let i = 0; i < 2; i++) {
-    // creates a table row
+  // // creating first row
+  // for (let i = 0; i < 1; i++) {
+  //   // creates a table row
+  //   for (let j = 0; j < 3; j++) {
+  //     // Create a <td> element and a text node, make the text
+  //     // node the contents of the <td>, and put the <td> at
+  //     // the end of the table row
+  //     const cell = document.createElement("td");
+  //     const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
+  //     cell.appendChild(cellText);
+  //     row.appendChild(cell);
+  //   }
 
-    for (let j = 0; j < 2; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-      const cell = document.createElement("td");
-      const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
-      cell.appendChild(cellText);
-      row.appendChild(cell);
-    }
-
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
+  //   // add the row to the end of the table body
+  //   tblBody.appendChild(row);
+  // }
+  // creates a table row
+  for (let j = 0; j < 3; j++) {
+    // Create a <td> element and a text node, make the text
+    // node the contents of the <td>, and put the <td> at
+    // the end of the table row
+    const cell = document.createElement("td");
+    const cellText = document.createTextNode(`cell in row ${"i"}, column ${j}`);
+    cell.appendChild(cellText);
+    row.appendChild(cell);
   }
 
+  // add the row to the end of the table body
+  tblBody.appendChild(row);
+
+  // put the theac in the table
+  tbl.appendChild(tblHead);
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
   // appends <table> into <body>
