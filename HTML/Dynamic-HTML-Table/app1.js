@@ -3,19 +3,21 @@ function generateTable() {
   const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
-  row1Arr = ["Alfreds Futterkiste", "Maria Anders", "Germany"];
+  row1Arr = ["Company", "Contact", "Country"];
 
   // creating all cells
   for (let i = 0; i < 2; i++) {
     // creates a table row
     const row = document.createElement("tr");
     // columns in row
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; row1Arr.length < 3; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       const cell = document.createElement("td");
-      const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
+      const cellText = document.createTextNode(
+        `cell in row ${i}, column ${row1Arr[j]}`
+      );
       cell.appendChild(cellText);
       row.appendChild(cell);
     }
