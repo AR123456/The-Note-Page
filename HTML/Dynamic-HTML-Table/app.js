@@ -29,3 +29,21 @@ function generateTable() {
   // sets the border attribute of tbl to '2'
   tbl.setAttribute("border", "2");
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+
+// snipit from Brads https://www.youtube.com/watch?v=JaMCxVWtW58&t=2s
+function addBookToList(book) {
+  const list = document.querySelector('#book-list');
+
+  const row = document.createElement('tr');
+
+  row.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td>${book.isbn}</td>
+    <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+  `;
+
+  list.appendChild(row);
+}
