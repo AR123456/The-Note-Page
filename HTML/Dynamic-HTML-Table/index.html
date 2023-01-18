@@ -4,62 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>dynamic table</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <table>
-      <thead>
-        <!-- tr is table row  -->
-        <tr>
-          <!--forfirst row  th are the header row labels-->
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- tr is table row  -->
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <!-- tr is table row  -->
-        <tr>
-          <!-- td stands for table data. -->
-          <!-- Everything between <td> and </td> are the content of the table cell. -->
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-      </tbody>
-    </table>
-    <h2>Another table</h2>
-    <table>
-      <tr>
-        <th>Person 1</th>
-        <th>Person 2</th>
-        <th>Person 3</th>
-      </tr>
-      <tr>
-        <td>Emil</td>
-        <td>Tobias</td>
-        <td>Linus</td>
-      </tr>
-      <tr>
-        <td>16</td>
-        <td>14</td>
-        <td>10</td>
-      </tr>
-    </table>
-    <h2>Dynamic table generation</h2>
-    <input type="button" value="Generate a table" onclick="generateTable()" />
-    <br />
-    <script src="app1.js"></script>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Years${years}</th>
+            <th>Contribute ${monthlySaved}</th>
+            <th>Contributing ${Ppmt} will get to goal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>1000</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>7011.26</td>
+            <td>1905.20</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>13040.58</td>
+            <td>2813.12</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>19088.01</td>
+            <td>3723.77</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>25153.61</td>
+            <td>4637.16</tbody>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="app.js"></script>
   </body>
 </html>
-<!-- <thead>	Groups the header content in a table
-<tbody>	Groups the body content in a table
-<tfoot>	Groups the footer content in a table -->
-<!-- https://www.w3schools.com/html/html_tables.asp -->
