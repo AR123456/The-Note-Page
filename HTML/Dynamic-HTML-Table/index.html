@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dynamic table</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>This table is hard coded in the HTML</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Years${years}</th>
+            <th>Contribute ${monthlySaved}</th>
+            <th>Contributing ${Ppmt} will get to goal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>1000</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>7011.26</td>
+            <td>1905.20</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>13040.58</td>
+            <td>2813.12</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>19088.01</td>
+            <td>3723.77</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>25153.61</td>
+            <td>4637.16</td>
+          </tr>
+
+          <tr>
+            <td>5</td>
+            <td>31237.43</td>
+            <td>5553.29</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>37339.53</td>
+            <td>6472.17</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>43459.96</td>
+            <td>7393.81</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>49598.78</td>
+            <td>8318.22</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>55756.04</td>
+            <td>9245.41</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>61931.80</td>
+            <td>10175.38</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>This table is generated dynamically</h1>
+    <input type="button" value="Generate a table" onclick="generateTable()" />
+
+    <script src="app.js"></script>
+  </body>
+</html>
