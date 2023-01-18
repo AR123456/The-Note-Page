@@ -66,13 +66,13 @@ function generateTable() {
     // creates a table row
     const row = document.createElement("tr");
 
-    for (let j = 0; j < 2; j++) {
+    for (let j = 0; j < 3; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       const cell = document.createElement("td");
       const cellText = document.createTextNode(
-        `cell in row ${yearsToGrow[i]}, column ${j}`
+        `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
       );
       cell.appendChild(cellText);
       row.appendChild(cell);
