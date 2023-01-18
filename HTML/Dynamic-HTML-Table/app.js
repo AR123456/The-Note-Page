@@ -62,7 +62,7 @@ function generateTable() {
 </tr>`;
 
   // creating all cells
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < yearsToGrow.length; i++) {
     // creates a table row
     const row = document.createElement("tr");
 
@@ -71,7 +71,9 @@ function generateTable() {
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       const cell = document.createElement("td");
-      const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
+      const cellText = document.createTextNode(
+        `cell in row ${yearsToGrow[i]}, column ${j}`
+      );
       cell.appendChild(cellText);
       row.appendChild(cell);
     }
