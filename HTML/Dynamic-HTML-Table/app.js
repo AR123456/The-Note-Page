@@ -53,7 +53,6 @@ function generateTable() {
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
-  let trs;
 
   tblHeader.innerHTML = `
 <tr>  
@@ -65,16 +64,15 @@ function generateTable() {
   // creating all cells
   for (let i = 0; i < yearsToGrow.length; i++) {
     // creates a table row
-    // const row = document.createElement("tr");
+    const row = document.createElement("tr");
 
     for (let j = 0; j < 3; j++) {
-      let tr = `<tr>  
+      let trs = `<tr>  
 <td>Years ${yearsToGrow[i]}</td>
 <td>Contributing ${growthByYear[i]}</td>
 <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
 </tr>`;
-      console.log(trs);
-
+      row.innerHTML = trs;
       // var tr = document.createElement("tr");
       // // Create a <td> element and a text node, make the text
       // // node the contents of the <td>, and put the <td> at
@@ -94,6 +92,7 @@ function generateTable() {
     }
 
     // add the row to the end of the table body
+    tblBody.appendChild(row);
   }
 
   // put tblHeader into the table
