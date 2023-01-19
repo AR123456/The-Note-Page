@@ -68,13 +68,13 @@ function generateTable() {
     // const row = document.createElement("tr");
 
     for (let j = 0; j < 3; j++) {
-      let trs = `<tr>  
+      let tr = `<tr>  
 <td>Years ${yearsToGrow[i]}</td>
 <td>Contributing ${growthByYear[i]}</td>
 <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
 </tr>`;
       console.log(trs);
-      tblBody.innerHTML = trs;
+
       // var tr = document.createElement("tr");
       // // Create a <td> element and a text node, make the text
       // // node the contents of the <td>, and put the <td> at
