@@ -52,7 +52,7 @@ function generateTable() {
   const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
-  const row = document.createElement("tr");
+  // const row = document.createElement("tr");
 
   tblHeader.innerHTML = `
 <tr>  
@@ -67,26 +67,32 @@ function generateTable() {
     const row = document.createElement("tr");
 
     for (let j = 0; j < 3; j++) {
-      var tr = document.createElement("tr");
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-      const td = document.createElement("td");
+      let trs = `<tr>  
+<td>Years ${yearsToGrow[i]}</td>
+<td>Contributing ${growthByYear[i]}</td>
+<td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
+</tr>`;
 
-      td.innerHTML = yearsToGrow[i];
-      td.innerHTML = growthByYear[i];
-      td.innerHTML = growthByYearNeededToBeSaved[i];
-      // const cellText = document.createTextNode(
-      //   `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
-      // );
+      // var tr = document.createElement("tr");
+      // // Create a <td> element and a text node, make the text
+      // // node the contents of the <td>, and put the <td> at
+      // // the end of the table row
+      // const td = document.createElement("td");
 
-      // td.appendChild(cellText);
-      tr.appendChild(td);
-      row.appendChild(td);
+      // td.innerHTML = yearsToGrow[i];
+      // td.innerHTML = growthByYear[i];
+      // td.innerHTML = growthByYearNeededToBeSaved[i];
+      // // const cellText = document.createTextNode(
+      // //   `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
+      // // );
+
+      // // td.appendChild(cellText);
+      // tr.appendChild(td);
+      tblBody.appendChild(trs);
     }
 
     // add the row to the end of the table body
-    tblBody.appendChild(row);
+    tblBody.appendChild(trs);
   }
   // put tblHeader into the table
   tbl.appendChild(tblHeader);
