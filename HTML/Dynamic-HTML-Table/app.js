@@ -67,15 +67,22 @@ function generateTable() {
     const row = document.createElement("tr");
 
     for (let j = 0; j < 3; j++) {
+      var tr = document.createElement("tr");
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
-      const cell = document.createElement("td");
-      const cellText = document.createTextNode(
-        `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
-      );
-      cell.appendChild(cellText);
-      row.appendChild(cell);
+      const td = document.createElement("td");
+
+      td.innerHTML = yearsToGrow[i];
+      td.innerHTML = growthByYear[i];
+      td.innerHTML = growthByYearNeededToBeSaved[i];
+      // const cellText = document.createTextNode(
+      //   `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
+      // );
+
+      // td.appendChild(cellText);
+      tr.appendChild(td);
+      row.appendChild(td);
     }
 
     // add the row to the end of the table body
