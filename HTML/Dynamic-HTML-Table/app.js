@@ -56,26 +56,26 @@ function generateTable() {
   const trFirst = document.createElement("tr");
 
   tblHeader.innerHTML = `
-<tr>  
-<th>Years ${years}</th>
-<th>Contributing ${monthlySaved}</th>
-<th>Contributing ${ppmt} to get to goal</th> 
-</tr>`;
+            <tr>  
+            <th>Years ${years}</th>
+            <th>Contributing ${monthlySaved}</th>
+            <th>Contributing ${ppmt} to get to goal</th> 
+            </tr>`;
   trFirst.innerHTML = `<tr>  
-<td></td>
-<td>$${growthByYear[0]} Starting Balance</td>
-<td>$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
-</tr>`;
+            <td></td>
+            <td>$${growthByYear[0]} Starting Balance</td>
+            <td>$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
+            </tr>`;
   // creating all cells
   for (let i = 1; i < yearsToGrow.length; i++) {
     // creates a table row
     const row = document.createElement("tr");
 
     let trs = `<tr>  
-    <td>Years ${yearsToGrow[i]}</td>
-    <td>Contributing ${growthByYear[i]}</td>
-    <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
-    </tr>`;
+              <td>Years ${yearsToGrow[i]}</td>
+              <td>Contributing ${growthByYear[i]}</td>
+              <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
+              </tr>`;
 
     row.innerHTML = trs;
     // row.insertAdjacentHTML(beforebegin, trFirst);
@@ -92,7 +92,30 @@ function generateTable() {
   // sets the border attribute of tbl to '2'
   tbl.setAttribute("border", "2");
 }
+function generateResultSummary() {
+  // create the main table elemenst
+  const tbl = document.createElement("table");
+  const tblBody = document.createElement("tbody");
+  const tblHeader = document.createElement("thead");
+  const tblFooter = document.createElement("tfoot");
+  //  add to elements
+  tblHeader.innerHTML = `
+  <tr>
+      <th>Result Summary</th>
+  </tr>
 
+`;
+  tblBody.innerHTML = `The table body `;
+  tblFooter.innerHTML = `The table footer `;
+
+  // put tblHeader into the table
+  tbl.appendChild(tblHeader);
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  tbl.appendChild(tblFooter);
+  // appends <table> into <body>
+  document.body.appendChild(tbl);
+}
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
 
 // snipit from Brads https://www.youtube.com/watch?v=JaMCxVWtW58&t=2s
