@@ -53,6 +53,7 @@ function generateTable() {
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
+  const trFirst = document.createElement("tr");
 
   tblHeader.innerHTML = `
 <tr>  
@@ -60,31 +61,28 @@ function generateTable() {
 <th>Contributing ${monthlySaved}</th>
 <th>Contributing ${ppmt} to get to goal</th> 
 </tr>`;
-
+  trFirst.innerHTML = `<tr>  
+<td></td>
+<td>$${growthByYear[0]} Starting Balance</td>
+<td>$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
+</tr>`;
   // creating all cells
-  for (let i = 0; i < yearsToGrow.length; i++) {
+  for (let i = 1; i < yearsToGrow.length; i++) {
     // creates a table row
     const row = document.createElement("tr");
+
     let trs = `<tr>  
     <td>Years ${yearsToGrow[i]}</td>
     <td>Contributing ${growthByYear[i]}</td>
     <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
     </tr>`;
+
     row.innerHTML = trs;
-
-    //     for (let j = 0; j < 3; j++) {
-    //       let trs = `<tr>
-    // <td>Years ${yearsToGrow[i]}</td>
-    // <td>Contributing ${growthByYear[i]}</td>
-    // <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td>
-    // </tr>`;
-    //       row.innerHTML = trs;
-    //     }
-
+    // row.insertAdjacentHTML(beforebegin, trFirst);
+    tblBody.prepend(trFirst);
     // add the row to the end of the table body
     tblBody.appendChild(row);
   }
-
   // put tblHeader into the table
   tbl.appendChild(tblHeader);
   // put the <tbody> in the <table>
@@ -92,7 +90,7 @@ function generateTable() {
   // appends <table> into <body>
   document.body.appendChild(tbl);
   // sets the border attribute of tbl to '2'
-  // tbl.setAttribute("border", "2");
+  tbl.setAttribute("border", "2");
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
