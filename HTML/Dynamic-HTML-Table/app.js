@@ -65,31 +65,21 @@ function generateTable() {
   for (let i = 0; i < yearsToGrow.length; i++) {
     // creates a table row
     const row = document.createElement("tr");
+    let trs = `<tr>  
+    <td>Years ${yearsToGrow[i]}</td>
+    <td>Contributing ${growthByYear[i]}</td>
+    <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
+    </tr>`;
+    row.innerHTML = trs;
 
-    for (let j = 0; j < 3; j++) {
-      let trs = `<tr>  
-<td>Years ${yearsToGrow[i]}</td>
-<td>Contributing ${growthByYear[i]}</td>
-<td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
-</tr>`;
-      row.innerHTML = trs;
-      // var tr = document.createElement("tr");
-      // // Create a <td> element and a text node, make the text
-      // // node the contents of the <td>, and put the <td> at
-      // // the end of the table row
-      // const td = document.createElement("td");
-
-      // td.innerHTML = yearsToGrow[i];
-      // td.innerHTML = growthByYear[i];
-      // td.innerHTML = growthByYearNeededToBeSaved[i];
-      // // const cellText = document.createTextNode(
-      // //   `Year ${yearsToGrow[i]}, growthByYear ${growthByYear[i]}, growthByYearNeededToBeSaved ${growthByYearNeededToBeSaved[i]}`
-      // // );
-
-      // // td.appendChild(cellText);
-      // tr.appendChild(td);
-      // tblBody.appendChild(trs);
-    }
+    //     for (let j = 0; j < 3; j++) {
+    //       let trs = `<tr>
+    // <td>Years ${yearsToGrow[i]}</td>
+    // <td>Contributing ${growthByYear[i]}</td>
+    // <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td>
+    // </tr>`;
+    //       row.innerHTML = trs;
+    //     }
 
     // add the row to the end of the table body
     tblBody.appendChild(row);
@@ -102,7 +92,7 @@ function generateTable() {
   // appends <table> into <body>
   document.body.appendChild(tbl);
   // sets the border attribute of tbl to '2'
-  tbl.setAttribute("border", "2");
+  // tbl.setAttribute("border", "2");
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
