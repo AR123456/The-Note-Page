@@ -105,7 +105,35 @@ function generateResultSummary() {
   </tr>
 
 `;
-  tblBody.innerHTML = `The table body `;
+  tblBody.innerHTML = `<tr>  
+  <td>Savings goal </td>
+  <td> ${goal}</td>
+  </tr>
+  <tr>  
+  <td>Target years to save </td>
+  <td> ${years}</td>
+   </tr>
+  <tr>  
+  <td>Amount currently saved </td> 
+  <td> ${currentSaved}</td> 
+   </tr>
+  <tr>  
+  <td>Expected rate of return</td>
+   <td> ${rate}</td>
+    </tr>
+  <tr>  
+  <td>Inflation rate  </td>
+    <td> ${expectedInflation}</td>
+     </tr>
+  <tr>  
+  <td>Total after 10 years </td>
+    <td> ${expectedInflation}</td>
+     </tr>
+  <tr>  
+  <td>Amount required to meet goal in ${years} years</td>
+    <td> ${ppmt} monthly</td>
+     </tr>
+  `;
   tblFooter.innerHTML = `The table footer `;
 
   // put tblHeader into the table
