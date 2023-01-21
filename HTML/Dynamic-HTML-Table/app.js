@@ -43,6 +43,7 @@ const growthByYearNeededToBeSaved = [
 ];
 ppmt = 75.0;
 
+//TODO clear dom of prior table when user clicks generate button
 //Show user needed monthly contribution
 //   const Ppmt = parseFloat(
 //     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
@@ -50,6 +51,7 @@ ppmt = 75.0;
 function generateTable() {
   // creates a <table> element and a <tbody> element
   const tbl = document.createElement("table");
+
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
@@ -125,16 +127,17 @@ function generateResultSummary() {
   <td>Inflation rate  </td>
     <td> ${expectedInflation}</td>
      </tr>
-  <tr>  
-  <td>Total after 10 years </td>
-    <td> ${growthByYearNeededToBeSaved[10]}</td>
-     </tr>
-  <tr>  
-  <td>Amount required to meet goal in ${years} years</td>
-    <td> ${ppmt} monthly</td>
-     </tr>
+     
+ 
   `;
-  tblFooter.innerHTML = `The table footer `;
+  tblFooter.innerHTML = `<tr> 
+   <td>Total after 10 years </td>
+     <td> ${growthByYearNeededToBeSaved[10]}</td>
+   </tr>
+    <tr>    
+      <td>Amount required to meet goal in ${years} years</td>
+      <td> ${ppmt} monthly</td>
+   </tr> `;
 
   // put tblHeader into the table
   tbl.appendChild(tblHeader);
@@ -144,6 +147,7 @@ function generateResultSummary() {
   // appends <table> into <body>
   document.body.appendChild(tbl);
 }
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
 
 // snipit from Brads https://www.youtube.com/watch?v=JaMCxVWtW58&t=2s
