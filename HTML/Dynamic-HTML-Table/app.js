@@ -51,10 +51,23 @@ ppmt = 75.0;
 function generateTable() {
   const cont = document.createElement("div");
 
+  cont.classList.add("table-responsive", "container");
+
   // creates a <table> element and a <tbody> element
   // add classes
   const tbl = document.createElement("table");
-  tbl.classList.add("table-responsive");
+
+  tbl.classList.add(
+    "table",
+    "table-striped",
+    "table-hover",
+    "table-bordered",
+    "table-sm",
+    "caption-top"
+  );
+  tbl.innerHTML = `    <caption class="text-center">
+  By Year
+</caption>`;
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
@@ -62,14 +75,14 @@ function generateTable() {
 
   tblHeader.innerHTML = `
             <tr>  
-            <th>Years ${years}</th>
-            <th>Contributing ${monthlySaved}</th>
-            <th>Contributing ${ppmt} to get to goal</th> 
+            <th class="text-center">Years ${years}</th>
+            <th class="text-center">Contributing ${monthlySaved}</th>
+            <th class="text-center">Contributing ${ppmt} to get to goal</th> 
             </tr>`;
   trFirst.innerHTML = `<tr>  
             <td></td>
-            <td>$${growthByYear[0]} Starting Balance</td>
-            <td>$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
+            <td class="text-end">$${growthByYear[0]} Starting Balance</td>
+            <td class="text-end">$${growthByYearNeededToBeSaved[0]} Starting Balance</td> 
             </tr>`;
   // creating all cells
   for (let i = 1; i < yearsToGrow.length; i++) {
@@ -77,9 +90,9 @@ function generateTable() {
     const row = document.createElement("tr");
 
     let trs = `<tr>  
-              <td>Years ${yearsToGrow[i]}</td>
-              <td>Contributing ${growthByYear[i]}</td>
-              <td>Contributing ${growthByYearNeededToBeSaved[i]} to get to goal</td> 
+              <td class="text-end">${yearsToGrow[i]}</td>
+              <td class="text-end">$ ${growthByYear[i]}</td>
+              <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
               </tr>`;
 
     row.innerHTML = trs;
