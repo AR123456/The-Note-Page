@@ -49,9 +49,12 @@ ppmt = 75.0;
 //     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
 //   ).toFixed(2);
 function generateTable() {
-  // creates a <table> element and a <tbody> element
-  const tbl = document.createElement("table");
+  const cont = document.createElement("div");
 
+  // creates a <table> element and a <tbody> element
+  // add classes
+  const tbl = document.createElement("table");
+  tbl.classList.add("table-responsive");
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
@@ -89,12 +92,16 @@ function generateTable() {
   tbl.appendChild(tblHeader);
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
+  cont.appendChild(tbl);
+
   // appends <table> into <body>
-  document.body.appendChild(tbl);
-  // sets the border attribute of tbl to '2'
-  tbl.setAttribute("border", "2");
+  document.body.appendChild(cont);
+
+  // // sets the border attribute of tbl to '2'
+  // tbl.setAttribute("border", "2");
 }
 function generateResultSummary() {
+  const cont = document.createElement("div");
   // create the main table elemenst
   const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
@@ -144,8 +151,10 @@ function generateResultSummary() {
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
   tbl.appendChild(tblFooter);
+  cont.appendChild(tbl);
+
   // appends <table> into <body>
-  document.body.appendChild(tbl);
+  document.body.appendChild(cont);
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
