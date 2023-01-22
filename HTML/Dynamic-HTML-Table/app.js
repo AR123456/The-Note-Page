@@ -48,10 +48,16 @@ ppmt = 75.0;
 //   const Ppmt = parseFloat(
 //     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
 //   ).toFixed(2);
+const dynamicGenerateTable = document.getElementById("dynamic-generateTable");
+dynamicGenerateTable.innerHTML = "";
 function generateTable() {
+  // make the hard coded div go away, this could work for disappearing chart
+  document.getElementById("tableDiv").innerHTML = "";
+
   const cont = document.createElement("div");
 
   cont.classList.add("table-responsive", "container");
+  cont.id = "tableDiv";
 
   // creates a <table> element and a <tbody> element
   // add classes
@@ -108,7 +114,7 @@ function generateTable() {
   cont.appendChild(tbl);
 
   // appends <table> into <body>
-  document.body.appendChild(cont);
+  dynamicGenerateTable.appendChild(cont);
 
   // // sets the border attribute of tbl to '2'
   // tbl.setAttribute("border", "2");
