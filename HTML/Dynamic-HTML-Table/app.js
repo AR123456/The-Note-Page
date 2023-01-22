@@ -1,3 +1,4 @@
+// some consts to pull into table
 const goal = 10000;
 const years = 10;
 const currentSaved = 1000;
@@ -12,6 +13,7 @@ const pmt = monthlySaved;
 const pv = currentSaved;
 const type = 0;
 const fv = goal;
+///TODO  another way to do this would be start with a JSON object
 // years for chart
 const yearsToGrow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const growthByYear = [
@@ -43,26 +45,24 @@ const growthByYearNeededToBeSaved = [
 ];
 ppmt = 75.0;
 
-//TODO clear dom of prior table when user clicks generate button
-//Show user needed monthly contribution
-//   const Ppmt = parseFloat(
-//     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
-//   ).toFixed(2);
+// get the div from DOM where tables will appear
 const dynamicGenerateTable = document.getElementById("dynamic-generateTable");
+// so a new table is not added with each click
 function clearPriorTables() {
   dynamicGenerateTable.innerHTML = "";
-  // make the hard coded div go away, this could work for disappearing chart
+  // make the hard coded div go away,
   document.getElementById("tableDiv").innerHTML = "";
 }
 function generateTable() {
+  // clear out stuff from last click so it does not keep appending new
   clearPriorTables();
+  // create teh bootstrap responsive table container
   const cont = document.createElement("div");
   cont.classList.add("table-responsive", "container");
   cont.id = "tableDiv";
   // creates a <table> element and a <tbody> element
-  // add classes
   const tbl = document.createElement("table");
-
+  // add classes in this case for bootstrap 5
   tbl.classList.add(
     "table",
     "table-striped",
@@ -71,14 +71,11 @@ function generateTable() {
     "table-sm",
     "caption-top"
   );
-  tbl.innerHTML = `    <caption class="text-center">
-  Summary
-</caption>`;
+  tbl.innerHTML = `<caption class="text-center">Summary</caption>`;
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   // const row = document.createElement("tr");
   const trFirst = document.createElement("tr");
-
   tblHeader.innerHTML = `
             <tr>  
             <th class="text-center">Years ${years}</th>
@@ -94,15 +91,13 @@ function generateTable() {
   for (let i = 1; i < yearsToGrow.length; i++) {
     // creates a table row
     const row = document.createElement("tr");
-
     let trs = `<tr>  
               <td class="text-end">${yearsToGrow[i]}</td>
               <td class="text-end">$ ${growthByYear[i]}</td>
               <td class="text-end">$ ${growthByYearNeededToBeSaved[i]}</td> 
               </tr>`;
-
     row.innerHTML = trs;
-    // row.insertAdjacentHTML(beforebegin, trFirst);
+    // prepend adds to front append adds to end
     tblBody.prepend(trFirst);
     // add the row to the end of the table body
     tblBody.appendChild(row);
@@ -111,19 +106,18 @@ function generateTable() {
   tbl.appendChild(tblHeader);
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
+  // put the table into the table responsive container for bootstrap
   cont.appendChild(tbl);
-
-  // appends <table> to div >
+  // appends <table> to the hard coded div >
   dynamicGenerateTable.appendChild(cont);
-
-  // // sets the border attribute of tbl to '2'
-  // tbl.setAttribute("border", "2");
 }
 function generateResultSummary() {
+  // clear out stuff from last click so it does not keep appending new
   clearPriorTables();
+  // create teh bootstrap responsive table container
   const cont = document.createElement("div");
   cont.classList.add("table-responsive", "container");
-  // create the main table elemenst
+  // create the main table element
   const tbl = document.createElement("table");
   tbl.classList.add(
     "table",
@@ -133,20 +127,16 @@ function generateResultSummary() {
     "table-sm",
     "caption-top"
   );
-  tbl.innerHTML = `    <caption class="text-center">
-  By Year
-</caption>`;
+  tbl.innerHTML = `<caption class="text-center">By Year</caption>`;
+  // create the parts of the table
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   const tblFooter = document.createElement("tfoot");
   //  add to elements
   tblHeader.innerHTML = `
-  <tr>
-      <th class="text-center">Result Summary</th>
-  </tr>
-
-`;
-  tblBody.innerHTML = `<tr>  
+  <tr><th class="text-center">Result Summary</th></tr>`;
+  tblBody.innerHTML = `
+  <tr>  
   <td class="text-end">Savings goal </td>
   <td class="text-end"> ${goal}</td>
   </tr>
@@ -165,26 +155,24 @@ function generateResultSummary() {
   <tr>  
   <td class="text-end">Inflation rate  </td>
     <td class="text-end"> ${expectedInflation}</td>
-     </tr>
-     
- 
-  `;
-  tblFooter.innerHTML = `<tr> 
-   <td class="text-end">Total after 10 years </td>
-     <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
-   </tr>
-    <tr>    
-      <td class="text-end">Amount required to meet goal in ${years} years</td>
-      <td class="text-end"> ${ppmt} monthly</td>
-   </tr> `;
-
+    </tr>   
+   `;
+  tblFooter.innerHTML = `
+  <tr> 
+    <td class="text-end">Total after 10 years </td>
+    <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
+  </tr>
+  <tr>    
+    <td class="text-end">Amount required to meet goal in ${years} years</td>
+    <td class="text-end"> ${ppmt} monthly</td>
+  </tr> `;
   // put tblHeader into the table
   tbl.appendChild(tblHeader);
   // put the <tbody> in the <table>
   tbl.appendChild(tblBody);
+  // put footer into table
   tbl.appendChild(tblFooter);
   cont.appendChild(tbl);
-
   // appends <table> to div >
   dynamicGenerateTable.appendChild(cont);
 }
