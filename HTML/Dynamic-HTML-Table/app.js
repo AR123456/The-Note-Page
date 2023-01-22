@@ -66,7 +66,7 @@ function generateTable() {
     "caption-top"
   );
   tbl.innerHTML = `    <caption class="text-center">
-  By Year
+  Summary
 </caption>`;
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
@@ -115,48 +115,60 @@ function generateTable() {
 }
 function generateResultSummary() {
   const cont = document.createElement("div");
+  cont.classList.add("table-responsive", "container");
   // create the main table elemenst
   const tbl = document.createElement("table");
+  tbl.classList.add(
+    "table",
+    "table-striped",
+    "table-hover",
+    "table-bordered",
+    "table-sm",
+    "caption-top"
+  );
+  tbl.innerHTML = `    <caption class="text-center">
+  By Year
+</caption>`;
   const tblBody = document.createElement("tbody");
   const tblHeader = document.createElement("thead");
   const tblFooter = document.createElement("tfoot");
   //  add to elements
   tblHeader.innerHTML = `
   <tr>
-      <th>Result Summary</th>
+      <th class="text-center">Result Summary</th>
   </tr>
 
 `;
   tblBody.innerHTML = `<tr>  
-  <td>Savings goal </td>
-  <td> ${goal}</td>
+  <td class="text-end">Savings goal </td>
+  <td class="text-end"> ${goal}</td>
   </tr>
   <tr>  
-  <td>Target years to save </td>
-  <td> ${years}</td>
+  <td class="text-end">Target years to save </td>
+  <td class="text-end"> ${years}</td>
    </tr>
   <tr>  
-  <td>Amount currently saved </td> 
-  <td> ${currentSaved}</td> 
+  <td class="text-end">Amount currently saved </td> 
+  <td class="text-end"> ${currentSaved}</td> 
    </tr>
   <tr>  
-  <td>Expected rate of return</td>
-   <td> ${rate}</td>
+  <td class="text-end">Expected rate of return</td>
+   <td class="text-end"> ${rate}</td>
     </tr>
   <tr>  
-  <td>Inflation rate  </td>
-    <td> ${expectedInflation}</td>
+  <td class="text-end">Inflation rate  </td>
+    <td class="text-end"> ${expectedInflation}</td>
      </tr>
      
  
   `;
   tblFooter.innerHTML = `<tr> 
-   <td>Total after 10 years </td>
-     <td> ${growthByYearNeededToBeSaved[10]}</td>
+   <td class="text-end">Total after 10 years </td>
+     <td class="text-end"> ${growthByYearNeededToBeSaved[10]}</td>
    </tr>
     <tr>    
-      <td>Amount required to meet goal in ${years} years</td>
-      <td> ${ppmt} monthly</td>
+      <td class="text-end">Amount required to meet goal in ${years} years</td>
+      <td class="text-end"> ${ppmt} monthly</td>
    </tr> `;
 
   // put tblHeader into the table
