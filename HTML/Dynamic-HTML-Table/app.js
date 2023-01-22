@@ -49,16 +49,16 @@ ppmt = 75.0;
 //     PMT(rate, nper, pv, fv, type) - IPMT(pv, pmt, rate, nper)
 //   ).toFixed(2);
 const dynamicGenerateTable = document.getElementById("dynamic-generateTable");
-dynamicGenerateTable.innerHTML = "";
-function generateTable() {
+function clearPriorTables() {
+  dynamicGenerateTable.innerHTML = "";
   // make the hard coded div go away, this could work for disappearing chart
   document.getElementById("tableDiv").innerHTML = "";
-
+}
+function generateTable() {
+  clearPriorTables();
   const cont = document.createElement("div");
-
   cont.classList.add("table-responsive", "container");
   cont.id = "tableDiv";
-
   // creates a <table> element and a <tbody> element
   // add classes
   const tbl = document.createElement("table");
@@ -113,13 +113,14 @@ function generateTable() {
   tbl.appendChild(tblBody);
   cont.appendChild(tbl);
 
-  // appends <table> into <body>
+  // appends <table> to div >
   dynamicGenerateTable.appendChild(cont);
 
   // // sets the border attribute of tbl to '2'
   // tbl.setAttribute("border", "2");
 }
 function generateResultSummary() {
+  clearPriorTables();
   const cont = document.createElement("div");
   cont.classList.add("table-responsive", "container");
   // create the main table elemenst
@@ -184,8 +185,8 @@ function generateResultSummary() {
   tbl.appendChild(tblFooter);
   cont.appendChild(tbl);
 
-  // appends <table> into <body>
-  document.body.appendChild(cont);
+  // appends <table> to div >
+  dynamicGenerateTable.appendChild(cont);
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
