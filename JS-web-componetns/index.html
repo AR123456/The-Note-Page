@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="TodoItem.js"></script>
+    <script defer src="ExpandableList.js"></script>
+    <title>Document</title>
+    <style>
+      h3 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Other</h3>
+    <!-- instead of name=  use slot= -->
+    <todo-item checked
+      >Todo 1 <span slot="description">Small Text</span></todo-item
+    >
+    <todo-item>Todo 2</todo-item>
+    <todo-item>Todo 3</todo-item>
+    <ul is="expandable-list" data-expanded>
+      <li>First</li>
+      <li>Second</li>
+      <ul is="expandable-list" data-expanded>
+        <li>First</li>
+        <li>Second</li>
+      </ul>
+    </ul>
+  </body>
+</html>
