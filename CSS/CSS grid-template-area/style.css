@@ -1,0 +1,29 @@
+html {
+  font-size: 10px;
+}
+body {
+  font: 1.5rem Verdana, Arial, sans-serif;
+}
+hr {
+  margin: 2em 0;
+}
+body > * {
+  border: solid 1px #333;
+  color: #fff;
+  font-size: 2em;
+  text-align: center;
+  padding: 10px;
+  background-color: #088398;
+}
+header {
+  background-color: #89f9dc;
+}
+nav {
+  background-color: #00b9b3;
+}
+aside {
+  background-color: #046179;
+}
+footer {
+  background-color: #00a4c0;
+}
