@@ -7,6 +7,7 @@ body {
 hr {
   margin: 2em 0;
 }
+/* declaration targets every div of the body */
 body > * {
   border: solid 1px #333;
   color: #fff;
@@ -15,15 +16,21 @@ body > * {
   padding: 10px;
   background-color: #088398;
 }
+
+/* assign a name to each grid area, here using the html tag but this could be anything   */
 header {
   background-color: #89f9dc;
+  grid-area: header;
 }
 nav {
   background-color: #00b9b3;
+  grid-area: nav;
 }
 aside {
   background-color: #046179;
+  grid-area: aside;
 }
 footer {
   background-color: #00a4c0;
+  grid-area: footer;
 }
