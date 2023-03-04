@@ -12,3 +12,16 @@ body {
   overflow: hidden;
   margin: 0;
 }
+.grid-container {
+  display: grid;
+  grid-template-areas: "header header" "sidebar main";
+}
+.grid-header {
+  grid-area: header;
+}
+.grid-sidebar {
+  grid-area: sidebar;
+}
+.grid-content {
+  grid-area: main;
+}
