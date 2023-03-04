@@ -7,6 +7,16 @@ body {
 hr {
   margin: 2em 0;
 }
+container {
+  display: grid;
+  /* body is the container of the grid area */
+  /* in quotes are every row , name for each column here 3rows 4 columns*/
+  grid-template-areas:
+    "header header header header"
+     "nav main main  aside"
+    "footer footer footer footer";
+  grid-template-rows: 1fr 4fr 1fr;
+}
 /* declaration targets every div of the body */
 body > * {
   border: solid 1px #333;
@@ -34,3 +44,7 @@ footer {
   background-color: #00a4c0;
   grid-area: footer;
 }
+main {
+  grid-area: main;
+}
+container
