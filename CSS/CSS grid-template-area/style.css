@@ -13,9 +13,9 @@ container {
   /* in quotes are every row , name for each column here 3rows 4 columns*/
   grid-template-areas:
     "header header header header"
-    "nav nav nav nav"
+    "nav nav nav aside"
      "main main main  aside"
-    "footer footer footer footer";
+    "footer footer footer aside";
   grid-template-rows: 1fr .25fr 4fr 1fr;
 }
 /* declaration targets every div of the body */
