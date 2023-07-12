@@ -38,6 +38,18 @@ body {
     top: -10%;
   }
 }
+
 .scanlines {
   position: fixed;
+  pointer-events: none;
+  /* background-color: red; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* add a bit of shadow  */
+  box-shadow: 0 0 25vmin inset rgba(0, 0, 0, 0.35),
+    0 0 5vmin inset rgba(0, 0, 0, 0.25);
+  z-index: 99;
+  mix-blend-mode: color-burn;
 }
