@@ -18,5 +18,26 @@ body {
   top: -10%;
   right: 5%;
   width: 25%;
+  /* add shadow to the moving scaffold  */
+  filter: drop-shadow(5px 15px 3px rgba(0, 0, 0, 0.2))
+    drop-shadow(3px 20px 5px rgba(0, 0, 0, 0.2));
   max-height: 90vh;
+  object-fit: contain;
+  object-position: top center;
+  animation: bob 3s ease infinite;
+}
+@keyframes bob {
+  0% {
+    top: -10%;
+  }
+
+  50% {
+    top: -7%;
+  }
+  100% {
+    top: -10%;
+  }
+}
+.scanlines {
+  position: fixed;
 }
