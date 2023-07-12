@@ -4,12 +4,19 @@
   font-family: "Roboto", sans-serif;
 }
 body {
-  box-sizing: border-box;
+  /* box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100vh; */
   background-image: url("https://cybersandbox.ca/wp-content/uploads/2023/06/infinite-scaffold.jpg");
   background-size: 100% auto;
+}
+.scaffold {
+  position: fixed;
+  top: -10%;
+  right: 5%;
+  width: 25%;
+  max-height: 90vh;
 }
