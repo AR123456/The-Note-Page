@@ -6,13 +6,7 @@ const isScrollAtBottom = () => {
   const { clientHeight, scrollHeight } = document.documentElement;
   return scrollPosition > scrollHeight - clientHeight - 100;
 };
-// function loadMoreContent() {
-//   setTimeout(function () {
-//     const newContent = document.createElement("div");
-//     newContent.innerHTML = "<p></p>";
-//     document.body.appendChild(newContent);
-//   }, 1000);
-// }
+
 const loadMoreContent = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -24,7 +18,7 @@ const loadMoreContent = () => {
   });
 };
 
-window.addEventListener("scroll", function () {
+window.addEventListener("scroll", () => {
   if (isScrollAtBottom()) {
     loadMoreContent();
   }
