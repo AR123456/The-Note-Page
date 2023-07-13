@@ -81,6 +81,7 @@ p {
   display: block;
   margin: 0;
   animation: bigheight 1s linear;
+  height: 100px;
 }
 @keyframes bigheight {
   0% {
