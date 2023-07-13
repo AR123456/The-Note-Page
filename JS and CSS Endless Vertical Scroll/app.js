@@ -14,11 +14,14 @@ const isScrollAtBottom = () => {
 //   }, 1000);
 // }
 const loadMoreContent = () => {
-  setTimeout(() => {
-    const newContent = document.createElement("div");
-    newContent.innerHTML = "<p></p>";
-    document.body.appendChild(newContent);
-  }, 1000);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const newContent = document.createElement("div");
+      newContent.innerHTML = "<p></p>";
+      document.body.appendChild(newContent);
+      resolve();
+    }, 1000);
+  });
 };
 
 window.addEventListener("scroll", function () {
