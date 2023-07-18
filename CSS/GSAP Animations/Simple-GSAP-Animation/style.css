@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  height: 15vh;
+  background-color: red;
+}
+.content {
+  flex-grow: 1;
+}
