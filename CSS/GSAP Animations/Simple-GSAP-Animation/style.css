@@ -8,6 +8,11 @@ body {
   height: 15vh;
   background-color: red;
 }
+.links {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
 .content {
   flex-grow: 1;
 }
