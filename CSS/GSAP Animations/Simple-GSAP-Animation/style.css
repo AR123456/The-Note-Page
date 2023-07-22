@@ -12,7 +12,12 @@ body {
   display: flex;
   justify-content: space-around;
   align-content: center;
+  color: white;
 }
 .content {
   flex-grow: 1;
+}
+.footer {
+  height: 15vh;
+  background-color: blue;
 }
