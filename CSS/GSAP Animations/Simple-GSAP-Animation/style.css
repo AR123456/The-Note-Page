@@ -9,6 +9,7 @@ body {
   background-color: red;
 }
 .links {
+  height: 100%;
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -16,6 +17,15 @@ body {
 }
 .content {
   flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar {
+  background-color: green;
+  width: 15vw;
+}
+.button {
+  align-self: center;
 }
 .footer {
   height: 15vh;
