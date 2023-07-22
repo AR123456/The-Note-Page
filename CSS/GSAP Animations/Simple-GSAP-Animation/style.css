@@ -9,9 +9,10 @@ body {
   background-color: red;
 }
 .links {
+  height: 100%;
   display: flex;
   justify-content: space-around;
-  align-content: center;
+  align-items: center;
   color: white;
 }
 .content {
@@ -20,6 +21,8 @@ body {
   justify-content: space-between;
 }
 .sidebar {
+  background-color: green;
+  width: 15vw;
 }
 .button {
   align-self: center;
