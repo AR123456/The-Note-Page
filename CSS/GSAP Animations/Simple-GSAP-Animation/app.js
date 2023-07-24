@@ -20,4 +20,7 @@
 // const obj = { x: 0 };
 // gsap.to(obj, { duration: 2, x: 100, onUpdate: () => console.log(obj.x) });
 const timeline = gsap.timeline({ defaults: { duration: 1 } });
-timeline.from(".header", { y: "-100%", ease: "bounce" });
+timeline
+  .from(".header", { y: "-100%", ease: "bounce" })
+  .from(".link", { opacity: 0, stagger: 0.5 })
+  .from(".right", { x: "-100vw", ease: "power2.in" });
