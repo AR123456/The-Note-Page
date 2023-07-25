@@ -29,7 +29,10 @@ body {
   width: 8em;
   height: 16em;
 }
-
+.ap {
+  width: 8em;
+  height: 16em;
+}
 .ring {
   stroke: hsla(var(--hue), 10%, 10%, 0.15);
   transition: stroke 0.3s;
@@ -40,21 +43,19 @@ body {
   animation-iteration-count: infinite;
 }
 .worm1 {
-  /* keyframe at rule */
   animation-name: worm1;
 }
 .worm2 {
   animation-name: worm2;
   visibility: hidden;
 }
-
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: hsl(var(--hue), 10%, 10%);
     --fg: hsl(var(--hue), 10%, 90%);
   }
-  .ap__ring {
+  .ring {
     stroke: hsla(var(--hue), 10%, 90%, 0.1);
   }
 }
