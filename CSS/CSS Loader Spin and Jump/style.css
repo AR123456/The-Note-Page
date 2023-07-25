@@ -11,3 +11,21 @@
   --fg: hsl(var(--hue), 10%, 10%);
   font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
 }
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font: 1em/1.5 sans-serif;
+  height: 100vh;
+  display: grid;
+  /* place items shortcut defines both align itmes and justify items */
+  place-items: center;
+  transition: background-color 0.3s;
+}
+.main {
+  padding: 1.5em 0;
+}
+/* .ap class in the svg */
+.ap {
+  width: 8em;
+  height: 16em;
+}
