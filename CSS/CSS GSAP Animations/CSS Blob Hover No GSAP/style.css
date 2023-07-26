@@ -1,0 +1,23 @@
+/* Styling for the SVG container */
+#animation {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0; /* Replace with your desired background color */
+}
+
+/* Styling for the circles */
+circle {
+  transition: transform 0.2s ease;
+  transform-origin: 50% 50%;
+  stroke: none; /* Remove the stroke outline */
+  /* Customize the fill color, e.g., using a variable */
+  fill: var(
+    --circles,
+    #007bff
+  ); /* Use the --circles CSS variable, fallback to blue (#007BFF) */
+}
+
+/* Optional: Add hover styles for the circles */
+circle:hover {
+  fill: red; /* Change the fill color on hover */
+}
