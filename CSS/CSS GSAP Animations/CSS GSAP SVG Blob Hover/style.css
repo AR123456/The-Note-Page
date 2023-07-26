@@ -1,0 +1,24 @@
+:root {
+  --circles: #9fbaff;
+  --background: #7668f3;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow: hidden;
+}
+.flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.scene {
+  background: var(--background);
+  height: 100vh;
+}
+.animation {
+  height: 100%;
+  width: 100%;
+}
