@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>GSAP Blob Hover</title>
+    <title>GSAP SVG Animation</title>
+
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <!-- partial:index.partial.html -->
     <div class="scene flex">
       <svg
         class="animation"
@@ -24,12 +25,12 @@
             result="goo"
           />
           <feBlend in="SourceGraphic" in2="goo" />
-          <g filter="url(#goo)"></g>
         </filter>
+        <g filter="url(#goo)"></g>
       </svg>
     </div>
-    <!-- GSAP from greensock.com -->
-    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="app.js"></script>
+    <!-- partial -->
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
