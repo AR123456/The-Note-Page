@@ -6,5 +6,27 @@
     <link rel="stylesheet" href="style.css" />
     <title>GSAP Blob Hover</title>
   </head>
-  <body></body>
+  <body>
+    <div class="scene flex">
+      <svg
+        class="animation"
+        id="animation"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+          <feColorMatrix
+            in="blur"
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+            result="goo"
+          />
+          <feBlend in="SourceGraphic" in2="goo" />
+          <g filter="url(#goo)"></g>
+        </filter>
+      </svg>
+    </div>
+  </body>
 </html>
