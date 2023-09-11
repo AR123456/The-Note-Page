@@ -15,9 +15,17 @@ main {
   padding: 140px 40px 40px;
   color: #bbb;
 }
-
+#menu {
+  color: white;
+}
 /* solution styles */
-
+/* closed */
+.expanded {
+  display: none;
+}
 /* open state */
-
+.menu-icon {
+  display: active;
+  font-size: 50px;
+}
 /* transitions */
