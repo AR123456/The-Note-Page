@@ -18,14 +18,21 @@ main {
 #menu {
   color: white;
 }
+
 /* solution styles */
+
 /* closed */
 .expanded {
-  visibility: hidden;
+  opacity: 0; /* Set opacity to 0 instead of visibility:hidden */
+  transition: opacity 0.3s ease; /* Add transition for opacity */
+  pointer-events: none; /* Disable pointer events for hidden element */
 }
+
 /* open state */
 .menu-icon {
-  visibility: visible;
+  opacity: 1; /* Set opacity to 1 instead of visibility:visible */
   font-size: 50px;
+  transition: opacity 0.3s ease; /* Add transition for opacity */
 }
+
 /* transitions */

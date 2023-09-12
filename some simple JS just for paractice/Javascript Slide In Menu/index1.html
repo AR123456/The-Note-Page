@@ -3,51 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      /* start styles */
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=VT323&display=swap");
-
-      body {
-        margin: 0;
-        background: #444;
-        font-family: "Poppins";
-      }
-
-      li,
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .menu {
-        color: white;
-        position: relative;
-      }
-
-      .expanded {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-      }
-
-      .menu-icon {
-        font-size: 50px;
-        cursor: pointer;
-      }
-
-      .menu-content {
-        transition: transform 0.3s ease;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%; /* Set height to 100% to fill the container */
-      }
-
-      /* transitions */
-    </style>
+    <link rel="stylesheet" href="style.css" />
     <title>Slide In Menu</title>
   </head>
   <body>
@@ -64,7 +20,6 @@
       <div class="menu-icon" id="menu-icon">&#9776;</div>
       In this will be the site title bar header and the slide out nav
     </div>
-
     <main>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis adipisci
       cumque, a voluptatem deserunt cupiditate. Magni rem illum, nostrum
@@ -92,22 +47,6 @@
       voluptates consectetur sequi rerum quia consequatur eaque alias explicabo
       exercitationem corrupti repellendus voluptas obcaecati! Pariatur.
     </main>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menu = document.getElementById("menu");
-        const x = document.getElementById("x");
-        const expanded = document.getElementById("expanded"); // Corrected the ID here
-        const hamburger = document.getElementById("menu-icon");
-        const menuContent = document.querySelector(".expanded"); // Corrected the class here
-
-        hamburger.addEventListener("click", function () {
-          expanded.style.transform = "translateX(0)"; // Corrected the variable name here
-        });
-
-        x.addEventListener("click", function () {
-          expanded.style.transform = "translateX(-100%)"; // Corrected the variable name here
-        });
-      });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
