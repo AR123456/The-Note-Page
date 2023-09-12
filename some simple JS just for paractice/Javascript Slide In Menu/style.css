@@ -25,7 +25,6 @@ main {
 }
 /* open state */
 .menu-icon {
-  display: active;
   font-size: 50px;
 }
 /* transitions */

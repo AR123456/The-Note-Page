@@ -1,13 +1,8 @@
 const menu = document.getElementById("menu");
-const x = document.getElementsByClassName("x");
-const expanded = document.getElementsByClassName("expanded");
+const x = document.getElementById("x");
+const expanded = document.getElementById("expanded");
+const hamburger = document.getElementById("menu-icon");
 
-// on click of menu make menu-icon display none and .expanded display active
-// on click of the X in the selector makes expaned disply none and menu icon display active
-
-// use css to make the transion of above soothe
-
-menu.addEventListener("click", function () {
-  menu.display("none");
-  expanded.classList.display("active");
+hamburger.addEventListener("click", function () {
+  console.log("clicked ");
 });
