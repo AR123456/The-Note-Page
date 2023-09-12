@@ -34,6 +34,7 @@
       }
 
       .menu-icon {
+        transition: transform 0.3s ease;
         font-size: 50px;
         cursor: pointer;
       }
@@ -45,7 +46,10 @@
         left: 0;
         height: 100%; /* Set height to 100% to fill the container */
       }
-
+      .align-right {
+        transform: translateX(80%);
+        color: white;
+      }
       /* transitions */
     </style>
     <title>Slide In Menu</title>
@@ -54,6 +58,7 @@
     <div id="menu" class="menu">
       <div id="expanded" class="expanded">
         <h2 id="x" class="x">X</h2>
+
         <ul>
           <li>Home</li>
           <li>About</li>
@@ -62,7 +67,6 @@
         </ul>
       </div>
       <div class="menu-icon" id="menu-icon">&#9776;</div>
-      In this will be the site title bar header and the slide out nav
     </div>
 
     <main>
@@ -102,10 +106,12 @@
 
         hamburger.addEventListener("click", function () {
           expanded.style.transform = "translateX(0)"; // Corrected the variable name here
+          hamburger.style.transform = "translateX(-100%)"; // Corrected the variable name here
         });
 
         x.addEventListener("click", function () {
           expanded.style.transform = "translateX(-100%)"; // Corrected the variable name here
+          hamburger.style.transform = "translateX(0)"; // Corrected the variable name here
         });
       });
     </script>
