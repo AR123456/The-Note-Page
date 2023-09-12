@@ -4,5 +4,10 @@ const expanded = document.getElementById("expanded");
 const hamburger = document.getElementById("menu-icon");
 
 hamburger.addEventListener("click", function () {
-  console.log("clicked ");
+  hamburger.style.visibility = "hidden";
+  expanded.style.visibility = "visible";
+});
+x.addEventListener("click", function () {
+  hamburger.style.visibility = "visible";
+  expanded.style.visibility = "hidden";
 });

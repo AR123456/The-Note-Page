@@ -21,10 +21,11 @@ main {
 /* solution styles */
 /* closed */
 .expanded {
-  display: none;
+  visibility: hidden;
 }
 /* open state */
 .menu-icon {
+  visibility: visible;
   font-size: 50px;
 }
 /* transitions */
