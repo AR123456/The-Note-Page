@@ -1,0 +1,16 @@
+.burger span {
+  display: block;
+  height: 2px;
+  width: 50px;
+  background-color: red;
+  margin-bottom: 5px;
+}
+.site-title {
+  text-align: right;
+  margin-right: 50px;
+}
+
+.nav {
+  /* display: none; */
+  visibility: hidden;
+}
