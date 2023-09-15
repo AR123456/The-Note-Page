@@ -1,5 +1,6 @@
 .burger span {
   display: block;
+  opacity: 1;
   height: 2px;
   width: 50px;
   background-color: red;
@@ -12,6 +13,6 @@
 
 .nav {
   display: block;
-  opacity: 0;
+  /* opacity: 0; */
 }
 /* NOTE this -- but then how to keep burger and menu in same line like the demo ---From Stack You can't transition the display property. You have to have it as a block from start, and just hide it with opacity: 0 */
