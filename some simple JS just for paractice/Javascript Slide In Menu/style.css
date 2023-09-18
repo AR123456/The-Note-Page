@@ -18,3 +18,17 @@ header {
   box-sizing: border-box;
   /* color: #eee; */
 }
+nav {
+  background: #675d5d;
+  /* this z- index seems to make no difference here */
+  z-index: 0;
+  top: 0;
+  padding: 20px;
+  padding-top: 80px;
+  height: 100%;
+  box-sizing: border-box;
+  width: 200px;
+  /* -200 px positions off the page  */
+  /* left: -200px; */
+  position: absolute;
+}
