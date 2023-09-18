@@ -19,8 +19,8 @@ header {
   /* color: #eee; */
 }
 nav {
-  background: #675d5d;
-  /* this z- index seems to make no difference here */
+  /* background: #b1adad; */
+  /* this z- index The z-index CSS property sets the z-order of a positioned element and its descendants or flex items. Overlapping elements with a larger z-index cover those with a smaller one. */
   z-index: 0;
   top: 0;
   padding: 20px;
@@ -31,4 +31,22 @@ nav {
   /* -200 px positions off the page  */
   /* left: -200px; */
   position: absolute;
+}
+nav a {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+}
+.burger {
+  z-index: 1;
+  display: relative;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #141414;
+  margin-bottom: 5px;
 }
