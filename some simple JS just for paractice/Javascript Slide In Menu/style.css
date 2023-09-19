@@ -50,7 +50,7 @@ nav a {
   background: #141414;
   margin-bottom: 5px;
 }
-/* open state */
+/* open state toggle on and off with javascript  */
 nav.open {
   left: 0;
 }
