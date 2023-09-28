@@ -1,0 +1,9 @@
+create a form to enter email
+give user feedback with green border around input box and green check mark if it is a valid email format 
+if invalid remove green check mark and make boarder grey
+1- be able to detect if email is valide using regular expression 
+2 - how to color the border green and un color grey 
+3 - animate the tick mark in / out
+
+Do not rely on the standard browser input type of email 
+use google fonts material icons for the check mark 
