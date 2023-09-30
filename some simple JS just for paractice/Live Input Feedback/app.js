@@ -1,10 +1,13 @@
 const input = document.querySelector("input");
-
+let email = "";
 input.addEventListener("keyup", (e) => {
   keyPress = e.key;
-  enteredArr.push(keyPress);
+  email += keyPress;
+  if (validateEmail(email)) {
+    console.log(email);
+  }
   console.log(keyPress);
-  console.log(enteredArr);
+  console.log(email);
 });
 
 const validateEmail = (email) => {
