@@ -2,9 +2,9 @@ const input = document.querySelector("input");
 let email = "";
 input.addEventListener("keyup", (e) => {
   keyPress = e.key;
-  email += keyPress;
-  if (validateEmail(email)) {
-    console.log(email);
+  if (keyPress != "Shift") {
+    email += keyPress;
+    validateEmail(email);
   }
   console.log(keyPress);
   console.log(email);
