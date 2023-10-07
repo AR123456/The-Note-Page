@@ -1,5 +1,6 @@
 const input = document.querySelector("input");
 const tickMark = document.querySelector(".tick");
+const formBox = document.querySelector("form input");
 //  onkeyup run this function
 input.addEventListener("keyup", (e) => {
   validateEmail(e.key);
@@ -13,6 +14,8 @@ function validateEmail() {
   if (isValid) {
     // turn check mark green
     tickMark.style.color = "green";
+    formBox.style.border = "2px solid green";
+    // border: 2px solid #777;
     console.log("valid");
   } else {
     tickMark.style.color = "red";
