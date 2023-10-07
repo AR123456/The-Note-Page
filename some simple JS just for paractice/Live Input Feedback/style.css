@@ -32,5 +32,5 @@ form input {
   padding: 4px;
 }
 .tick {
-  color: red;
+  visibility: hidden;
 }
