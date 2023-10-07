@@ -5,6 +5,7 @@ const formBox = document.querySelector("form input");
 input.addEventListener("keyup", (e) => {
   validateEmail(e.key);
 });
+
 function validateEmail() {
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -16,9 +17,10 @@ function validateEmail() {
     tickMark.style.visibility = "visible";
     tickMark.style.color = "green";
     if (input.value.length > 0) {
-      formBox.style.border = "2px solid green";
+      input.addEventListener("blur", () => {
+        formBox.style.border = "2px solid green";
+      });
     }
-
     // border: 2px solid #777;
     console.log("valid");
   } else {
