@@ -1,16 +1,8 @@
-* {
-  box-sizing: border-box;
-}
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
   background: #f2f2f2;
   text-align: center;
   font-size: 1.4em;
+  font-family: Verdana;
 }
 form {
   background: white;
@@ -25,12 +17,25 @@ form .field {
 }
 form input {
   margin: 0 16px;
-  font-size: 0.8rem;
+  font-size: 0.8em;
   border: 2px solid #777;
-
   border-radius: 4px;
   padding: 4px;
 }
+/* solution styles */
 .tick {
-  visibility: hidden;
+  color: #07cc81;
+  opacity: 0;
+  transform: translateY(20px);
+  /* ease in is more natural */
+  transition: all ease-in 0.2s;
+}
+.valid .tick {
+  opacity: 1;
+  transform: translateY(0);
+}
+.valid input,
+.valid input:focus {
+  border-color: #07cc81;
+  outline-color: #07cc81;
 }
