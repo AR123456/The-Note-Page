@@ -23,19 +23,24 @@ form input {
   padding: 4px;
 }
 /* solution styles */
+
 .tick {
+  /* make tick green  */
   color: #07cc81;
   opacity: 0;
   transform: translateY(20px);
-  /* ease in is more natural */
   transition: all ease-in 0.2s;
 }
+
+/* valid class will be added with javascript  */
 .valid .tick {
+  /* show the tick when it has the valid class  */
   opacity: 1;
   transform: translateY(0);
 }
 .valid input,
 .valid input:focus {
+  /* style the border color , need the outline too for when in focus  */
   border-color: #07cc81;
   outline-color: #07cc81;
 }
