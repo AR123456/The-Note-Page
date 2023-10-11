@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "NationalPark-Regular";
+  
+    src: url("NationalPark-Variable-Webfonts/woff/NationalPark-Regular.woff");
+  }
+  @import url("https://fonts.googleapis.com/css?family=Cantarell|Open+Sans:300|Oxygen:300|Roboto:300|Ubuntu:300");
+  
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: NationalPark-Regular;
+    /* font-family: "Segoe UI"; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* https://stackoverflow.com/questions/12812441/how-do-i-use-woff-fonts-for-my-website */
+  .font-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 3rem;
+    /* justify-content: center; */
+    align-items: center;
+    flex: 1;
+  }
+  .font-buttons .active-button {
+    background: rgba(0, 0, 0, 9);
+    color: white;
+  }
+  [data-font="serif"] {
+    font-family: serif;
+  }
+  [data-font="sans-serif"] {
+    font-family: sans-serif;
+  }
+  [data-font="SegoeUI"] {
+    font-family: "Segoe UI";
+  }
+  [data-font="OpenSans"] {
+    font-family: "Open Sans";
+  }
+  [data-font="Roboto"] {
+    font-family: Roboto;
+  }
+  [data-font="Oxygen"] {
+    font-family: Oxygen;
+  }
+  [data-font="Ubuntu"] {
+    font-family: Ubuntu;
+  }
+  [data-font="Cantarell"] {
+    font-family: Cantarell;
+  }
+  [data-font="Arial"] {
+    font-family: Arial;
+  }
+  [data-font="Helvetica"] {
+    font-family: Helvetica;
+  }
+  .text-wrapper {
+    width: 30rem;
+    font-family: inherit;
+  }
+  

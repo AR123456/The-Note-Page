@@ -5,64 +5,78 @@
 }
 @import url("https://fonts.googleapis.com/css?family=Cantarell|Open+Sans:300|Oxygen:300|Roboto:300|Ubuntu:300");
 
-* {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css?family=Cantarell|Open+Sans:300|Oxygen:300|Roboto:300|Ubuntu:300");
 body {
-  font-family: NationalPark-Regular;
-  /* font-family: "Segoe UI"; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  color: #efefef;
+  background-color: #2f353c;
+  margin: 0;
 }
-/* https://stackoverflow.com/questions/12812441/how-do-i-use-woff-fonts-for-my-website */
-.font-buttons {
+.font-buttons ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: 3rem;
-  /* justify-content: center; */
+}
+.font-buttons ul .active-button {
+  background: rgba(0, 0, 0, 0);
+}
+.font-buttons ul li {
+  min-width: 100px;
+  height: 50px;
+  font-size: 17px;
+  background: #1c1f24;
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex: 1;
+  cursor: pointer;
 }
-.font-buttons .active-button {
-  background: rgba(0, 0, 0, 9);
-  color: white;
+.font-buttons ul li:not(:last-child) {
+  border-right: 1px #0e0f12 solid;
 }
-[data-font="serif"] {
+[Font="serif"] {
   font-family: serif;
 }
-[data-font="sans-serif"] {
+[Font="sans-serif"] {
   font-family: sans-serif;
 }
-[data-font="SegoeUI"] {
+[Font="SegoeUI"] {
   font-family: "Segoe UI";
 }
-[data-font="OpenSans"] {
+[Font="OpenSans"] {
   font-family: "Open Sans";
 }
-[data-font="Roboto"] {
+[Font="Roboto"] {
   font-family: Roboto;
 }
-[data-font="Oxygen"] {
+[Font="Oxygen"] {
   font-family: Oxygen;
 }
-[data-font="Ubuntu"] {
+[Font="Ubuntu"] {
   font-family: Ubuntu;
 }
-[data-font="Cantarell"] {
+[Font="Cantarell"] {
   font-family: Cantarell;
 }
-[data-font="Arial"] {
+[Font="Arial"] {
   font-family: Arial;
 }
-[data-font="Helvetica"] {
+[Font="Helvetica"] {
   font-family: Helvetica;
 }
 .text-wrapper {
-  width: 30rem;
+  width: 490px;
+  padding: 10px 200px;
+}
+.text-wrapper h1 {
+  font-size: 52px;
+  font-weight: 300;
+  font-family: inherit;
+}
+.text-wrapper p {
+  font-size: 20px;
+  font-weight: 300;
   font-family: inherit;
 }
