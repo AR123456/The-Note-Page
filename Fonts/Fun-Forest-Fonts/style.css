@@ -18,3 +18,16 @@ body {
   overflow: hidden;
 }
 /* https://stackoverflow.com/questions/12812441/how-do-i-use-woff-fonts-for-my-website */
+.font-buttons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 3rem;
+  /* justify-content: center; */
+  align-items: center;
+  flex: 1;
+}
+.font-buttons .active-button {
+  background: rgba(0, 0, 0, 9);
+  color: white;
+}
