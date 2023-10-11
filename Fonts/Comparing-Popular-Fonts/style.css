@@ -3,7 +3,6 @@
 
   src: url("NationalPark-Variable-Webfonts/woff/NationalPark-Regular.woff");
 }
-@import url("https://fonts.googleapis.com/css?family=Cantarell|Open+Sans:300|Oxygen:300|Roboto:300|Ubuntu:300");
 
 @import url("https://fonts.googleapis.com/css?family=Cantarell|Open+Sans:300|Oxygen:300|Roboto:300|Ubuntu:300");
 body {
@@ -36,6 +35,9 @@ body {
 .font-buttons ul li:not(:last-child) {
   border-right: 1px #0e0f12 solid;
 }
+[Font="NationalPark-Regular"] {
+  font-family: NationalPark-Regular;
+}
 [Font="serif"] {
   font-family: serif;
 }
@@ -65,6 +67,9 @@ body {
 }
 [Font="Helvetica"] {
   font-family: Helvetica;
+}
+[Font="NationalPark-Regular"] {
+  font-family: NationalPark-Regular;
 }
 .text-wrapper {
   width: 490px;

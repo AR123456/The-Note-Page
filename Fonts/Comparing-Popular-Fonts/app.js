@@ -15,8 +15,7 @@ const TextWrapper = document.querySelector(".text-wrapper");
 
 FontButtons.forEach((fontButton) => {
   const font = fontButton.getAttribute("Font");
-  fontButton.addEventListener("click", () => {
-    console.log("click");
+  fontButton.addEventListener("click", (e) => {
     TextWrapper.setAttribute("Font", font);
     FontButtons.forEach((fButt) => fButt.classList.remove("active-button"));
     fontButton.classList.add("active-button");
