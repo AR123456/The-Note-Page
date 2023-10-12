@@ -6,26 +6,40 @@
 }
 body {
   background: #333;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
 }
 
-input {
-  height: 2em;
-  width: 2em;
+/* solution styles */
+.toggle input {
+  height: 0;
+  width: 0;
 }
-/* style for the switch div  */
-.switch {
-  height: 5em;
-  width: 7em;
-  background-color: red;
+.toggle .switch {
+  display: block;
+  margin: 100px auto;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--off);
+  border-radius: 40px;
+  transition: all ease 0.3s;
+  position: relative;
 }
-.toggle {
-  height: 8em;
-  width: 8em;
-  border: purple 2px solid;
+.toggle .switch:before {
+  content: "";
+  display: block;
+  height: var(--toggle-height);
+  width: var(--toggle-height);
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  transition: all ease 0.3s;
+}
+.toggle input:checked + .switch {
+  background: var(--on);
+}
+.toggle input:checked + .switch:before {
+  transform: translateX(calc(var(--toggle-width) - var(--toggle-height)));
 }
