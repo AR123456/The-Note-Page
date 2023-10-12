@@ -6,4 +6,26 @@
 }
 body {
   background: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+input {
+  height: 2em;
+  width: 2em;
+}
+/* style for the switch div  */
+.switch {
+  height: 5em;
+  width: 7em;
+  background-color: red;
+}
+.toggle {
+  height: 8em;
+  width: 8em;
+  border: purple 2px solid;
 }
