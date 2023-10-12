@@ -9,34 +9,47 @@ body {
 }
 
 /* solution styles */
+/* hide the check box  */
 .toggle input {
   height: 0;
   width: 0;
 }
+/* what we are seeing as the switch */
 .toggle .switch {
   display: block;
   margin: 100px auto;
   width: var(--toggle-width);
   height: var(--toggle-height);
+  /* push the small circle away from edge */
   padding: 5px;
   cursor: pointer;
+  /* color change with click vs not clicked */
   background-color: var(--off);
+  /* capsule shape */
   border-radius: 40px;
+  /* transition off to on fade color in  */
   transition: all ease 0.3s;
   position: relative;
 }
+/* adding content before the switch in the dom to make the little ball, injecting content into dom allow styling like it is a separate element on the page*/
 .toggle .switch:before {
+  /* inject empty string  */
   content: "";
+  /* style the injected content  */
   display: block;
+  /* make a circle  */
   height: var(--toggle-height);
   width: var(--toggle-height);
   background: #fff;
   border-radius: 50%;
+  /*  position absolute relative to the switch  */
   position: absolute;
   top: 5px;
   left: 5px;
+  /* smooth the move  */
   transition: all ease 0.3s;
 }
+/* make a relationship between the check box and switch.  Chex box sitting in upoer right corner far away from the switch. Using the label tag added to the HTML  The label tag is wrapping the input and switch div. Clicking on the inputs label will activate the input  */
 .toggle input:checked + .switch {
   background: var(--on);
 }
