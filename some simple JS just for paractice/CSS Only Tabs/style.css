@@ -1,18 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&family=VT323&display=swap");
-
-:root {
-  --primary: #00b29d;
+* {
+  box-sizing: border-box;
 }
-
 body {
-  background: #f2f2f2;
-  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
 }
-.tabs {
-  width: 600px;
-  margin: 100px auto;
-}
-
-/* buttons */
-
-/* panels */

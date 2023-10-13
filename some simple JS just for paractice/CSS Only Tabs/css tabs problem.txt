@@ -1,0 +1,3 @@
+use just css
+when tab is clicked focus swithces to that tab and its text appears
+tabs can be in href # in address bar
