@@ -1,0 +1,4 @@
+Use JS to apply diffrent style to a box of text clicking one of three buttons 
+give the HTML supplied use the data attributes on the buttons in the form to 
+in the JS file given 3 arrays with thems on the click inject the words in the array , so that every 3rd word of the lorem ipsum text is replaced by a them word 
+Output the updated text with the them applied to the page 
