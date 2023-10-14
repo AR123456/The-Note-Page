@@ -35,8 +35,13 @@ body {
   border: 1px solid #ddd;
   padding: 2px 10px;
   display: none;
+  opacity: 0;
+  transform: scale(0.9); /* Start the panel slightly smaller */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Added transform transition */
 }
-/* The :target CSS pseudo-class represents a unique element (the target element) with an id matching the URL's fragment. */
+
 .panels .panel:target {
   display: block;
+  opacity: 1;
+  transform: scale(1); /* Scale the panel to its original size */
 }
