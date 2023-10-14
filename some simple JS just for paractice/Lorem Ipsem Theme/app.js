@@ -1,5 +1,3 @@
-const { text } = require("stream/consumers");
-
 // dom elements
 const buttons = document.querySelectorAll("button");
 const textarea = document.querySelector("textarea");
@@ -25,11 +23,19 @@ const themize = (inputText, theme) => {
   return textArray.join(" ");
 };
 
-const updateOutput = (text) => {};
+const updateOutput = (text) => {
+  output.textContent = text;
+};
 
 // event listener
 buttons.forEach((b) => {
   b.addEventListener("click", (e) => {
     console.log(e.target.dataset.theme);
+    e.preventDefault();
+    if (textarea.value) {
+      const t = e.target.dataset.theme;
+      const text = themize(textarea.value, themes[t]);
+      updateOutput(text);
+    }
   });
 });
