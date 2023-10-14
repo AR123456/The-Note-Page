@@ -19,5 +19,7 @@ const updateOutput = (text) => {};
 
 // event listener
 buttons.forEach((b) => {
-  b.addEventListener("click", (e) => {});
+  b.addEventListener("click", (e) => {
+    console.log('"button"[data - theme]');
+  });
 });
