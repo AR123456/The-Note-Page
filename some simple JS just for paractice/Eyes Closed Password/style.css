@@ -25,11 +25,17 @@ form img {
   width: 200px;
   margin: 0 auto;
 }
-.closed {
-  opacity: 0;
+
+/* solution */
+form img.open {
+  display: block;
 }
-/* apply opacity 1 to .closed when the input of password is :active */
-/* CSS combinators */
-input[type="password"]:valid:focus ~ .closed {
-  opacity: 1;
+form img.closed {
+  display: none;
+}
+form:has(input[type="password"]:valid:focus) img.open {
+  display: none;
+}
+form:has(input[type="password"]:valid:focus) img.closed {
+  display: block;
 }
