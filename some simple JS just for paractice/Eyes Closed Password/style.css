@@ -30,6 +30,6 @@ form img {
 }
 /* apply opacity 1 to .closed when the input of password is :active */
 /* CSS combinators */
-input[type="password"]:focus ~ .closed {
+input[type="password"]:valid:focus ~ .closed {
   opacity: 1;
 }
