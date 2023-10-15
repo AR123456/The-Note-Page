@@ -27,12 +27,15 @@ form img {
 }
 
 /* solution */
+/* show the eyes open at first */
 form img.open {
   display: block;
 }
+/* do not display the eyes closed at first  */
 form img.closed {
   display: none;
 }
+/* when in focus and typing in it because the password is required can use the psudo selector valid in addition to focus  */
 form:has(input[type="password"]:valid:focus) img.open {
   display: none;
 }
