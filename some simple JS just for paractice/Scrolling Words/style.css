@@ -19,3 +19,48 @@ section > div {
   height: 30px;
   line-height: 30px;
 }
+.word-list span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  overflow: hidden;
+  height: 100vh;
+  /* animation  */
+  animation-name: spincube;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 12s;
+  transform-style: preserve-3d;
+  transform-origin: 40px 40px 0;
+}
+@-webkit-keyframes spincube {
+  from,
+  to {
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  5% {
+    -webkit-transform: rotateX(90deg);
+  }
+  16% {
+    -webkit-transform: rotateX(90deg);
+  }
+  21% {
+    -webkit-transform: rotateX(180deg);
+  }
+  33% {
+    -webkit-transform: rotateX(180deg);
+  }
+  38% {
+    -webkit-transform: rotateX(270deg);
+  }
+  50% {
+    -webkit-transform: rotateX(270deg);
+  }
+  55% {
+    -webkit-transform: rotateX(360deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg);
+  }
+}
