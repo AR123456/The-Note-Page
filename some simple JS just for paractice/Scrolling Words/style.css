@@ -19,7 +19,7 @@ section > div {
   height: 30px;
   line-height: 30px;
 }
-.word-list span {
+.word-list {
   display: flex;
   justify-content: center;
   align-items: center;
