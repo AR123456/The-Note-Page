@@ -18,49 +18,64 @@ section > div {
   text-align: left;
   height: 30px;
   line-height: 30px;
-}
-.word-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column-reverse;
   overflow: hidden;
-  height: 100vh;
-  /* animation  */
-  animation-name: spincube;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 12s;
-  transform-style: preserve-3d;
-  transform-origin: 40px 40px 0;
 }
-@-webkit-keyframes spincube {
-  from,
-  to {
-    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+div.word-list span {
+  display: block;
+}
+div.word-list {
+  position: relative;
+  animation: spincube ease 5s infinite;
+}
+@keyframes spincube {
+  0% {
+    top: 0;
   }
-  5% {
-    -webkit-transform: rotateX(90deg);
+  10% {
+    top: 0;
   }
-  16% {
-    -webkit-transform: rotateX(90deg);
+  20% {
+    top: -30px;
   }
-  21% {
-    -webkit-transform: rotateX(180deg);
+  30% {
+    top: -30px;
   }
-  33% {
-    -webkit-transform: rotateX(180deg);
-  }
-  38% {
-    -webkit-transform: rotateX(270deg);
+  40% {
+    top: -60px;
   }
   50% {
-    -webkit-transform: rotateX(270deg);
+    top: -60px;
   }
-  55% {
-    -webkit-transform: rotateX(360deg);
+  60% {
+    top: -90px;
+  }
+  70% {
+    top: -90px;
+  }
+  80% {
+    top: -120px;
+  }
+  90% {
+    top: -120px;
   }
   100% {
-    -webkit-transform: rotateX(360deg);
+    top: 0px;
   }
+}
+
+/* colors */
+span:nth-child(1) {
+  color: #ff4258;
+}
+span:nth-child(2) {
+  color: #72ff7a;
+}
+span:nth-child(3) {
+  color: #f7f76f;
+}
+span:nth-child(4) {
+  color: #9759fa;
+}
+span:nth-child(5) {
+  color: #03c7fd;
 }
