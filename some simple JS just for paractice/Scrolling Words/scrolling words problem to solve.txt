@@ -1,0 +1,3 @@
+Have some words on a page the scroll up with css animation 
+Scrolling like rolling effect on just some words, the others stay stationary 
+Use CSS no JS 
