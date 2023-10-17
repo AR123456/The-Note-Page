@@ -20,29 +20,41 @@ body {
 section {
   width: 300px;
   height: 300px;
-  perspective: 600px;
   border: 2px solid wheat;
+  margin: 40px 0;
+  /* An element’s perspective only applies to direct descendant children, in this case .card. In order for subsequent children to inherit a parent’s perspective, and live in the same 3D space, the parent can pass along its perspective with transform-style: preserve-3d. Without 3D transform-style, the faces of the card would be flattened with its parents, and the back face’s rotation would be nullified. */
+  perspective: 600px;
 }
 /* https://3dtransforms.desandro.com/card-flip */
-.card {
-  position: relative;
+/* 3d object  */
+.cards {
   width: 100%;
   height: 100%;
   transition: transform 1s;
   transform-style: preserve-3d;
+  position: relative;
 }
-.front {
-  text-align: center;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  backface-visibility: hidden;
-  background-color: red;
-}
-.back {
-  background-color: blue;
+.card.is-flipped {
   transform: rotateY(180deg);
 }
-.card.is_flipped {
+.card {
+  /* need to reset their positions in 2D with position: absolute. In order to hide the back-side of the faces when they are faced away from the viewer, we use backface-visibility: hidden. */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 260px;
+  color: wheat;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.card.front {
+  background: red;
+}
+.card.back {
+  background: blue;
+  /* To flip .back, we add a basic 3D transform of rotateY(180deg). */
   transform: rotateY(180deg);
 }
