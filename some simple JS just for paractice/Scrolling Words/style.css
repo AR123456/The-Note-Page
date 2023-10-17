@@ -18,16 +18,20 @@ section > div {
   text-align: left;
   height: 30px;
   line-height: 30px;
+  /* need overflow hidden so anything over a height of 30px is hidden  */
   overflow: hidden;
 }
 div.word-list span {
+  /* put the spans one on top of another  */
   display: block;
 }
 div.word-list {
+  /* position this as relative so that "top" property can be manipulated in the animation   */
   position: relative;
-  animation: spincube ease 5s infinite;
+  animation: spin ease 5s infinite;
 }
-@keyframes spincube {
+@keyframes spin {
+  /* since the hight of th div is 30 px and the in line hight is 30 pix the top property will be in negative increments of 30 */
   0% {
     top: 0;
   }
