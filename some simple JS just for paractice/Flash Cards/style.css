@@ -34,7 +34,7 @@ section {
   transform-style: preserve-3d;
   position: relative;
 }
-.card.is-flipped {
+.cards.is-flipped {
   transform: rotateY(180deg);
 }
 .card {
