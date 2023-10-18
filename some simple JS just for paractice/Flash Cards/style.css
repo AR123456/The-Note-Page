@@ -1,5 +1,4 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -10,57 +9,51 @@ body {
   color: wheat;
   text-align: center;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  height: 100vh;
 }
-/* https://3dtransforms.desandro.com/card-flip */
-/* The 3D space  */
-section {
+.card {
+  position: relative;
   width: 300px;
   height: 300px;
-  border: 2px solid wheat;
-  margin: 40px 0;
-  /* An element’s perspective only applies to direct descendant children, in this case .card. In order for subsequent children to inherit a parent’s perspective, and live in the same 3D space, the parent can pass along its perspective with transform-style: preserve-3d. Without 3D transform-style, the faces of the card would be flattened with its parents, and the back face’s rotation would be nullified. */
+  margin: 30px auto;
+  text-align: center;
+}
+section {
+  /* need to apply perspective to parent so it looks 3d  can adjust the effect lower px more exaggerated, higher number less exaggerated */
   perspective: 600px;
 }
 /* 3d object  */
 .card {
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
+  transition: transform 0.5s;
+  /* need to include this so that front can be seen  */
   transform-style: preserve-3d;
-  cursor: pointer;
-  position: relative;
 }
-
-.card.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.face {
-  /* need to reset their positions in 2D with position: absolute. In order to hide the back-side of the faces when they are faced away from the viewer, we use backface-visibility: hidden. */
+/* the common styles for the front and back  */
+.front,
+.back {
+  /* positioned absolutely relative to the .card  so 0,0 or top left */
+  /* they are stacked one on top of another one closest to user is back because in the HTML it appear last, ie stacking order  */
   position: absolute;
+  /* % of parent (.card) */
   width: 100%;
   height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  -webkit-backface-visibility: hidden;
+  background: #222;
+  border-radius: 8px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  /* getting text in the middle using flex  colum center */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.back {
+  color: #dbca6c;
+  /* rotating the back around y axis  seeing back of back  */
+  transform: rotateY(180deg);
+  /* when it is rotated don't see the mirror of the back , and the front shows through */
   backface-visibility: hidden;
 }
-
-.front {
-  background: red;
-}
-
-.back {
-  background: blue;
-  /* To flip .back, we add a basic 3D transform of rotateY(180deg). */
+/* now rotate the entire card 180 deg */
+.card.flipped {
+  /* use the transition applied to card above */
   transform: rotateY(180deg);
 }
