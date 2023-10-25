@@ -7,4 +7,5 @@ range.addEventListener("input", (e) => {
   const label = e.target.nextElementSibling;
   // put the value in the dom
   label.innerHTML = value;
+  // use the scale function (see val-with-thumb in palooza ) for amount of fill in the label circle
 });
