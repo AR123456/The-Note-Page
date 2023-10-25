@@ -21,7 +21,7 @@ function setValue(val) {
   globe.setAttribute(
     "style",
     `
-    --completion: ${val}%
+    --wave: ${val}%
   `
   );
 }
