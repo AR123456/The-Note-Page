@@ -10,15 +10,15 @@
 //   // use the scale function (see val-with-thumb in palooza ) for amount of fill in the label circle
 // });
 const input = document.querySelector("input");
-const indicator = document.querySelector(".indicator");
-const output = document.querySelector("output");
+const globe = document.querySelector(".globe");
+const label = document.querySelector("label");
 input.addEventListener("input", (e) => {
   setValue(e.target.value);
 });
 
 function setValue(val) {
-  output.value = val;
-  indicator.setAttribute(
+  label.value = val;
+  globe.setAttribute(
     "style",
     `
     --completion: ${val}%

@@ -1,4 +1,5 @@
 :root {
+  /* 50% sets teh "wave to match the initial value of 50 */
   --completion: 50%;
   /*The top offset for the wave*/
   --offset: 2vh;
@@ -20,7 +21,7 @@ body {
 input[type="range"] {
   width: 33%;
 }
-.indicator {
+.globe {
   height: 20vh;
   width: 20vh;
   position: relative;
@@ -32,13 +33,15 @@ input[type="range"] {
   justify-content: center;
   background: white;
 }
-output {
+label {
+  /* style to text numeric display */
   z-index: 1;
   font-family: system-ui;
   font-size: 10vh;
   color: #333;
 }
-.indicator::after {
+/* using pseudo-element to insert content after the selected element */
+.globe::after {
   display: block;
   width: 40vh;
   height: 40vh;
@@ -47,6 +50,8 @@ output {
   border-radius: 15vh;
   position: absolute;
   left: 50%;
+  /*top: determines  distance between the top edge of the positioned element and the top edge of its containing block.  */
+  /* calc():  CSS function takes  expression as  argument and returns  result.  being used to calculate a value for the top property */
   top: calc(100% - var(--completion) + var(--offset));
   translate: -50% 0;
   -webkit-animation: spin 5s linear infinite;
