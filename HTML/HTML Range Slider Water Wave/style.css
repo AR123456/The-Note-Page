@@ -1,3 +1,9 @@
+:root {
+  --completion: 50%;
+  /*The top offset for the wave*/
+  --offset: 2vh;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,22 +15,51 @@ body {
   justify-content: center;
   height: 100vh;
   overflow: hidden;
+  background: #333;
+}
+input[type="range"] {
+  width: 33%;
+}
+.indicator {
+  height: 20vh;
+  width: 20vh;
+  position: relative;
+  border-radius: 50%;
+  border: 4px double white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+output {
+  z-index: 1;
+  font-family: system-ui;
+  font-size: 10vh;
+  color: #333;
+}
+.indicator::after {
+  display: block;
+  width: 40vh;
+  height: 40vh;
+  content: "";
+  background-color: #a4eafd;
+  border-radius: 15vh;
+  position: absolute;
+  left: 50%;
+  top: calc(100% - var(--completion) + var(--offset));
+  translate: -50% 0;
+  -webkit-animation: spin 5s linear infinite;
+  animation: spin 5s linear infinite;
+}
+@-webkit-keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
 }
 
-input[type="range"] + label {
-  background-color: aquamarine;
-  /* put the label above the slider */
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* position the label in a large circle
- */
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  text-align: center;
-  /* push text down a bit */
-  padding-top: 40px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+@keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
 }
