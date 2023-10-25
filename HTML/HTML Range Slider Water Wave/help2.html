@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trochoidal Wave</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+
+      input[type="range"] + label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        text-align: center;
+        padding-top: 80px;
+        background: radial-gradient(
+          circle at 50% 70%,
+          aqua 20%,
+          transparent 40%
+        );
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes waveAnimation {
+        0% {
+          background-position: 0% 100%; /* Move from bottom to top */
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      input[type="range"] {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <input type="range" min="1" max="100" class="range" id="range" />
+        <label for="range" id="label">50</label>
+      </form>
+    </div>
+    <script>
+      const range = document.getElementById("range");
+      const label = document.getElementById("label");
+
+      range.addEventListener("input", (e) => {
+        const value = +e.target.value;
+        label.innerHTML = value;
+      });
+    </script>
+  </body>
+</html>

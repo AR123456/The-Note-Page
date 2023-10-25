@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      input[type="range"] + label {
+        /* linear-gradient(): This is a function in CSS that creates a gradient effect. It takes one or more color values as input and creates a transition between them. In this case, it's specifying a linear gradient. */
+        background: linear-gradient(
+          /* to top: This is a direction keyword indicating the direction of the gradient. to top means the gradient starts from the bottom and progresses to the top. */
+            to top,
+          /* Between the linear-gradient( and );, you would typically specify the color stops. Color stops define the colors and their positions within the gradient. */
+            aquamarine 0%,
+          aquamarine calc(var(--fill) * 1%),
+          #fff calc(var(--fill) * 1%),
+          #fff 100%
+        );
+        /* put the label above the slider */
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* position the label in a large circle */
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        text-align: center;
+        /* push text down a bit */
+        padding-top: 35px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+    <title>Filling Ball Slider Input</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="">
+        <input type="range" min="1" max="100" class="range" id="range" />
+        <label for="range">50</label>
+      </form>
+    </div>
+    <script>
+      const range = document.getElementById("range");
+
+      range.addEventListener("input", (e) => {
+        const value = +e.target.value;
+        const label = e.target.nextElementSibling;
+        label.innerHTML = value;
+        label.style.setProperty("--fill", value);
+      });
+    </script>
+  </body>
+</html>

@@ -25,6 +25,6 @@ input[type="range"] + label {
   border-radius: 50%;
   text-align: center;
   /* push text down a bit */
-  padding-top: 35px;
+  padding-top: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
