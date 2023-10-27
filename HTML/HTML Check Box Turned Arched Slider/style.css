@@ -13,22 +13,21 @@ body {
 }
 /* hide the default , it is hidden but user can still interact with it  */
 input[type="checkbox"] {
-  /* visibility: hidden; */
+  /* will be creating a custom check box that is going to sit on top of this one, we do not want to see the default one but we do want to interact with it so we get the check box benefits and screen readers will see it  */
+  opacity: 0;
+  position: absolute;
 }
-/* now my styling - use psudo class  */
-.toggle {
-  display: block;
-  margin: 100px auto;
-  width: var(80px);
-  height: var(30px);
-  /* push the small circle away from edge */
-  padding: 5px;
+label {
   cursor: pointer;
-  /* color change with click vs not clicked */
-  background-color: var(--off);
-  /* capsule shape */
-  border-radius: 40px;
-  /* transition off to on fade color in  */
-  transition: all ease 0.3s;
-  position: relative;
+  /* overwrite the default of in line */
+  display: flex;
+}
+/* the DYI check box   */
+/* add this content before the check box label using a psudo element */
+/* psudo elements inherit the display of the parent so label needs to be flex  */
+label::before {
+  content: "";
+  height: 4em;
+  width: 16em;
+  background-color: red;
 }
