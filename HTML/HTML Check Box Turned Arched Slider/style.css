@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: aquamarine;
+}
+/* hide the default , it is hidden but user can still interact with it  */
+input[type="checkbox"] {
+  /* visibility: hidden; */
+}
+/* now my styling  */
+.arched {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: black; */
+}
