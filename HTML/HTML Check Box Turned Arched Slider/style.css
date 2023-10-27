@@ -15,12 +15,20 @@ body {
 input[type="checkbox"] {
   /* visibility: hidden; */
 }
-/* now my styling  */
-.arched {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: black; */
+/* now my styling - use psudo class  */
+.toggle {
+  display: block;
+  margin: 100px auto;
+  width: var(80px);
+  height: var(30px);
+  /* push the small circle away from edge */
+  padding: 5px;
+  cursor: pointer;
+  /* color change with click vs not clicked */
+  background-color: var(--off);
+  /* capsule shape */
+  border-radius: 40px;
+  /* transition off to on fade color in  */
+  transition: all ease 0.3s;
+  position: relative;
 }
