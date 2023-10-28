@@ -18,6 +18,8 @@ input[type="checkbox"] {
   position: absolute;
 }
 label {
+  /* position relative so that the we can put the little circle in the toggle */
+  position: relative;
   cursor: pointer;
   /* overwrite the default of in line */
   display: flex;
@@ -30,10 +32,20 @@ label::before {
   height: 4em;
   width: 16em;
   background-color: red;
+  border-radius: 2em;
 }
 label:hover::before {
   background-color: blue;
 }
 input[type="checkbox"]:checked + label::before {
   background-color: rgb(24, 225, 67);
+}
+label::after {
+  /* positioning this absolute so that the toggle ball is in the div */
+  position: absolute;
+  content: "";
+  height: 4em;
+  width: 4em;
+  background-color: green;
+  border-radius: 2em;
 }
