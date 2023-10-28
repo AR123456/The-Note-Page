@@ -31,3 +31,9 @@ label::before {
   width: 16em;
   background-color: red;
 }
+label:hover::before {
+  background-color: blue;
+}
+input[type="checkbox"]:checked + label::before {
+  background-color: rgb(24, 225, 67);
+}
