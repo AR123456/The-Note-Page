@@ -43,6 +43,10 @@ input[type="checkbox"]:checked + label::before {
   /* background of toggle track when clicked */
   background-color: rgb(114, 181, 225);
 }
+input[type="checkbox"]:focus + label::before {
+  /* background of toggle track when in focus */
+  outline: 1px solid black;
+}
 label::after {
   /* positioning this absolute so that the toggle ball is in the div */
   position: absolute;
@@ -54,6 +58,8 @@ label::after {
   /* color of toggle ball */
   background-color: white;
   border-radius: 2em;
+  /* transition toggle with un click */
+  transition: 400ms ease-in-out;
 }
 /* targeting the little ball in the toggle switch when checkied  */
 input[type="checkbox"]:checked + label::after {
@@ -70,6 +76,8 @@ input[type="checkbox"]:checked + label::after {
 
 input[type="checkbox"]:checked + label::after {
   /* move the toggle ball to the right when checked  */
-  left: 12em;
-  background-color: rgb(24, 145, 225);
+  /* left: 12em; */
+  transform: translateX(340%);
+  /* transition toggle  */
+  transition: 400ms ease-in-out;
 }
