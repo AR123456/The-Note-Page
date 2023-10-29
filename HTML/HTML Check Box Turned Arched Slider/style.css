@@ -43,9 +43,23 @@ input[type="checkbox"]:checked + label::before {
 label::after {
   /* positioning this absolute so that the toggle ball is in the div */
   position: absolute;
+  left: 0.25em;
+  margin-top: 0.25em;
   content: "";
-  height: 4em;
-  width: 4em;
+  height: 3.5em;
+  width: 3.5em;
   background-color: green;
+  border-radius: 2em;
+}
+/* targeting the little ball in the toggle switch when checkied  */
+input[type="checkbox"]:checked + label::after {
+  /* positioning this absolute so that the toggle ball is in the div */
+  position: absolute;
+  left: 0.25em;
+  margin-top: 0.25em;
+  content: "";
+  height: 3.5em;
+  width: 3.5em;
+  background-color: rgb(122, 0, 128);
   border-radius: 2em;
 }
