@@ -31,14 +31,17 @@ label::before {
   content: "";
   height: 4em;
   width: 16em;
-  background-color: red;
+  /* background of toggle track  */
+  background-color: grey;
   border-radius: 2em;
 }
 label:hover::before {
-  background-color: blue;
+  /* background of toggle track  */
+  /* background-color: blue; */
 }
 input[type="checkbox"]:checked + label::before {
-  background-color: rgb(24, 225, 67);
+  /* background of toggle track when clicked */
+  background-color: rgb(114, 181, 225);
 }
 label::after {
   /* positioning this absolute so that the toggle ball is in the div */
@@ -48,7 +51,8 @@ label::after {
   content: "";
   height: 3.5em;
   width: 3.5em;
-  background-color: green;
+  /* color of toggle ball */
+  background-color: white;
   border-radius: 2em;
 }
 /* targeting the little ball in the toggle switch when checkied  */
@@ -60,6 +64,12 @@ input[type="checkbox"]:checked + label::after {
   content: "";
   height: 3.5em;
   width: 3.5em;
-  background-color: rgb(122, 0, 128);
+  background-color: rgb(24, 145, 225);
   border-radius: 2em;
+}
+
+input[type="checkbox"]:checked + label::after {
+  /* move the toggle ball to the right when checked  */
+  left: 12em;
+  background-color: rgb(24, 145, 225);
 }
