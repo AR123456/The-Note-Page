@@ -37,6 +37,7 @@ body {
   height: 2.75em;
 }
 .switch:has(:checked) {
+  /* using filter to make it grey when checked  */
   filter: grayscale(0);
 }
 .switch__input {
@@ -48,7 +49,9 @@ body {
   appearance: none;
   z-index: 2;
 }
-.switch__bg {
+/* radial-gradients below are responsible  for the arched background  */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/background */
+.switch-bg {
   background: radial-gradient(
     7.75em 7.75em at 50% 4.0625em,
     hsla(var(--hue), 90%, 90%, 0) 29.9%,
@@ -63,6 +66,7 @@ body {
     hsl(var(--hue), 90%, 98%) 49.5% 49.8%,
     hsla(var(--hue), 90%, 98%, 0) 49.9%
   );
+
   clip-path: polygon(0 0, 100% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
   display: block;
   position: absolute;
