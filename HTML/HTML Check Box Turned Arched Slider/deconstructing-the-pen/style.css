@@ -6,11 +6,14 @@
 }
 :root {
   --hue: 223;
+  /* hsl(hue, saturation, lightness) */
   --bg: hsl(var(--hue), 90%, 60%);
   --fg: hsl(var(--hue), 90%, 10%);
   --primary: hsl(var(--hue), 90%, 50%);
+  /* the speed of ball forward and back  */
   --trans-dur: 0.3s;
   --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
+  /* this increases the size on the page of the ball and arch in a responsive way  */
   font-size: calc(40px + (80 - 40) * (100vw - 320px) / (2560 - 320));
 }
 body,
@@ -33,14 +36,16 @@ body {
 }
 .switch {
   display: block;
+  /* to start the arch is grey  */
   filter: grayscale(0.9);
   margin: auto;
+  /* transition controls the smoothness, filter applies graphical effect defined in filter above  */
   transition: filter var(--trans-dur) var(--trans-timing);
   width: 6em;
   height: 2.75em;
 }
 .switch:has(:checked) {
-  /* using filter to make it grey when checked  */
+  /* using filter to make the arch not grey when checked  */
   filter: grayscale(0);
 }
 .switch-input {
