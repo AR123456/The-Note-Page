@@ -1,3 +1,7 @@
+:root {
+  --hue: 204;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -31,6 +35,7 @@ label::before {
   content: "";
   height: 4em;
   width: 16em;
+
   /* background of toggle track  */
   background-color: grey;
   border-radius: 2em;
@@ -41,7 +46,7 @@ label:hover::before {
 }
 input[type="checkbox"]:checked + label::before {
   /* background of toggle track when clicked */
-  background-color: rgb(114, 181, 225);
+  background-color: hsl(204, 65%, 66%);
 }
 input[type="checkbox"]:focus + label::before {
   /* background of toggle track when in focus */
@@ -55,6 +60,7 @@ label::after {
   content: "";
   height: 3.5em;
   width: 3.5em;
+
   /* color of toggle ball */
   background-color: white;
   border-radius: 2em;
@@ -81,10 +87,9 @@ input[type="checkbox"]:checked + label::after {
   /* transition toggle  */
   transition: 400ms ease-in-out;
 }
-.container {
-  /* clip-path: polygon(0 0, 100% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); */
-}
-.arch {
+/* radial-gradients below are responsible  for the arched background  */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/background */
+.switch-bg {
   background: radial-gradient(
     7.75em 7.75em at 50% 4.0625em,
     hsla(var(--hue), 90%, 90%, 0) 29.9%,
@@ -99,6 +104,7 @@ input[type="checkbox"]:checked + label::after {
     hsl(var(--hue), 90%, 98%) 49.5% 49.8%,
     hsla(var(--hue), 90%, 98%, 0) 49.9%
   );
+
   clip-path: polygon(0 0, 100% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
   display: block;
   position: absolute;
