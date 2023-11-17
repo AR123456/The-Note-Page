@@ -6,20 +6,15 @@
 }
 :root {
   --hue: 223;
-  /* hsl(hue, saturation, lightness) */
   --bg: hsl(var(--hue), 90%, 60%);
   --fg: hsl(var(--hue), 90%, 10%);
   --primary: hsl(var(--hue), 90%, 50%);
-  /* the speed of ball forward and back  */
   --trans-dur: 0.3s;
   --trans-timing: cubic-bezier(0.65, 0, 0.35, 1);
-  /* this increases the size on the page of the ball and arch in a responsive way  */
   font-size: calc(40px + (80 - 40) * (100vw - 320px) / (2560 - 320));
 }
 body,
 input {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  /* this font is controling the size add appearance of the toggle ball as well as where the ball is in relation to the arch */
   font: 1em/1.5 sans-serif;
 }
 body {
@@ -29,39 +24,31 @@ body {
   height: 100vh;
 }
 .switch,
-/* place of toggle ball on arch  */
-.switch-input {
+.switch__input {
   position: relative;
   -webkit-tap-highlight-color: transparent;
 }
 .switch {
   display: block;
-  /* to start the arch is grey  */
   filter: grayscale(0.9);
   margin: auto;
-  /* transition controls the smoothness, filter applies graphical effect defined in filter above  */
   transition: filter var(--trans-dur) var(--trans-timing);
   width: 6em;
   height: 2.75em;
 }
 .switch:has(:checked) {
-  /* using filter to make the arch not grey when checked  */
   filter: grayscale(0);
 }
-.switch-input {
+.switch__input {
   cursor: pointer;
   outline: transparent;
   width: 100%;
   height: 100%;
   -webkit-appearance: none;
-  /* hide the actual check box  */
   appearance: none;
-
   z-index: 2;
 }
-/* radial-gradients below are responsible  for the arched background  */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/background */
-.switch-bg {
+.switch__bg {
   background: radial-gradient(
     7.75em 7.75em at 50% 4.0625em,
     hsla(var(--hue), 90%, 90%, 0) 29.9%,
@@ -76,7 +63,6 @@ body {
     hsl(var(--hue), 90%, 98%) 49.5% 49.8%,
     hsla(var(--hue), 90%, 98%, 0) 49.9%
   );
-
   clip-path: polygon(0 0, 100% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
   display: block;
   position: absolute;
@@ -85,8 +71,7 @@ body {
 }
 .switch:before,
 .switch:after,
-/* making the psudo element :before show up on top of input */
-.switch-input:before {
+.switch__input:before {
   content: "";
   display: block;
   position: absolute;
@@ -143,8 +128,7 @@ body {
   left: auto;
   transform: rotate(45deg);
 }
-/* making the psudo element :before show up on top of input, this is styling the toggle ball itself */
-.switch-input:before {
+.switch__input:before {
   background-color: hsl(0, 0%, 100%);
   border-radius: 50%;
   box-shadow: 0 0 0 0.5em hsla(var(--hue), 90%, 40%, 0),
@@ -158,12 +142,11 @@ body {
     box-shadow 0.15s var(--trans-timing),
     transform var(--trans-dur) var(--trans-timing);
 }
-.switch-input:checked:before {
+.switch__input:checked:before {
   background-color: hsl(var(--hue), 90%, 70%);
   transform: rotate(45deg) translateY(-3.125em) rotate(-45deg);
 }
-/* makes the toggle bar stand out on focus - when tabbed to */
-.switch-input:focus-visible:before {
+.switch__input:focus-visible:before {
   box-shadow: 0 0 0 0.5em hsla(var(--hue), 90%, 40%, 0.5),
     0 0.25em 0.5em 0.125em hsl(var(--hue), 90%, 50%);
 }
