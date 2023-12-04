@@ -22,6 +22,11 @@ input.toggle[type="checkbox"] {
   position: absolute;
 }
 /* TODO target the input with class of switch-input, hide the check box  */
+input.switch[type="checkbox"] {
+  /* hide the browsers check box  */
+  /* opacity: 0;
+  position: absolute; */
+}
 /* this will likely apply to both labels..... */
 label {
   /* position relative so that the we can put the little circle in the toggle */
@@ -44,7 +49,7 @@ label.toggle-label::before {
   border-radius: 2em;
 }
 /*  right now this is an oblong grey box, it will become an arch that the ball will travers */
-label.switch::before {
+label.switch-label::before {
   content: "";
   height: 4em;
   width: 16em;
@@ -101,6 +106,7 @@ input.toggle[type="checkbox"]:checked + label::after {
   transition: 400ms ease-in-out;
 }
 /* radial-gradients below are responsible  for the arched background  */
+/* this class is on a span div  */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background */
 .switch-bg {
   background: radial-gradient(
@@ -124,3 +130,4 @@ input.toggle[type="checkbox"]:checked + label::after {
   inset: 0;
   z-index: 1;
 }
+/* make the psudo element :before show up on top ot the input  */
