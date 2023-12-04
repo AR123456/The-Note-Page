@@ -72,21 +72,12 @@ input.toggle[type="checkbox"]:checked + label::before {
   /* background of toggle track when clicked */
   background-color: hsl(204, 65%, 66%);
 }
-/* TODO this bit is not making background red  */
-input.switch[type="checkbox"]:checked + label.switch-label::before {
-  /* background of toggle track when clicked */
-  /* background-color: hsl(204, 65%, 66%); */
-  background-color: red;
-}
+
 input.toggle[type="checkbox"]:focus + label::before {
   /* background of toggle track when in focus */
   outline: 1px solid black;
 }
-/* TODO this bit is not working to put black outline on   */
-input.switch[type="checkbox"]:focus + label.switch-label {
-  /* background of toggle track when in focus */
-  outline: 1px solid black;
-}
+
 label.toggle-label::after {
   /* positioning this absolute so that the toggle ball is in the div */
   position: absolute;
