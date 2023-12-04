@@ -48,16 +48,7 @@ label.toggle-label::before {
   background-color: grey;
   border-radius: 2em;
 }
-.switch:before,
-.switch:after,
-/* making the psudo element :before show up on top of input */
-.switch-input:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 /*  right now this is an oblong grey box, it will become an arch that the ball will travers */
 
 label.switch-label::before {
@@ -72,11 +63,27 @@ label.toggle-label:hover::before {
   /* background of toggle track  */
   /* background-color: blue; */
 }
+label.switch-label:hover::before {
+  /* background of toggle track  */
+  /* background-color: blue; */
+}
+
 input.toggle[type="checkbox"]:checked + label::before {
   /* background of toggle track when clicked */
   background-color: hsl(204, 65%, 66%);
 }
+/* TODO this bit is not making background red  */
+input.switch[type="checkbox"]:checked + label.switch-label::before {
+  /* background of toggle track when clicked */
+  /* background-color: hsl(204, 65%, 66%); */
+  background-color: red;
+}
 input.toggle[type="checkbox"]:focus + label::before {
+  /* background of toggle track when in focus */
+  outline: 1px solid black;
+}
+/* TODO this bit is not working to put black outline on   */
+input.switch[type="checkbox"]:focus + label.switch-label {
   /* background of toggle track when in focus */
   outline: 1px solid black;
 }
@@ -95,6 +102,7 @@ label.toggle-label::after {
   /* transition toggle with un click */
   transition: 400ms ease-in-out;
 }
+
 /* targeting the little ball in the toggle switch when checkied  */
 input.toggle[type="checkbox"]:checked + label::after {
   /* positioning this absolute so that the toggle ball is in the div */
