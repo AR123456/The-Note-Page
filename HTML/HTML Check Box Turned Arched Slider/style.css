@@ -21,6 +21,8 @@ input.toggle[type="checkbox"] {
   opacity: 0;
   position: absolute;
 }
+/* TODO target the input with class of switch-input, hide the check box  */
+/* this will likely apply to both labels..... */
 label {
   /* position relative so that the we can put the little circle in the toggle */
   position: relative;
@@ -31,7 +33,8 @@ label {
 /* the DYI check box   */
 /* add this content before the check box label using a psudo element */
 /* psudo elements inherit the display of the parent so label needs to be flex  */
-label::before {
+/* adding the toggle-label so that this targets the first switch */
+label.toggle-label::before {
   content: "";
   height: 4em;
   width: 16em;
@@ -40,7 +43,17 @@ label::before {
   background-color: grey;
   border-radius: 2em;
 }
-label:hover::before {
+/*  right now this is an oblong grey box, it will become an arch that the ball will travers */
+label.switch::before {
+  content: "";
+  height: 4em;
+  width: 16em;
+
+  /* background of toggle track  */
+  background-color: grey;
+  border-radius: 2em;
+}
+label.toggle-label:hover::before {
   /* background of toggle track  */
   /* background-color: blue; */
 }
@@ -52,7 +65,7 @@ input.toggle[type="checkbox"]:focus + label::before {
   /* background of toggle track when in focus */
   outline: 1px solid black;
 }
-label::after {
+label.toggle-label::after {
   /* positioning this absolute so that the toggle ball is in the div */
   position: absolute;
   left: 0.25em;
