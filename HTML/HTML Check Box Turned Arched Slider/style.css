@@ -114,6 +114,7 @@ input.toggle[type="checkbox"]:checked + label::after {
   /* transition toggle  */
   transition: 400ms ease-in-out;
 }
+
 /* radial-gradients below are responsible  for the arched background  */
 /* this class is on a span div  */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background */
