@@ -48,12 +48,22 @@ label.toggle-label::before {
   background-color: grey;
   border-radius: 2em;
 }
+.switch:before,
+.switch:after,
+/* making the psudo element :before show up on top of input */
+.switch-input:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 /*  right now this is an oblong grey box, it will become an arch that the ball will travers */
+
 label.switch-label::before {
   content: "";
   height: 4em;
   width: 16em;
-
   /* background of toggle track  */
   background-color: grey;
   border-radius: 2em;
