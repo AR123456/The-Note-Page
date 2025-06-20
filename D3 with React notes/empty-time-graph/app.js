@@ -1,3 +1,5 @@
+// https://d3js.org/getting-started#d3-in-vanilla-html
+
 // Declare the chart dimensions and margins.
 const width = 640;
 const height = 400;
@@ -5,6 +7,8 @@ const marginTop = 20;
 const marginRight = 20;
 const marginBottom = 30;
 const marginLeft = 40;
+
+let scale = d3.scaleLinear();
 
 // Declare the x (horizontal position) scale.
 const x = d3
