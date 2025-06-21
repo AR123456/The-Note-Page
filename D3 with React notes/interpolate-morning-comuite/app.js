@@ -21,3 +21,11 @@ console.log(stockholmUppsala.invert(34.5));
 const distanceToMinutes = d3.scaleLinear().domain([0, 69]).range([0, 38]);
 console.log(distanceToMinutes(25));
 console.log(distanceToMinutes(69));
+
+let distance = { uppsala: 96, vasby: 25 };
+let travelTime = { uppsala: 38, vasby: 27 };
+let kmPerMinute = {
+  uppsala: distance.uppsala / travelTime.uppsala,
+  vasby: distance.vasby / travelTime.vasby,
+};
+console.log(kmPerMinute);
