@@ -1,34 +1,30 @@
+/**
+ * @name Amazon search
+ *
+ * @desc Looks for a "nyan cat pullover" on amazon.com, goes two page two clicks the third one.
+ */
 const puppeteer = require("puppeteer");
-// import puppeteer from "puppeteer";
-
-(async () => {
-  // Launch the browser and open a new blank page
-  //   const browser = await puppeteer.launch();
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-
-  // Navigate the page to a URL
-  await page.goto("https://developer.chrome.com/");
-
-  // Set screen size
-  await page.setViewport({ width: 1080, height: 1024 });
-
-  // Type into search box
-  await page.type(".search-box__input", "automate beyond recorder");
-
-  // Wait and click on first result
-  const searchResultSelector = ".search-box__link";
-  await page.waitForSelector(searchResultSelector);
-  await page.click(searchResultSelector);
-
-  // Locate the full title with a unique string
-  const textSelector = await page.waitForSelector(
-    "text/Customize and automate"
-  );
-  const fullTitle = await textSelector?.evaluate((el) => el.textContent);
-
-  // Print the full title
-  console.log('The title of this blog post is "%s".', fullTitle);
-
-  await browser.close();
-})();
+const screenshot = "amazon_nyan_cat_pullover.png";
+try {
+  (async () => {
+    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1280, height: 800 });
+    await page.goto("https://www.amazon.com");
+    await page.type("#twotabsearchtextbox", "nyan cat pullover");
+    await page.click("input.nav-input");
+    await page.waitForSelector("#resultsCol");
+    await page.screenshot({ path: "amazon_nyan_cat_pullovers_list.png" });
+    await page.click("#pagnNextString");
+    await page.waitForSelector("#resultsCol");
+    const pullovers = await page.$$("a.a-link-normal.a-text-normal");
+    await pullovers[2].click();
+    await page.waitForSelector("#ppd");
+    await page.screenshot({ path: screenshot });
+    await browser.close();
+    console.log("See screenshot: " + screenshot);
+  })();
+} catch (err) {
+  console.error(err);
+}
