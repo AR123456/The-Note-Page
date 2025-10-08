@@ -10,6 +10,8 @@ async function run() {
   await page.goto("https://www.traversymedia.com");
   // take a screen shot of the page
   await page.screenshot({ path: "example.png", fullPage: true });
+  // making a pdf
+  await page.pdf({ path: "example.pdf", format: "A4" });
   // access dom elements ect
 
   // close the browser
