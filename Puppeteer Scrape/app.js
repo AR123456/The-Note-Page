@@ -9,7 +9,7 @@ async function run() {
   // then the page to go to
   await page.goto("https://www.traversymedia.com");
   // take a screen shot of the page
-  await page.screenshot({ path: "example.png" });
+  await page.screenshot({ path: "example.png", fullPage: true });
   // access dom elements ect
 
   // close the browser
