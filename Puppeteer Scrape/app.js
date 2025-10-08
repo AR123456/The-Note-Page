@@ -8,6 +8,11 @@ async function run() {
   const page = await browser.newPage();
   // then the page to go to
   await page.goto("https://www.traversymedia.com");
+  // take a screen shot of the page
+  await page.screenshot({ path: "example.png" });
+  // access dom elements ect
+
   // close the browser
   await browser.close();
 }
+run();
