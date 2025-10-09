@@ -38,7 +38,20 @@ async function run() {
       url: e.querySelector(".card-footer a").href,
     }))
   );
-  console.log(courses);
+  // console.log(courses);
+  // *************************** another syntax can be used
+  // short cut with $$ do not need Array.from and querySelectorAll just what is being targeted
+  const courses2 = await page.$$eval("#cscourses .card", (elements) =>
+    elements.map((e) => ({
+      // return this object of card-body>h3
+      title: e.querySelector(".card-body h3").innerText,
+      // card-body>level
+      level: e.querySelector(".card-body .level").innerText,
+      // link .card-footer>
+      url: e.querySelector(".card-footer a").href,
+    }))
+  );
+  console.log(courses2);
   // close the browser
   await browser.close();
 }
