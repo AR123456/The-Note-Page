@@ -1,3 +1,6 @@
+// to save to a file need to use the built in file system
+const fs = require("fs");
+
 const puppeteer = require("puppeteer");
 
 // everything in an async function
@@ -38,7 +41,7 @@ async function run() {
       url: e.querySelector(".card-footer a").href,
     }))
   );
-  // console.log(courses);
+  console.log(courses);
   // *************************** another syntax can be used
   // short cut with $$ do not need Array.from and querySelectorAll just what is being targeted
   const courses2 = await page.$$eval("#cscourses .card", (elements) =>
