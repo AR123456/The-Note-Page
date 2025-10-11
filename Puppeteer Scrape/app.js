@@ -55,6 +55,12 @@ async function run() {
     }))
   );
   console.log(courses2);
+  // ********************saving to a file
+  // bring in fs and use json stringify to make proper json - err in call back
+  fs.writeFile("courses.json", JSON.stringify(courses), (err) => {
+    if (err) throw err;
+    console.log("file saved");
+  });
   // close the browser
   await browser.close();
 }
